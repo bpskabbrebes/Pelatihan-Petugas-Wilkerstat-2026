@@ -166,50 +166,21 @@
             <div class="border-b border-slate-200 pb-4 mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                 <div>
                     <h2 class="text-2xl font-bold text-slate-900">Jadwal Pelatihan</h2>
-                    <p class="text-slate-600 text-sm">Rangkaian agenda kegiatan pelatihan pengolahan Wilkerstat 2026</p>
+                    <p class="text-slate-600 text-sm">Rangkaian agenda kegiatan pelatihan pengolahan Wilkerstat 2026 (9 - 10 September 2026)</p>
                 </div>
-                <button onclick="protectedDriveAccess('https://docs.google.com/spreadsheets/d/13Yl83_bSNqqlQCf6G98f_IiVqIWCdj1y/edit?usp=drive_link&ouid=100180535934294034114&rtpof=true&sd=true')" class="bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold px-4 py-2 rounded-lg transition flex items-center gap-2">
-                    <i class="fa-solid fa-file-excel"></i> Buka Spreadsheet Jadwal
-                </button>
+                <div class="flex gap-2">
+                    <a href="image_8d3703.png" target="_blank" class="bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold px-3 py-2 rounded-lg transition flex items-center gap-1.5">
+                        <i class="fa-solid fa-up-right-from-square"></i> Buka Gambar Penuh
+                    </a>
+                    <button onclick="protectedDriveAccess('https://docs.google.com/spreadsheets/d/13Yl83_bSNqqlQCf6G98f_IiVqIWCdj1y/edit?usp=drive_link&ouid=100180535934294034114&rtpof=true&sd=true')" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold px-3 py-2 rounded-lg transition flex items-center gap-1.5">
+                        <i class="fa-solid fa-file-excel"></i> File Spreadsheet
+                    </button>
+                </div>
             </div>
 
-            <div class="overflow-x-auto">
-                <table class="w-full text-left text-sm text-slate-700">
-                    <thead class="bg-slate-100 text-slate-900 uppercase font-semibold text-xs">
-                        <tr>
-                            <th class="py-3 px-4 rounded-l-lg">Sesi / Waktu</th>
-                            <th class="py-3 px-4">Agenda / Materi</th>
-                            <th class="py-3 px-4">Narasumber / Fasilitator</th>
-                            <th class="py-3 px-4 text-center rounded-r-lg">Dokumen</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-slate-100">
-                        <tr>
-                            <td class="py-4 px-4 font-medium text-indigo-900">Hari 1 - Sesi Online</td>
-                            <td class="py-4 px-4">Pembukaan, Pre Test, Pendahuluan & Organisasi Pengolahan</td>
-                            <td class="py-4 px-4">Tim Geospasial BPS</td>
-                            <td class="py-4 px-4 text-center">
-                                <a href="http://s.bps.go.id/3329_Wilkerstat2026" target="_blank" class="text-blue-600 hover:text-blue-800 font-semibold"><i class="fa-solid fa-video mr-1"></i> Zoom</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="py-4 px-4 font-medium text-indigo-900">Hari 1 - Sesi Siang</td>
-                            <td class="py-4 px-4">Metodologi & Persiapan Proses Pengolahan</td>
-                            <td class="py-4 px-4">Instruktur Wilkerstat</td>
-                            <td class="py-4 px-4 text-center">
-                                <button onclick="protectedDriveAccess('https://drive.google.com/file/d/1lQ43lcBqM6jzqYsLLpYFWKw6Dbc7TiYT/view?usp=drive_link')" class="text-indigo-600 hover:text-indigo-800"><i class="fa-solid fa-file-lines text-lg"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="py-4 px-4 font-medium text-indigo-900">Hari 2 - Sesi Pagi</td>
-                            <td class="py-4 px-4">Pengolahan Master Wilkerstat & Perubahan SLS</td>
-                            <td class="py-4 px-4">Tim Pengolahan Data</td>
-                            <td class="py-4 px-4 text-center">
-                                <button onclick="protectedDriveAccess('https://drive.google.com/file/d/1rcrXehWrOMeWIbaf7FTHpl8kTNCMWJKl/view?usp=drive_link')" class="text-indigo-600 hover:text-indigo-800"><i class="fa-solid fa-file-lines text-lg"></i></button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="overflow-x-auto rounded-xl border border-slate-200 bg-slate-100 p-2 text-center">
+                <img src="image_8d3703.png" alt="Jadwal Pelatihan Wilkerstat 2026" class="w-full h-auto rounded-lg shadow-sm hover:opacity-95 transition cursor-pointer" onclick="window.open(this.src, '_blank')">
+                <p class="text-[11px] text-slate-500 mt-2">* Klik gambar untuk memperbesar tampilan</p>
             </div>
         </section>
 
