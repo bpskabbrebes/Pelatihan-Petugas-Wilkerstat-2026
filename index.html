@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Pelatihan Wilkerstat 2026</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        html { scroll-behavior: smooth; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans leading-relaxed">
+
+    <!-- Header / Navbar -->
+    <header class="bg-indigo-900 text-white sticky top-0 z-50 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <i class="fa-solid fa-map-location-dot text-2xl text-amber-400"></i>
+                <span class="font-bold text-lg sm:text-xl tracking-wide">Wilkerstat 2026</span>
+            </div>
+
+            <nav class="hidden md:flex space-x-6 text-sm font-medium">
+                <a href="#materi" class="hover:text-amber-400 transition">Materi</a>
+                <a href="#jadwal" class="hover:text-amber-400 transition">Jadwal</a>
+                <a href="#evaluasi" class="hover:text-amber-400 transition">Pre/Post Test</a>
+                <a href="#video" class="hover:text-amber-400 transition">Video</a>
+            </nav>
+
+            <!-- Area User Auth State -->
+            <div id="authArea" class="flex items-center gap-3">
+                <!-- Tombol jika BELUM login -->
+                <div id="guestNav" class="flex gap-2">
+                    <button onclick="openModal('loginModal')" class="bg-indigo-700 hover:bg-indigo-800 text-white px-3.5 py-1.5 rounded-lg text-sm transition font-medium">Masuk</button>
+                    <button onclick="openModal('registerModal')" class="bg-amber-500 hover:bg-amber-600 text-slate-900 px-3.5 py-1.5 rounded-lg text-sm font-semibold transition">Daftar</button>
+                </div>
+                <!-- Profile badge jika SUDAH login -->
+                <div id="userNav" class="hidden flex items-center gap-3">
+                    <div class="text-right hidden sm:block">
+                        <div id="navUserName" class="text-xs font-bold text-amber-400">Nama Petugas</div>
+                        <div id="navUserNip" class="text-[10px] text-indigo-200">NIP/ID Petugas</div>
+                    </div>
+                    <button onclick="logoutUser()" class="bg-red-600 hover:bg-red-700 text-white p-2 rounded-lg text-xs transition" title="Keluar">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Banner Notifikasi Pembatasan Akses -->
+    <div id="accessAlert" class="bg-amber-500 text-slate-950 px-4 py-2 text-center text-xs sm:text-sm font-bold flex justify-center items-center gap-2">
+        <i class="fa-solid fa-lock"></i>
+        <span>Beberapa materi dan tautan evaluasi dibatasi khusus untuk Petugas Pengolahan terdaftar. Silakan <u><a href="javascript:void(0)" onclick="openModal('loginModal')" class="underline">Masuk</a></u> atau <u><a href="javascript:void(0)" onclick="openModal('registerModal')" class="underline">Daftar Akun</a></u>.</span>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-r from-indigo-900 via-indigo-800 to-slate-900 text-white py-14 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto text-center">
+            <span class="bg-amber-400 text-indigo-950 text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">Portal Pembelajaran</span>
+            <h1 class="text-3xl sm:text-5xl font-extrabold mt-4 mb-6 leading-tight">
+                Pelatihan Petugas Pengolahan <br class="hidden sm:inline"/>
+                <span class="text-amber-400">Penetapan Kerangka Geospasial & Muatan Wilkerstat 2026</span>
+            </h1>
+            <p class="text-indigo-200 text-base sm:text-lg mb-8 max-w-2xl mx-auto">
+                Pusat materi pembelajaran, jadwal kegiatan, materi evaluasi, dan modul video pelatihan bagi petugas pengolahan wilayah kerja statistik.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="#materi" class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold px-6 py-3 rounded-lg shadow-lg transition">Mulai Belajar</a>
+                <button onclick="protectedDriveAccess()" class="bg-white/10 hover:bg-white/20 text-white font-semibold px-6 py-3 rounded-lg border border-white/20 transition flex items-center gap-2">
+                    <i class="fa-solid fa-folder-open"></i> Akses Drive Utama
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-16">
+
+        <!-- Section 1: Materi Pembelajaran -->
+        <section id="materi">
+            <div class="border-b border-slate-200 pb-4 mb-8">
+                <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">Materi Pembelajaran</h2>
+                <p class="text-slate-600 text-sm mt-1">Modul dan bahan tayang pembelajaran pelatihan Wilkerstat 2026</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Cards (1 sampai 6) -->
+                <script>
+                    const materis = [
+                        {id: 1, title: "Pendahuluan & Organisasi Pengolahan", desc: "Pengenalan umum, alur kerja, dan pembagian peran organisasi pengolahan."},
+                        {id: 2, title: "Metodologi", desc: "Konsep geospasial, standar muatan wilayah kerja, dan metodologi pemutakhiran."},
+                        {id: 3, title: "Persiapan Proses Pengolahan", desc: "Penyiapan sarana lunak, pemeriksaan kelengkapan dokumen, dan alokasi kerja."},
+                        {id: 4, title: "Pengolahan Master Wilkerstat & SLS", desc: "Prosedur pemutakhiran Master Wilkerstat dan penanganan perubahan batas SLS."},
+                        {id: 5, title: "Pengolahan Titik Bangunan", desc: "Teknis digitasi, validasi koordinat, dan pengolahan spasial titik bangunan."},
+                        {id: 6, title: "Pengolahan Peta", desc: "Pembuatan, penyuntingan, dan layouting peta batas Wilkerstat digital."}
+                    ];
+                    materis.forEach(m => {
+                        document.write(`
+                            <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 hover:shadow-md transition">
+                                <div class="w-12 h-12 bg-indigo-100 text-indigo-700 rounded-lg flex items-center justify-center font-bold text-xl mb-4">${m.id}</div>
+                                <h3 class="font-bold text-lg mb-2">${m.title}</h3>
+                                <p class="text-slate-600 text-sm mb-4">${m.desc}</p>
+                                <button onclick="protectedDriveAccess()" class="text-indigo-600 font-semibold text-sm hover:underline flex items-center gap-1">
+                                    Unduh Materi <i class="fa-solid fa-arrow-right text-xs"></i>
+                                </button>
+                            </div>
+                        `);
+                    });
+                </script>
+            </div>
+        </section>
+
+        <!-- Section 2: Jadwal Pelatihan -->
+        <section id="jadwal" class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-200">
+            <div class="border-b border-slate-200 pb-4 mb-6">
+                <h2 class="text-2xl font-bold text-slate-900">Jadwal Pelatihan</h2>
+                <p class="text-slate-600 text-sm">Rangkaian agenda kegiatan pelatihan pengolahan Wilkerstat 2026</p>
+            </div>
+
+            <div class="overflow-x-auto">
+                <table class="w-full text-left text-sm text-slate-700">
+                    <thead class="bg-slate-100 text-slate-900 uppercase font-semibold text-xs">
+                        <tr>
+                            <th class="py-3 px-4 rounded-l-lg">Sesi / Waktu</th>
+                            <th class="py-3 px-4">Agenda / Materi</th>
+                            <th class="py-3 px-4">Narasumber / Fasilitator</th>
+                            <th class="py-3 px-4 text-center rounded-r-lg">Dokumen</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100">
+                        <tr>
+                            <td class="py-4 px-4 font-medium text-indigo-900">Hari 1 - Sesi Pagi</td>
+                            <td class="py-4 px-4">Pembukaan, Pre Test, Pendahuluan & Organisasi Pengolahan</td>
+                            <td class="py-4 px-4">Tim Geospasial BPS</td>
+                            <td class="py-4 px-4 text-center">
+                                <button onclick="protectedDriveAccess()" class="text-indigo-600 hover:text-indigo-800"><i class="fa-solid fa-file-lines text-lg"></i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="py-4 px-4 font-medium text-indigo-900">Hari 1 - Sesi Siang</td>
+                            <td class="py-4 px-4">Metodologi & Persiapan Proses Pengolahan</td>
+                            <td class="py-4 px-4">Instruktur Wilkerstat</td>
+                            <td class="py-4 px-4 text-center">
+                                <button onclick="protectedDriveAccess()" class="text-indigo-600 hover:text-indigo-800"><i class="fa-solid fa-file-lines text-lg"></i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="py-4 px-4 font-medium text-indigo-900">Hari 2 - Sesi Pagi</td>
+                            <td class="py-4 px-4">Pengolahan Master Wilkerstat & Perubahan SLS</td>
+                            <td class="py-4 px-4">Tim Pengolahan Data</td>
+                            <td class="py-4 px-4 text-center">
+                                <button onclick="protectedDriveAccess()" class="text-indigo-600 hover:text-indigo-800"><i class="fa-solid fa-file-lines text-lg"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Section 3: Soal Pre Test, Pendalaman, dan Post Test -->
+        <section id="evaluasi">
+            <div class="border-b border-slate-200 pb-4 mb-8">
+                <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">Evaluasi Pembelajaran</h2>
+                <p class="text-slate-600 text-sm mt-1">Uji pemahaman peserta melalui Pre-Test, Soal Pendalaman, dan Post-Test</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Pre Test -->
+                <div class="bg-amber-50 border border-amber-200 rounded-xl p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-3 text-amber-800 font-bold mb-3">
+                            <i class="fa-solid fa-clipboard-question text-2xl"></i>
+                            <h3 class="text-lg">Pre-Test</h3>
+                        </div>
+                        <p class="text-sm text-amber-900/80 mb-6">Dilakukan sebelum pelatihan dimulai untuk mengukur kemampuan awal peserta.</p>
+                    </div>
+                    <button onclick="protectedDriveAccess()" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold py-2.5 rounded-lg shadow-sm transition">
+                        Akses Soal Pre-Test
+                    </button>
+                </div>
+
+                <!-- Pendalaman -->
+                <div class="bg-indigo-50 border border-indigo-200 rounded-xl p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-3 text-indigo-800 font-bold mb-3">
+                            <i class="fa-solid fa-book-open-reader text-2xl"></i>
+                            <h3 class="text-lg">Soal Pendalaman</h3>
+                        </div>
+                        <p class="text-sm text-indigo-900/80 mb-6">Latihan studi kasus dan pengayaan pemahaman materi saat proses pembelajaran berlangsung.</p>
+                    </div>
+                    <button onclick="protectedDriveAccess()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2.5 rounded-lg shadow-sm transition">
+                        Akses Soal Pendalaman
+                    </button>
+                </div>
+
+                <!-- Post Test -->
+                <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-3 text-emerald-800 font-bold mb-3">
+                            <i class="fa-solid fa-square-check text-2xl"></i>
+                            <h3 class="text-lg">Post-Test</h3>
+                        </div>
+                        <p class="text-sm text-emerald-900/80 mb-6">Evaluasi akhir untuk mengukur peningkatan capaian kompetensi peserta pelatihan.</p>
+                    </div>
+                    <button onclick="protectedDriveAccess()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 rounded-lg shadow-sm transition">
+                        Akses Soal Post-Test
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Video Pembelajaran -->
+        <section id="video">
+            <div class="border-b border-slate-200 pb-4 mb-8">
+                <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">Video Pembelajaran</h2>
+                <p class="text-slate-600 text-sm mt-1">Panduan visual dan tata cara teknis pengolahan Wilkerstat 2026</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+                    <div class="bg-slate-800 aspect-video flex items-center justify-center text-slate-400 relative">
+                        <i onclick="protectedDriveAccess()" class="fa-solid fa-circle-play text-5xl text-amber-400 hover:scale-110 transition cursor-pointer"></i>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-bold text-slate-900 text-lg mb-2">Panduan Pengolahan Titik Bangunan</h3>
+                        <p class="text-slate-600 text-sm mb-4">Tutorial langkah demi langkah melakukan pemutakhiran titik lokasi bangunan pada software pengolahan.</p>
+                        <button onclick="protectedDriveAccess()" class="text-indigo-600 hover:underline font-semibold text-sm flex items-center gap-2">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i> Tonton di Drive
+                        </button>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+                    <div class="bg-slate-800 aspect-video flex items-center justify-center text-slate-400 relative">
+                        <i onclick="protectedDriveAccess()" class="fa-solid fa-circle-play text-5xl text-amber-400 hover:scale-110 transition cursor-pointer"></i>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-bold text-slate-900 text-lg mb-2">Tutorial Digitasi & Penyesuaian Peta Wilkerstat</h3>
+                        <p class="text-slate-600 text-sm mb-4">Simulasi praktik editing batas wilayah kerja statistik dan pemutakhiran muatan SLS.</p>
+                        <button onclick="protectedDriveAccess()" class="text-indigo-600 hover:underline font-semibold text-sm flex items-center gap-2">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i> Tonton di Drive
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- MODAL LOGIN -->
+    <div id="loginModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm hidden z-50 flex items-center justify-center p-4">
+        <div class="bg-white w-full max-w-md rounded-2xl shadow-xl overflow-hidden p-6 relative">
+            <button onclick="closeModal('loginModal')" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-xl"></i></button>
+            <h3 class="text-xl font-bold text-slate-900 mb-1">Masuk Petugas</h3>
+            <p class="text-xs text-slate-500 mb-6">Silakan masuk menggunakan email dan kata sandi terdaftar.</p>
+
+            <form onsubmit="handleLogin(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Email / NIP</label>
+                    <input id="loginEmail" type="email" required placeholder="petugas@bps.go.id" class="w-full px-3 py-2 border rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Kata Sandi</label>
+                    <input id="loginPassword" type="password" required placeholder="••••••••" class="w-full px-3 py-2 border rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 outline-none">
+                </div>
+                <button type="submit" class="w-full bg-indigo-900 hover:bg-indigo-800 text-white font-bold py-2.5 rounded-lg text-sm transition">Masuk Akun</button>
+            </form>
+            <p class="text-xs text-center text-slate-500 mt-4">Belum punya akun? <a href="javascript:void(0)" onclick="switchModal('loginModal', 'registerModal')" class="text-indigo-600 font-semibold underline">Daftar Akun Baru</a></p>
+        </div>
+    </div>
+
+    <!-- MODAL REGISTRASI -->
+    <div id="registerModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm hidden z-50 flex items-center justify-center p-4">
+        <div class="bg-white w-full max-w-md rounded-2xl shadow-xl overflow-hidden p-6 relative">
+            <button onclick="closeModal('registerModal')" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-xl"></i></button>
+            <h3 class="text-xl font-bold text-slate-900 mb-1">Pendaftaran Petugas</h3>
+            <p class="text-xs text-slate-500 mb-6">Buat akun petugas pengolahan Wilkerstat 2026.</p>
+
+            <form onsubmit="handleRegister(event)" class="space-y-3">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Nama Lengkap</label>
+                    <input id="regName" type="text" required placeholder="Budi Santoso" class="w-full px-3 py-2 border rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">NIP / ID Petugas</label>
+                    <input id="regNip" type="text" required placeholder="1995xxxxxx" class="w-full px-3 py-2 border rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Email</label>
+                    <input id="regEmail" type="email" required placeholder="budi@bps.go.id" class="w-full px-3 py-2 border rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Kata Sandi</label>
+                    <input id="regPassword" type="password" required placeholder="••••••••" class="w-full px-3 py-2 border rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 outline-none">
+                </div>
+                <button type="submit" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold py-2.5 rounded-lg text-sm transition">Daftar Sekarang</button>
+            </form>
+            <p class="text-xs text-center text-slate-500 mt-4">Sudah mendaftar? <a href="javascript:void(0)" onclick="switchModal('registerModal', 'loginModal')" class="text-indigo-600 font-semibold underline">Masuk Akun</a></p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-8 border-t border-slate-800 text-xs sm:text-sm text-center">
+        <p>&copy; 2026 Pelatihan Petugas Pengolahan Wilkerstat. Hak Cipta Dilindungi.</p>
+    </footer>
+
+    <!-- LOGIKA JAVASCRIPT AUTHENTICATION -->
+    <script>
+        const DRIVE_URL = "https://drive.google.com/drive/folders/1qxrKKTyVGGfHC7Hjvh_kedqCzfs5oawG?usp=drive_link";
+
+        // Inisialisasi Aplikasi saat Load
+        document.addEventListener("DOMContentLoaded", () => {
+            checkLoginState();
+        });
+
+        // Cek status login user
+        function checkLoginState() {
+            const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+            const guestNav = document.getElementById("guestNav");
+            const userNav = document.getElementById("userNav");
+            const accessAlert = document.getElementById("accessAlert");
+
+            if (currentUser) {
+                guestNav.classList.add("hidden");
+                userNav.classList.remove("hidden");
+                accessAlert.classList.add("hidden");
+
+                document.getElementById("navUserName").textContent = currentUser.name;
+                document.getElementById("navUserNip").textContent = "NIP: " + currentUser.nip;
+            } else {
+                guestNav.classList.remove("hidden");
+                userNav.classList.add("hidden");
+                accessAlert.classList.remove("hidden");
+            }
+        }
+
+        // Jalur Proteksi Akses Drive
+        function protectedDriveAccess() {
+            const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+            if (!currentUser) {
+                alert("Akses Terbatas!\n\nAnda harus Masuk / mendaftarkan Akun Petugas terlebih dahulu untuk mengakses berkas pembelajaran.");
+                openModal("loginModal");
+            } else {
+                window.open(DRIVE_URL, "_blank");
+            }
+        }
+
+        // Pendaftaran Akun Baru
+        function handleRegister(e) {
+            e.preventDefault();
+            const name = document.getElementById("regName").value;
+            const nip = document.getElementById("regNip").value;
+            const email = document.getElementById("regEmail").value;
+            const password = document.getElementById("regPassword").value;
+
+            let users = JSON.parse(localStorage.getItem("registeredUsers")) || [];
+            
+            if (users.find(u => u.email === email)) {
+                alert("Email sudah terdaftar. Silakan login.");
+                return;
+            }
+
+            const newUser = { name, nip, email, password };
+            users.push(newUser);
+            localStorage.setItem("registeredUsers", JSON.stringify(users));
+
+            // Auto Login setelah daftar
+            localStorage.setItem("currentUser", JSON.stringify(newUser));
+            closeModal("registerModal");
+            checkLoginState();
+            alert("Pendaftaran berhasil! Anda telah masuk sebagai Petugas.");
+        }
+
+        // Login Akun
+        function handleLogin(e) {
+            e.preventDefault();
+            const email = document.getElementById("loginEmail").value;
+            const password = document.getElementById("loginPassword").value;
+
+            let users = JSON.parse(localStorage.getItem("registeredUsers")) || [];
+            const user = users.find(u => u.email === email && u.password === password);
+
+            if (user) {
+                localStorage.setItem("currentUser", JSON.stringify(user));
+                closeModal("loginModal");
+                checkLoginState();
+            } else {
+                alert("Email atau kata sandi tidak cocok!");
+            }
+        }
+
+        // Logout
+        function logoutUser() {
+            if (confirm("Apakah Anda yakin ingin keluar?")) {
+                localStorage.removeItem("currentUser");
+                checkLoginState();
+            }
+        }
+
+        // Helper Modal
+        function openModal(id) { document.getElementById(id).classList.remove("hidden"); }
+        function closeModal(id) { document.getElementById(id).classList.add("hidden"); }
+        function switchModal(from, to) { closeModal(from); openModal(to); }
+    </script>
+</body>
+</html>
