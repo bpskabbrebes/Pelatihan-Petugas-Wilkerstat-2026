@@ -400,10 +400,10 @@
     </footer>
 
     <script>
-        // URL Web App Google Apps Script untuk rekaman nilai ke Spreadsheet
-        const SCRIPT_URL = "GANTI_DENGAN_URL_WEB_APP_GOOGLE_APPS_SCRIPT_ANDA";
+        // URL Web App Google Apps Script terpasang
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzxi8mnh4fuTV65G__opOpCDLwvZmII55rpAbK_2SD6k0GRQRORCec57wRrVo8zj1PS/exec";
 
-        // Bank Soal dari Dokumen Evaluasi
+        // Bank Soal Evaluasi
         const quizData = [
             {
                 id: 1,
@@ -536,10 +536,9 @@
             container.innerHTML = "";
 
             quizData.forEach((q, index) => {
-                // Acak opsi jawaban
                 const shuffledOptions = [...q.options].sort(() => Math.random() - 0.5);
 
-                let optionsHtml = shuffledOptions.map((opt, oIdx) => `
+                let optionsHtml = shuffledOptions.map((opt) => `
                     <label class="flex items-start gap-3 p-3 rounded-lg border border-slate-200 hover:bg-orange-50/50 transition cursor-pointer">
                         <input type="radio" name="q_${q.id}" value="${opt}" required class="mt-0.5 text-orange-600 focus:ring-orange-500">
                         <span class="text-sm text-slate-800">${opt}</span>
@@ -591,7 +590,6 @@
                 waktu: new Date().toLocaleString("id-ID", { timeZone: "Asia/Jakarta" })
             };
 
-            // Mengirimkan hasil ke Google Spreadsheet via fetch
             fetch(SCRIPT_URL, {
                 method: "POST",
                 mode: "no-cors",
