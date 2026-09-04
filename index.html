@@ -44,6 +44,23 @@
         </div>
     </header>
 
+    <div class="bg-blue-600 text-white px-4 py-3 shadow-inner">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-sm">
+            <div class="flex items-center gap-3 text-center sm:text-left">
+                <span class="bg-white/20 text-white p-2 rounded-full hidden sm:inline-block">
+                    <i class="fa-solid fa-video text-lg"></i>
+                </span>
+                <div>
+                    <span class="font-bold uppercase tracking-wider text-xs bg-amber-400 text-slate-950 px-2 py-0.5 rounded mr-2">Pengumuman</span>
+                    <span class="font-medium">Pertemuan Hari Pertama Online (Pelatihan Petugas Pengolahan)</span>
+                </div>
+            </div>
+            <a href="http://s.bps.go.id/3329_Wilkerstat2026" target="_blank" class="bg-amber-400 hover:bg-amber-500 text-slate-950 font-bold px-4 py-1.5 rounded-lg text-xs transition flex items-center gap-2 whitespace-nowrap shadow">
+                <i class="fa-solid fa-video"></i> Gabung Zoom Meeting <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+
     <div id="accessAlert" class="bg-amber-500 text-slate-950 px-4 py-2 text-center text-xs sm:text-sm font-bold flex justify-center items-center gap-2">
         <i class="fa-solid fa-lock"></i>
         <span>Materi dan dokumen pelatihan dibatasi khusus untuk Petugas Pengolahan terdaftar. Silakan <u><a href="javascript:void(0)" onclick="openModal('loginModal')" class="underline">Masuk</a></u> atau <u><a href="javascript:void(0)" onclick="openModal('registerModal')" class="underline">Daftar Akun</a></u>.</span>
@@ -61,9 +78,9 @@
             </p>
             <div class="flex flex-wrap justify-center gap-4">
                 <a href="#materi" class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold px-6 py-3 rounded-lg shadow-lg transition">Mulai Belajar</a>
-                <button onclick="protectedDriveAccess('https://drive.google.com/drive/folders/1qxrKKTyVGGfHC7Hjvh_kedqCzfs5oawG?usp=drive_link')" class="bg-white/10 hover:bg-white/20 text-white font-semibold px-6 py-3 rounded-lg border border-white/20 transition flex items-center gap-2">
-                    <i class="fa-solid fa-folder-open"></i> Akses Drive Utama
-                </button>
+                <a href="http://s.bps.go.id/3329_Wilkerstat2026" target="_blank" class="bg-blue-500 hover:bg-blue-600 text-white font-bold px-6 py-3 rounded-lg shadow-lg transition flex items-center gap-2">
+                    <i class="fa-solid fa-video"></i> Link Zoom Pertemuan
+                </a>
             </div>
         </div>
     </section>
@@ -146,9 +163,14 @@
         </section>
 
         <section id="jadwal" class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-200">
-            <div class="border-b border-slate-200 pb-4 mb-6">
-                <h2 class="text-2xl font-bold text-slate-900">Jadwal Pelatihan</h2>
-                <p class="text-slate-600 text-sm">Rangkaian agenda kegiatan pelatihan pengolahan Wilkerstat 2026</p>
+            <div class="border-b border-slate-200 pb-4 mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                <div>
+                    <h2 class="text-2xl font-bold text-slate-900">Jadwal Pelatihan</h2>
+                    <p class="text-slate-600 text-sm">Rangkaian agenda kegiatan pelatihan pengolahan Wilkerstat 2026</p>
+                </div>
+                <button onclick="protectedDriveAccess('https://docs.google.com/spreadsheets/d/13Yl83_bSNqqlQCf6G98f_IiVqIWCdj1y/edit?usp=drive_link&ouid=100180535934294034114&rtpof=true&sd=true')" class="bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold px-4 py-2 rounded-lg transition flex items-center gap-2">
+                    <i class="fa-solid fa-file-excel"></i> Buka Spreadsheet Jadwal
+                </button>
             </div>
 
             <div class="overflow-x-auto">
@@ -163,11 +185,11 @@
                     </thead>
                     <tbody class="divide-y divide-slate-100">
                         <tr>
-                            <td class="py-4 px-4 font-medium text-indigo-900">Hari 1 - Sesi Pagi</td>
+                            <td class="py-4 px-4 font-medium text-indigo-900">Hari 1 - Sesi Online</td>
                             <td class="py-4 px-4">Pembukaan, Pre Test, Pendahuluan & Organisasi Pengolahan</td>
                             <td class="py-4 px-4">Tim Geospasial BPS</td>
                             <td class="py-4 px-4 text-center">
-                                <button onclick="protectedDriveAccess('https://drive.google.com/file/d/11bjlre4EImpzp1blPLu8N938ieg5dSCQ/view?usp=drive_link')" class="text-indigo-600 hover:text-indigo-800"><i class="fa-solid fa-file-lines text-lg"></i></button>
+                                <a href="http://s.bps.go.id/3329_Wilkerstat2026" target="_blank" class="text-blue-600 hover:text-blue-800 font-semibold"><i class="fa-solid fa-video mr-1"></i> Zoom</a>
                             </td>
                         </tr>
                         <tr>
@@ -242,35 +264,89 @@
         <section id="video">
             <div class="border-b border-slate-200 pb-4 mb-8">
                 <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">Video Pembelajaran</h2>
-                <p class="text-slate-600 text-sm mt-1">Panduan visual dan tata cara teknis pengolahan Wilkerstat 2026</p>
+                <p class="text-slate-600 text-sm mt-1">Modul pemutar video interaktif tata cara dan teknis pengolahan Wilkerstat 2026</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
-                    <div class="bg-slate-800 aspect-video flex items-center justify-center text-slate-400 relative">
-                        <i onclick="protectedDriveAccess('https://drive.google.com/drive/folders/1qxrKKTyVGGfHC7Hjvh_kedqCzfs5oawG?usp=drive_link')" class="fa-solid fa-circle-play text-5xl text-amber-400 hover:scale-110 transition cursor-pointer"></i>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col justify-between">
+                    <div class="bg-black aspect-video relative">
+                        <iframe src="https://drive.google.com/file/d/1MPkUtdt-BOx5QHTjghGVGDsmAjB7XScn/preview" class="w-full h-full border-0" allow="autoplay" allowfullscreen></iframe>
                     </div>
-                    <div class="p-5">
-                        <h3 class="font-bold text-slate-900 text-lg mb-2">Panduan Pengolahan Titik Bangunan</h3>
-                        <p class="text-slate-600 text-sm mb-4">Tutorial langkah demi langkah melakukan pemutakhiran titik lokasi bangunan pada software pengolahan.</p>
-                        <button onclick="protectedDriveAccess('https://drive.google.com/drive/folders/1qxrKKTyVGGfHC7Hjvh_kedqCzfs5oawG?usp=drive_link')" class="text-indigo-600 hover:underline font-semibold text-sm flex items-center gap-2">
-                            <i class="fa-solid fa-arrow-up-right-from-square"></i> Tonton di Drive
+                    <div class="p-4">
+                        <h3 class="font-bold text-slate-900 text-base mb-2">Video Pembelajaran 1</h3>
+                        <p class="text-xs text-slate-500 mb-3">Modul video panduan teknis pelatihan pengolahan Wilkerstat 2026.</p>
+                        <button onclick="protectedDriveAccess('https://drive.google.com/file/d/1MPkUtdt-BOx5QHTjghGVGDsmAjB7XScn/view?usp=drive_link')" class="text-indigo-600 hover:underline font-semibold text-xs flex items-center gap-1">
+                            <i class="fa-solid fa-up-right-from-square"></i> Buka di Tab Baru
                         </button>
                     </div>
                 </div>
 
-                <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
-                    <div class="bg-slate-800 aspect-video flex items-center justify-center text-slate-400 relative">
-                        <i onclick="protectedDriveAccess('https://drive.google.com/drive/folders/1qxrKKTyVGGfHC7Hjvh_kedqCzfs5oawG?usp=drive_link')" class="fa-solid fa-circle-play text-5xl text-amber-400 hover:scale-110 transition cursor-pointer"></i>
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col justify-between">
+                    <div class="bg-black aspect-video relative">
+                        <iframe src="https://drive.google.com/file/d/1H5bvwfDqdUwQA5yndgT_TogDWKlXP8mg/preview" class="w-full h-full border-0" allow="autoplay" allowfullscreen></iframe>
                     </div>
-                    <div class="p-5">
-                        <h3 class="font-bold text-slate-900 text-lg mb-2">Tutorial Digitasi & Penyesuaian Peta Wilkerstat</h3>
-                        <p class="text-slate-600 text-sm mb-4">Simulasi praktik editing batas wilayah kerja statistik dan pemutakhiran muatan SLS.</p>
-                        <button onclick="protectedDriveAccess('https://drive.google.com/drive/folders/1qxrKKTyVGGfHC7Hjvh_kedqCzfs5oawG?usp=drive_link')" class="text-indigo-600 hover:underline font-semibold text-sm flex items-center gap-2">
-                            <i class="fa-solid fa-arrow-up-right-from-square"></i> Tonton di Drive
+                    <div class="p-4">
+                        <h3 class="font-bold text-slate-900 text-base mb-2">Video Pembelajaran 2</h3>
+                        <p class="text-xs text-slate-500 mb-3">Modul video panduan teknis pelatihan pengolahan Wilkerstat 2026.</p>
+                        <button onclick="protectedDriveAccess('https://drive.google.com/file/d/1H5bvwfDqdUwQA5yndgT_TogDWKlXP8mg/view?usp=drive_link')" class="text-indigo-600 hover:underline font-semibold text-xs flex items-center gap-1">
+                            <i class="fa-solid fa-up-right-from-square"></i> Buka di Tab Baru
                         </button>
                     </div>
                 </div>
+
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col justify-between">
+                    <div class="bg-black aspect-video relative">
+                        <iframe src="https://drive.google.com/file/d/1EkT_b2eAv-LzbEsuH6Zo7D7OADhnEGAf/preview" class="w-full h-full border-0" allow="autoplay" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-slate-900 text-base mb-2">Video Pembelajaran 3</h3>
+                        <p class="text-xs text-slate-500 mb-3">Modul video panduan teknis pelatihan pengolahan Wilkerstat 2026.</p>
+                        <button onclick="protectedDriveAccess('https://drive.google.com/file/d/1EkT_b2eAv-LzbEsuH6Zo7D7OADhnEGAf/view?usp=drive_link')" class="text-indigo-600 hover:underline font-semibold text-xs flex items-center gap-1">
+                            <i class="fa-solid fa-up-right-from-square"></i> Buka di Tab Baru
+                        </button>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col justify-between">
+                    <div class="bg-black aspect-video relative">
+                        <iframe src="https://drive.google.com/file/d/1jGl10PszUhne5RalEOH44pnDxik6gB9_/preview" class="w-full h-full border-0" allow="autoplay" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-slate-900 text-base mb-2">Video Pembelajaran 4</h3>
+                        <p class="text-xs text-slate-500 mb-3">Modul video panduan teknis pelatihan pengolahan Wilkerstat 2026.</p>
+                        <button onclick="protectedDriveAccess('https://drive.google.com/file/d/1jGl10PszUhne5RalEOH44pnDxik6gB9_/view?usp=drive_link')" class="text-indigo-600 hover:underline font-semibold text-xs flex items-center gap-1">
+                            <i class="fa-solid fa-up-right-from-square"></i> Buka di Tab Baru
+                        </button>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col justify-between">
+                    <div class="bg-black aspect-video relative">
+                        <iframe src="https://drive.google.com/file/d/1e-3jZVAsRtir7r-Qya35CNBgzn8TUlQH/preview" class="w-full h-full border-0" allow="autoplay" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-slate-900 text-base mb-2">Video Pembelajaran 5</h3>
+                        <p class="text-xs text-slate-500 mb-3">Modul video panduan teknis pelatihan pengolahan Wilkerstat 2026.</p>
+                        <button onclick="protectedDriveAccess('https://drive.google.com/file/d/1e-3jZVAsRtir7r-Qya35CNBgzn8TUlQH/view?usp=drive_link')" class="text-indigo-600 hover:underline font-semibold text-xs flex items-center gap-1">
+                            <i class="fa-solid fa-up-right-from-square"></i> Buka di Tab Baru
+                        </button>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col justify-between">
+                    <div class="bg-black aspect-video relative">
+                        <iframe src="https://drive.google.com/file/d/1mEmIoZPc0MEwb-XAO_yH8hOXdQ-xLzzm/preview" class="w-full h-full border-0" allow="autoplay" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-slate-900 text-base mb-2">Video Pembelajaran 6</h3>
+                        <p class="text-xs text-slate-500 mb-3">Modul video panduan teknis pelatihan pengolahan Wilkerstat 2026.</p>
+                        <button onclick="protectedDriveAccess('https://drive.google.com/file/d/1mEmIoZPc0MEwb-XAO_yH8hOXdQ-xLzzm/view?usp=drive_link')" class="text-indigo-600 hover:underline font-semibold text-xs flex items-center gap-1">
+                            <i class="fa-solid fa-up-right-from-square"></i> Buka di Tab Baru
+                        </button>
+                    </div>
+                </div>
+
             </div>
         </section>
 
@@ -331,12 +407,10 @@
     </footer>
 
     <script>
-        // Inisialisasi Aplikasi saat Load
         document.addEventListener("DOMContentLoaded", () => {
             checkLoginState();
         });
 
-        // Cek status login user
         function checkLoginState() {
             const currentUser = JSON.parse(localStorage.getItem("currentUser"));
             const guestNav = document.getElementById("guestNav");
@@ -357,18 +431,16 @@
             }
         }
 
-        // Jalur Proteksi Akses Link Spesifik
         function protectedDriveAccess(targetUrl) {
             const currentUser = JSON.parse(localStorage.getItem("currentUser"));
             if (!currentUser) {
-                alert("Akses Terbatas!\n\nAnda harus Masuk / Mendaftar Akun Petugas terlebih dahulu untuk mengakses dokumen pembelajaran ini.");
+                alert("Akses Terbatas!\n\nAnda harus Masuk / Mendaftar Akun Petugas terlebih dahulu untuk mengakses dokumen ini.");
                 openModal("loginModal");
             } else {
                 window.open(targetUrl, "_blank");
             }
         }
 
-        // Pendaftaran Akun Baru
         function handleRegister(e) {
             e.preventDefault();
             const name = document.getElementById("regName").value;
@@ -387,14 +459,12 @@
             users.push(newUser);
             localStorage.setItem("registeredUsers", JSON.stringify(users));
 
-            // Auto Login setelah daftar
             localStorage.setItem("currentUser", JSON.stringify(newUser));
             closeModal("registerModal");
             checkLoginState();
             alert("Pendaftaran berhasil! Anda telah masuk sebagai Petugas.");
         }
 
-        // Login Akun
         function handleLogin(e) {
             e.preventDefault();
             const email = document.getElementById("loginEmail").value;
@@ -412,7 +482,6 @@
             }
         }
 
-        // Logout
         function logoutUser() {
             if (confirm("Apakah Anda yakin ingin keluar?")) {
                 localStorage.removeItem("currentUser");
@@ -420,7 +489,6 @@
             }
         }
 
-        // Helper Modal
         function openModal(id) { document.getElementById(id).classList.remove("hidden"); }
         function closeModal(id) { document.getElementById(id).classList.add("hidden"); }
         function switchModal(from, to) { closeModal(from); openModal(to); }
