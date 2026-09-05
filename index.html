@@ -350,7 +350,7 @@
                 </div>
             </div>
 
-            <!-- Panduan FRS MFD Online (7 Video) -->
+            <!-- Panduan FRS MFD Online -->
             <div>
                 <h3 class="text-base font-bold text-orange-950 mb-3 flex items-center gap-2 border-t border-orange-200 pt-5">
                     <i class="fa-solid fa-network-wired text-orange-600"></i> Video Panduan FRS MFD Online
@@ -527,7 +527,8 @@
 
     <!-- JAVASCRIPT INTEGRASI APPS SCRIPT -->
     <script>
-        const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyAM6r0dKj4ymx32IF3swO08vEkM9viKoU2qpYNJuZ2BggC7VV_c46X6zRLY6FaSFs/exec";
+        // URL Web App Google Apps Script Terupdate
+        const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxzS7mpsrNN3w03wWycgI0mmPEL2rjvDFkczNSsh45_3qa5dXEEMAWS9_wgF1d93Kw/exec";
 
         let currentUser = JSON.parse(localStorage.getItem('wilkerstat_user')) || null;
 
@@ -558,7 +559,7 @@
 
             try {
                 btn.disabled = true;
-                btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Verifikasi...`;
+                btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Memeriksa Data...`;
 
                 const response = await fetch(APPS_SCRIPT_URL, {
                     method: 'POST',
@@ -575,14 +576,14 @@
                 if (result.status === 'success') {
                     currentUser = { name: result.name, nip: result.nip };
                     localStorage.setItem('wilkerstat_user', JSON.stringify(currentUser));
-                    alert('Login Berhasil!\n\nSelamat datang kembali, ' + result.name);
+                    alert('Login Berhasil!\n\nSelamat datang, ' + result.name);
                     closeModal('loginModal');
                     updateUIAuthState();
                 } else {
-                    alert('Login Gagal: ' + (result.message || 'NIP/NIK atau kata sandi tidak ditemukan.'));
+                    alert('Login Gagal:\n' + (result.message || 'NIP/NIK atau kata sandi tidak sesuai.'));
                 }
             } catch (err) {
-                alert('Terjadi kesalahan koneksi/server. Silakan coba beberapa saat lagi.');
+                alert('Terjadi kesalahan koneksi atau URL Apps Script belum diizinkan (Anyone access).');
                 console.error(err);
             } finally {
                 btn.disabled = false;
@@ -623,10 +624,10 @@
                     closeModal('registerModal');
                     updateUIAuthState();
                 } else {
-                    alert('Pendaftaran Gagal: ' + (result.message || 'Terjadi kesalahan pada server.'));
+                    alert('Pendaftaran Gagal:\n' + (result.message || 'Terjadi kesalahan pada server.'));
                 }
             } catch (err) {
-                alert('Terjadi kesalahan koneksi/server. Silakan coba beberapa saat lagi.');
+                alert('Terjadi kesalahan koneksi atau server.');
                 console.error(err);
             } finally {
                 btn.disabled = false;
