@@ -22,7 +22,7 @@
             <nav class="hidden md:flex space-x-6 text-sm font-medium">
                 <a href="#materi" class="hover:text-amber-200 transition">Materi</a>
                 <a href="#jadwal" class="hover:text-amber-200 transition">Jadwal</a>
-                <a href="#evaluasi" class="hover:text-amber-200 transition">Pre/Post Test</a>
+                <a href="#evaluasi" class="hover:text-amber-200 transition">Evaluasi</a>
                 <a href="#video" class="hover:text-amber-200 transition">Video</a>
             </nav>
 
@@ -187,47 +187,62 @@
         <section id="evaluasi">
             <div class="border-b border-orange-200 pb-4 mb-8">
                 <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">Evaluasi Pembelajaran</h2>
-                <p class="text-slate-600 text-sm mt-1">Uji pemahaman peserta melalui Pre-Test, Soal Pendalaman, dan Post-Test</p>
+                <p class="text-slate-600 text-sm mt-1">Uji pemahaman peserta melalui Pre-Test, Asynchronous, Soal Pendalaman, dan Post-Test</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="bg-amber-50 border border-amber-200 rounded-xl p-6 flex flex-col justify-between">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-amber-50 border border-amber-200 rounded-xl p-5 flex flex-col justify-between">
                     <div>
-                        <div class="flex items-center gap-3 text-amber-900 font-bold mb-3">
-                            <i class="fa-solid fa-clipboard-question text-2xl text-amber-600"></i>
-                            <h3 class="text-lg">Pre-Test</h3>
+                        <div class="flex items-center gap-2 text-amber-900 font-bold mb-3">
+                            <i class="fa-solid fa-clipboard-question text-xl text-amber-600"></i>
+                            <h3 class="text-base">Pre-Test</h3>
                         </div>
-                        <p class="text-sm text-amber-900 mb-2">Terbuka mulai <strong>9 September 2026, Pukul 08.00 WIB</strong>.</p>
-                        <p class="text-xs text-slate-500 mb-6">Mengukur pemahaman awal peserta sebelum mengikuti materi pelatihan.</p>
+                        <p class="text-xs text-amber-900 mb-2">Terbuka: <strong>9 Sept 2026, 08.00 WIB</strong>.</p>
+                        <p class="text-[11px] text-slate-500 mb-6">Mengukur pemahaman awal peserta pelatihan.</p>
                     </div>
-                    <button onclick="startTest('Pre-Test')" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold py-2.5 rounded-lg shadow-sm transition">
+                    <button onclick="startTest('Pre-Test')" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold py-2 rounded-lg text-xs shadow-sm transition">
                         Kerjakan Pre-Test
                     </button>
                 </div>
 
-                <div class="bg-orange-50 border border-orange-200 rounded-xl p-6 flex flex-col justify-between">
+                <div class="bg-orange-50 border border-orange-200 rounded-xl p-5 flex flex-col justify-between">
                     <div>
-                        <div class="flex items-center gap-3 text-orange-950 font-bold mb-3">
-                            <i class="fa-solid fa-book-open-reader text-2xl text-orange-600"></i>
-                            <h3 class="text-lg">Soal Pendalaman</h3>
+                        <div class="flex items-center gap-2 text-orange-950 font-bold mb-3">
+                            <i class="fa-solid fa-laptop-code text-xl text-orange-600"></i>
+                            <h3 class="text-base">Asynchronous 1</h3>
                         </div>
-                        <p class="text-sm text-orange-900/80 mb-6">Latihan studi kasus dan pengayaan pemahaman materi saat proses pembelajaran berlangsung.</p>
+                        <p class="text-xs text-orange-900 mb-2">Terbuka: <strong>9 Sept 2026, 15.15 WIB</strong>.</p>
+                        <p class="text-[11px] text-slate-500 mb-6">Pendalaman mandiri materi hari pertama.</p>
                     </div>
-                    <button onclick="protectedDriveAccess('https://drive.google.com/drive/folders/1qxrKKTyVGGfHC7Hjvh_kedqCzfs5oawG?usp=drive_link')" class="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-2.5 rounded-lg shadow-sm transition">
-                        Akses Soal Pendalaman
+                    <button onclick="startTest('Asynchronous 1')" class="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-2 rounded-lg text-xs shadow-sm transition">
+                        Kerjakan Asynch 1
                     </button>
                 </div>
 
-                <div class="bg-stone-50 border border-stone-200 rounded-xl p-6 flex flex-col justify-between">
+                <div class="bg-yellow-50 border border-yellow-200 rounded-xl p-5 flex flex-col justify-between">
                     <div>
-                        <div class="flex items-center gap-3 text-slate-900 font-bold mb-3">
-                            <i class="fa-solid fa-square-check text-2xl text-emerald-600"></i>
-                            <h3 class="text-lg">Post-Test</h3>
+                        <div class="flex items-center gap-2 text-yellow-950 font-bold mb-3">
+                            <i class="fa-solid fa-book-open-reader text-xl text-yellow-600"></i>
+                            <h3 class="text-base">Soal Pendalaman</h3>
                         </div>
-                        <p class="text-sm text-slate-700 mb-2">Terbuka mulai <strong>10 September 2026, Pukul 16.15 WIB</strong>.</p>
-                        <p class="text-xs text-slate-500 mb-6">Evaluasi akhir untuk mengukur peningkatan capaian kompetensi peserta.</p>
+                        <p class="text-xs text-yellow-900 mb-2">Terbuka: <strong>10 Sept 2026, 15.15 WIB</strong>.</p>
+                        <p class="text-[11px] text-slate-500 mb-6">Latihan studi kasus & materi pengayaan.</p>
                     </div>
-                    <button onclick="startTest('Post-Test')" class="w-full bg-slate-900 hover:bg-slate-950 text-white font-bold py-2.5 rounded-lg shadow-sm transition">
+                    <button onclick="protectedDriveAccess('https://drive.google.com/drive/folders/1qxrKKTyVGGfHC7Hjvh_kedqCzfs5oawG?usp=drive_link', 'Pendalaman')" class="w-full bg-yellow-500 hover:bg-yellow-600 text-slate-950 font-bold py-2 rounded-lg text-xs shadow-sm transition">
+                        Akses Pendalaman
+                    </button>
+                </div>
+
+                <div class="bg-stone-50 border border-stone-200 rounded-xl p-5 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-2 text-slate-900 font-bold mb-3">
+                            <i class="fa-solid fa-square-check text-xl text-emerald-600"></i>
+                            <h3 class="text-base">Post-Test</h3>
+                        </div>
+                        <p class="text-xs text-slate-700 mb-2">Terbuka: <strong>10 Sept 2026, 16.15 WIB</strong>.</p>
+                        <p class="text-[11px] text-slate-500 mb-6">Evaluasi capaian akhir kompetensi.</p>
+                    </div>
+                    <button onclick="startTest('Post-Test')" class="w-full bg-slate-900 hover:bg-slate-950 text-white font-bold py-2 rounded-lg text-xs shadow-sm transition">
                         Kerjakan Post-Test
                     </button>
                 </div>
@@ -400,11 +415,10 @@
     </footer>
 
     <script>
-        // URL Web App Google Apps Script
         const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzxi8mnh4fuTV65G__opOpCDLwvZmII55rpAbK_2SD6k0GRQRORCec57wRrVo8zj1PS/exec";
 
-        // Bank Soal Evaluasi
-        const quizData = [
+        // Bank Soal Pre-Test & Post-Test
+        const standardQuizData = [
             {
                 id: 1,
                 bab: "Pendahuluan",
@@ -467,7 +481,252 @@
             }
         ];
 
+        // Bank Soal Asynchronous 1 (20 Soal)
+        const async1QuizData = [
+            {
+                id: 101,
+                bab: "Asynchronous 1",
+                question: "Salah satu alasan utama dilaksanakannya kegiatan Penetapan Kerangka Geospasial dan Muatan Wilkerstat pada SE2026 adalah karena ...",
+                correct: "perubahan batas dan muatan SLS dapat terjadi dalam waktu relatif singkat sehingga perlu pemutakhiran peta dan master wilkerstat",
+                options: [
+                    "perubahan batas dan muatan SLS dapat terjadi dalam waktu relatif singkat sehingga perlu pemutakhiran peta dan master wilkerstat",
+                    "seluruh desa definitif wajib dimekarkan menjadi desa persiapan",
+                    "wilayah kerja statistik tingkat kecamatan sudah tidak digunakan lagi",
+                    "seluruh wilayah non-SLS harus dihapus dari master wilkerstat"
+                ]
+            },
+            {
+                id: 102,
+                bab: "Asynchronous 1",
+                question: "Berikut ini yang BUKAN merupakan tanggung jawab Tim Wilkerstat BPS Provinsi adalah ...",
+                correct: "membuat layout peta desa hasil pengolahan",
+                options: [
+                    "membuat layout peta desa hasil pengolahan",
+                    "melakukan monitoring dan approval pengolahan master melalui FRS-MFDOnline",
+                    "melakukan rekonsiliasi batas kabupaten/kota",
+                    "mengatur manajemen pengguna Geospatial System tingkat kabupaten/kota"
+                ]
+            },
+            {
+                id: 103,
+                bab: "Asynchronous 1",
+                question: "Dalam proses pengolahan peta wilkerstat, perubahan batas SLS yang menyebabkan perubahan muatan wilayah harus ditindaklanjuti dengan ...",
+                correct: "penghitungan kembali muatan pada batas SLS hasil perbaikan",
+                options: [
+                    "penghitungan kembali muatan pada batas SLS hasil perbaikan",
+                    "penghapusan seluruh titik geotagging lama",
+                    "pembentukan kecamatan baru",
+                    "pengubahan seluruh kode desa pada kecamatan terkait"
+                ]
+            },
+            {
+                id: 104,
+                bab: "Asynchronous 1",
+                question: "Berikut ini merupakan Material atau Tools yang digunakan dalam pengolahan Peta kecuali ...",
+                correct: "Plugin Cliper",
+                options: [
+                    "Plugin Cliper",
+                    "Template Layout WB",
+                    "Template Layout WS",
+                    "GS"
+                ]
+            },
+            {
+                id: 105,
+                bab: "Asynchronous 1",
+                question: "Ketika melakukan georeferensi secara manual, untuk memanggil peta SLS/Sub-SLS menggunakan menu ...",
+                correct: "Add Raster Layer",
+                options: [
+                    "Add Raster Layer",
+                    "Add Vector Layer",
+                    "Add Delimited Text Layer",
+                    "Add Mesh Layer"
+                ]
+            },
+            {
+                id: 106,
+                bab: "Asynchronous 1",
+                question: "Jenis-jenis perubahan berikut yang ada pada level sub-SLS, kecuali ...",
+                correct: "Pemekaran sub-SLS",
+                options: [
+                    "Pemekaran sub-SLS",
+                    "Perubahan nama/tingkatan sub-SLS",
+                    "Perubahan kode sub-SLS",
+                    "Penggabungan sub-SLS"
+                ]
+            },
+            {
+                id: 107,
+                bab: "Asynchronous 1",
+                question: "Di Desa Maju Makmur, terdapat SLS bernama Dusun Pesanggrahan yang mengalami pemekaran wilayah. SLS tersebut mekar menjadi Dusun Perjuangan dan Dusun Pamijahan. Berikut pernyataan yang benar mengenai pengolahan master wilkerstat untuk kasus tersebut, kecuali ...",
+                correct: "Salah satu kode SLS baru harus menggunakan kembali kode SLS lama yang sebelumnya sudah pernah digunakan agar nomor tetap berurutan",
+                options: [
+                    "Salah satu kode SLS baru harus menggunakan kembali kode SLS lama yang sebelumnya sudah pernah digunakan agar nomor tetap berurutan",
+                    "Kode SLS baru menggunakan kode lanjutan dari kode SLS terakhir di Desa Maju Makmur",
+                    "Pada Daftar PSLS, kode perubahan wilayah untuk SLS induk dan SLS hasil pemekaran diisikan kode 1",
+                    "Informasi perubahan SLS perlu diajukan melalui menu Pemekaran SLS pada aplikasi FRS-MFDOnline"
+                ]
+            },
+            {
+                id: 108,
+                bab: "Asynchronous 1",
+                question: "SLS Dusun Mekar Jaya memiliki 2 sub-SLS, yaitu sub-SLS 01 dan 02. Berdasarkan hasil lapangan SE2026, wilayah tersebut mengalami pemekaran menjadi tiga SLS baru: Dusun Mekar Jaya, Dusun Mekar Asri, dan Dusun Mekar Indah. Setelah dilakukan pemeriksaan peta WSS, diketahui sub-SLS 01 dominan masuk ke Dusun Mekar Jaya, sedangkan sub-SLS 02 terbagi ke dua wilayah baru lainnya. Tindakan yang paling tepat dilakukan dalam pengolahan master wilkerstat adalah ...",
+                correct: "Melakukan pemekaran sub-SLS terlebih dahulu, kemudian mengalokasikan sub-SLS hasil pemekaran ke masing-masing SLS baru dalam satu pengajuan Pemekaran SLS.",
+                options: [
+                    "Melakukan pemekaran sub-SLS terlebih dahulu, kemudian mengalokasikan sub-SLS hasil pemekaran ke masing-masing SLS baru dalam satu pengajuan Pemekaran SLS.",
+                    "Seluruh sub-SLS dipertahankan tanpa perubahan karena pemekaran hanya terjadi pada tingkat SLS.",
+                    "Membuat pengajuan terpisah antara pemekaran SLS dan pemekaran sub-SLS agar proses lebih mudah dikendalikan.",
+                    "Menghapus seluruh sub-SLS lama dan menggantinya dengan kode sub-SLS 00 pada semua SLS hasil pemekaran."
+                ]
+            },
+            {
+                id: 109,
+                bab: "Asynchronous 1",
+                question: "Suatu titik bangunan berada di luar batas SLS/SubSLS saat ini. Saat kursor diarahkan ke titik, informasi menunjukkan bahwa titik tersebut seharusnya berada pada idsubsls lain. Langkah paling tepat sebelum menggeser titik adalah ...",
+                correct: "Mengimpor Peta WS/WSS georeferensi sesuai idsubsls tujuan sebagai acuan posisi",
+                options: [
+                    "Mengimpor Peta WS/WSS georeferensi sesuai idsubsls tujuan sebagai acuan posisi",
+                    "Mengubah flag_repair menjadi 0 agar titik berubah warna",
+                    "Menghapus titik dari layer karena berada di luar batas",
+                    "Mengekspor layer menjadi GeoJSON terlebih dahulu"
+                ]
+            },
+            {
+                id: 110,
+                bab: "Asynchronous 1",
+                question: "Seorang petugas langsung menggeser titik tanpa menjalankan proses identifikasi terlebih dahulu. Risiko utama dari langkah tersebut adalah ...",
+                correct: "Petugas tidak memiliki penanda awal titik mana yang berada di luar batas dan perlu diedit",
+                options: [
+                    "Petugas tidak memiliki penanda awal titik mana yang berada di luar batas dan perlu diedit",
+                    "File project QGIS tidak dapat disimpan",
+                    "Semua atribut otomatis berubah menjadi kosong",
+                    "Peta WS/WSS tidak dapat ditampilkan di QGIS"
+                ]
+            },
+            {
+                id: 111,
+                bab: "Asynchronous 1",
+                question: "Saat melakukan editing, petugas mengubah flag_repair dari 1 menjadi 0 secara manual setelah menggeser titik, tetapi tidak menjalankan model pengecekan ulang. Mengapa langkah ini belum cukup untuk menyatakan titik valid?",
+                correct: "Karena perubahan manual atribut tidak menggantikan proses validasi spasial terhadap batas SLS/SubSLS",
+                options: [
+                    "Karena perubahan manual atribut tidak menggantikan proses validasi spasial terhadap batas SLS/SubSLS",
+                    "Karena flag_repair tidak boleh diubah dalam kondisi apa pun",
+                    "Karena titik harus selalu tetap berwarna oranye sampai akhir",
+                    "Karena model pengecekan hanya digunakan sebelum editing"
+                ]
+            },
+            {
+                id: 112,
+                bab: "Asynchronous 1",
+                question: "Tujuan identifikasi perubahan batas SLS adalah untuk ...",
+                correct: "Menentukan wilayah yang perlu dilakukan editing",
+                options: [
+                    "Menentukan wilayah yang perlu dilakukan editing",
+                    "Menghapus seluruh data lama",
+                    "Membuat layout peta otomatis",
+                    "Mengubah sistem koordinat peta"
+                ]
+            },
+            {
+                id: 113,
+                bab: "Asynchronous 1",
+                question: "Tools QGIS yang digunakan untuk memotong poligon adalah ...",
+                correct: "Split Features",
+                options: [
+                    "Split Features",
+                    "Merge Feature",
+                    "Fill Ring",
+                    "Topology Checker"
+                ]
+            },
+            {
+                id: 114,
+                bab: "Asynchronous 1",
+                question: "CRS yang digunakan saat export GeoJSON adalah ...",
+                correct: "EPSG:4326",
+                options: [
+                    "EPSG:4326",
+                    "EPSG:3857",
+                    "EPSG:32748",
+                    "EPSG:32648"
+                ]
+            },
+            {
+                id: 115,
+                bab: "Asynchronous 1",
+                question: "Koreksi topologis dilakukan untuk ...",
+                correct: "Menghilangkan gap dan overlap",
+                options: [
+                    "Menghilangkan gap dan overlap",
+                    "Menambah warna simbol",
+                    "Mengubah nama wilayah",
+                    "Mengatur layout peta"
+                ]
+            },
+            {
+                id: 116,
+                bab: "Asynchronous 1",
+                question: "Informasi perubahan SLS yang tidak bisa didapatkan dari hasil kegiatan lapangan SE2026 adalah ...",
+                correct: "Perubahan kode SLS",
+                options: [
+                    "Perubahan kode SLS",
+                    "Pemekaran SLS",
+                    "Penggabungan SLS",
+                    "Perubahan batas SLS"
+                ]
+            },
+            {
+                id: 117,
+                bab: "Asynchronous 1",
+                question: "Manakah pernyataan yang benar terkait proses georeferensi otomatis Peta WS/WSS menggunakan file .jgw?",
+                correct: "Peta JPEG akan otomatis memiliki referensi geografis jika nama file .jpg dan .jgw identik dan berada dalam folder yang sama",
+                options: [
+                    "Peta JPEG akan otomatis memiliki referensi geografis jika nama file .jpg dan .jgw identik dan berada dalam folder yang sama",
+                    "File .jgw digunakan untuk menyimpan atribut wilayah hasil digitasi",
+                    "Georeferensi otomatis hanya dapat dilakukan menggunakan plugin Freehand Raster Georeferencer",
+                    "File .jgw dibuat melalui proses scan peta hasil lapangan"
+                ]
+            },
+            {
+                id: 118,
+                bab: "Asynchronous 1",
+                question: "Informasi pada daftar PSLS yang tidak perlu diisi oleh tim wilkerstat BPS kabupaten/kota yaitu ...",
+                correct: "Kode SLS setelah perubahan",
+                options: [
+                    "Kode SLS setelah perubahan",
+                    "Jumlah BKU",
+                    "Muatan dominan",
+                    "Status perubahan wilayah SLS/sub-SLS"
+                ]
+            },
+            {
+                id: 119,
+                bab: "Asynchronous 1",
+                question: "Pada proses penggabungan SLS di FRS-MFDOnline, SLS yang menjadi hasil/tujuan gabungan (induk penggabungan) harus diisikan pada ...",
+                correct: "Baris pertama",
+                options: [
+                    "Baris pertama",
+                    "Baris terakhir",
+                    "Baris kedua",
+                    "Bebas dan tidak ditentukan"
+                ]
+            },
+            {
+                id: 120,
+                bab: "Asynchronous 1",
+                question: "Mengapa kita memilih ‘Fill Ring’ untuk memotong poligon peta pada kasus wilayah kantong (wilayah lain dalam suatu poligon), yaitu untuk memastikan ...",
+                correct: "Semua jawaban benar",
+                options: [
+                    "Semua jawaban benar",
+                    "Poligon terpotong",
+                    "Bebas dari gap",
+                    "Bebas dari overlap"
+                ]
+            }
+        ];
+
         let activeTestType = "";
+        let currentQuestionsList = [];
 
         document.addEventListener("DOMContentLoaded", () => {
             checkLoginState();
@@ -493,42 +752,52 @@
             }
         }
 
-        function protectedDriveAccess(targetUrl) {
-            const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-            if (!currentUser) {
-                alert("Akses Terbatas!\n\nAnda harus Masuk / Mendaftar Akun Petugas terlebih dahulu untuk mengakses dokumen ini.");
-                openModal("loginModal");
-            } else {
-                window.open(targetUrl, "_blank");
-            }
-        }
-
-        // Penguncian Akses Waktu: Pre-Test (9 Sept 08:00 WIB) & Post-Test (10 Sept 16:15 WIB)
+        // Penguncian Akses Waktu
         function isTestOpen(testType) {
             const now = new Date();
             if (testType === "Pre-Test") {
-                const preTestDate = new Date("2026-09-09T08:00:00+07:00");
-                return now >= preTestDate;
+                return now >= new Date("2026-09-09T08:00:00+07:00");
+            } else if (testType === "Asynchronous 1") {
+                return now >= new Date("2026-09-09T15:15:00+07:00");
+            } else if (testType === "Pendalaman") {
+                return now >= new Date("2026-09-10T15:15:00+07:00");
             } else if (testType === "Post-Test") {
-                const postTestDate = new Date("2026-09-10T16:15:00+07:00");
-                return now >= postTestDate;
+                return now >= new Date("2026-09-10T16:15:00+07:00");
             }
             return true;
+        }
+
+        function protectedDriveAccess(targetUrl, resourceType = "Dokumen") {
+            const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+            if (!currentUser) {
+                alert("Akses Terbatas!\n\nAnda harus Masuk / Mendaftar Akun Petugas terlebih dahulu.");
+                openModal("loginModal");
+                return;
+            }
+
+            if (resourceType === "Pendalaman" && !isTestOpen("Pendalaman")) {
+                alert("Soal Pendalaman belum dapat dibuka.\n\nSoal Pendalaman baru akan terbuka secara otomatis pada tanggal 10 September 2026 pukul 15:15 WIB.");
+                return;
+            }
+
+            window.open(targetUrl, "_blank");
         }
 
         function startTest(testType) {
             const currentUser = JSON.parse(localStorage.getItem("currentUser"));
             if (!currentUser) {
-                alert("Akses Terbatas!\n\nAnda harus Masuk / Mendaftar Akun Petugas terlebih dahulu untuk mengerjakan soal evaluasi.");
+                alert("Akses Terbatas!\n\nAnda harus Masuk / Mendaftar Akun Petugas terlebih dahulu untuk mengerjakan evaluasi.");
                 openModal("loginModal");
                 return;
             }
 
             if (!isTestOpen(testType)) {
                 if (testType === "Pre-Test") {
-                    alert(`Soal Pre-Test belum dapat dibuka.\n\nPre-Test baru akan secara otomatis terbuka pada tanggal 9 September 2026 pukul 08:00 WIB.`);
+                    alert("Soal Pre-Test belum dapat dibuka.\n\nPre-Test baru terbuka pada tanggal 9 September 2026 pukul 08:00 WIB.");
+                } else if (testType === "Asynchronous 1") {
+                    alert("Soal Asynchronous 1 belum dapat dibuka.\n\nAsynchronous 1 baru terbuka pada tanggal 9 September 2026 pukul 15:15 WIB.");
                 } else if (testType === "Post-Test") {
-                    alert(`Soal Post-Test belum dapat dibuka.\n\nPost-Test baru akan secara otomatis terbuka pada tanggal 10 September 2026 pukul 16:15 WIB.`);
+                    alert("Soal Post-Test belum dapat dibuka.\n\nPost-Test baru terbuka pada tanggal 10 September 2026 pukul 16:15 WIB.");
                 }
                 return;
             }
@@ -537,20 +806,37 @@
             document.getElementById("quizTitle").textContent = `${testType} Pelatihan Wilkerstat 2026`;
             document.getElementById("quizSubtitle").textContent = `Petugas: ${currentUser.name} (${currentUser.nip})`;
 
+            if (testType === "Asynchronous 1") {
+                currentQuestionsList = async1QuizData;
+            } else {
+                currentQuestionsList = standardQuizData;
+            }
+
             renderQuizQuestions();
             openModal("quizModal");
+        }
+
+        // Mengacak Array (Fisher-Yates Shuffle)
+        function shuffleArray(array) {
+            let arr = [...array];
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
         }
 
         function renderQuizQuestions() {
             const container = document.getElementById("quizQuestionsContainer");
             container.innerHTML = "";
 
-            quizData.forEach((q, index) => {
-                const shuffledOptions = [...q.options].sort(() => Math.random() - 0.5);
+            currentQuestionsList.forEach((q, index) => {
+                // Selalu mengacak pilihan jawaban setiap soal dirender
+                const shuffledOptions = shuffleArray(q.options);
 
                 let optionsHtml = shuffledOptions.map((opt) => `
                     <label class="flex items-start gap-3 p-3 rounded-lg border border-slate-200 hover:bg-orange-50/50 transition cursor-pointer">
-                        <input type="radio" name="q_${q.id}" value="${opt}" required class="mt-0.5 text-orange-600 focus:ring-orange-500">
+                        <input type="radio" name="q_${q.id}" value="${opt.replace(/"/g, '&quot;')}" required class="mt-0.5 text-orange-600 focus:ring-orange-500">
                         <span class="text-sm text-slate-800">${opt}</span>
                     </label>
                 `).join("");
@@ -576,9 +862,9 @@
             if (!currentUser) return;
 
             let score = 0;
-            const totalQuestions = quizData.length;
+            const totalQuestions = currentQuestionsList.length;
 
-            quizData.forEach(q => {
+            currentQuestionsList.forEach(q => {
                 const selected = document.querySelector(`input[name="q_${q.id}"]:checked`);
                 if (selected && selected.value === q.correct) {
                     score += 1;
