@@ -1,43 +1,691 @@
-const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyAM6r0dKj4ymx32IF3swO08vEkM9viKoU2qpYNJuZ2BggC7VV_c46X6zRLY6FaSFs/exec";
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Pelatihan Wilkerstat 2026</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        html { scroll-behavior: smooth; }
+    </style>
+</head>
+<body class="bg-orange-50/50 text-slate-800 font-sans leading-relaxed">
 
-async function handleLogin(e) {
-    e.preventDefault();
-    const btn = document.getElementById('btnLoginSubmit');
-    const originalText = btn.innerHTML;
+    <!-- Header / Navbar -->
+    <header class="bg-orange-600 text-white sticky top-0 z-50 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex justify-between items-center">
+            <div class="flex items-center space-x-2.5">
+                <i class="fa-solid fa-map-location-dot text-xl sm:text-2xl text-amber-200"></i>
+                <span class="font-bold text-base sm:text-xl tracking-wide">Wilkerstat 2026</span>
+            </div>
 
-    const nip = document.getElementById('loginNip').value.trim();
-    const password = document.getElementById('loginPassword').value;
+            <nav class="hidden md:flex space-x-6 text-sm font-medium">
+                <a href="#materi" class="hover:text-amber-200 transition">Materi</a>
+                <a href="#jadwal" class="hover:text-amber-200 transition">Jadwal</a>
+                <a href="#presensi" class="hover:text-amber-200 transition">Presensi</a>
+                <a href="#evaluasi" class="hover:text-amber-200 transition">Evaluasi</a>
+                <a href="#video" class="hover:text-amber-200 transition">Video</a>
+            </nav>
 
-    try {
-        btn.disabled = true;
-        btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Verifikasi...`;
+            <!-- Area User Auth State -->
+            <div id="authArea" class="flex items-center gap-2">
+                <div id="guestNav" class="flex gap-2">
+                    <button type="button" onclick="openModal('loginModal')" class="bg-orange-700 hover:bg-orange-800 text-white px-3 py-1.5 rounded-lg text-xs sm:text-sm transition font-medium">Masuk</button>
+                    <button type="button" onclick="openModal('registerModal')" class="bg-amber-400 hover:bg-amber-500 text-slate-900 px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition">Daftar</button>
+                </div>
+                <div id="userNav" class="hidden flex items-center gap-2 sm:gap-3">
+                    <div class="text-right">
+                        <div id="navUserName" class="text-xs font-bold text-amber-200 line-clamp-1 max-w-[120px] sm:max-w-none">Nama Petugas</div>
+                        <div id="navUserNip" class="text-[10px] text-orange-100 hidden sm:block">NIP/NIK Petugas</div>
+                    </div>
+                    <button type="button" onclick="logoutUser()" class="bg-red-600 hover:bg-red-700 text-white p-2 rounded-lg text-xs transition shrink-0" title="Keluar">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
 
-        const response = await fetch(APPS_SCRIPT_URL, {
-            method: 'POST',
-            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-            body: JSON.stringify({
-                action: 'login',
-                nip: nip,
-                password: password
-            })
+    <!-- Banner Pengumuman Ringkas & Mobile Friendly -->
+    <div class="bg-amber-500 text-slate-950 px-4 py-2.5 shadow-inner">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-xs sm:text-sm text-center sm:text-left">
+            <div class="flex items-center gap-2">
+                <span class="font-bold uppercase tracking-wider text-[10px] bg-orange-800 text-white px-2 py-0.5 rounded shrink-0">Info</span>
+                <span class="font-semibold text-slate-950 line-clamp-1">Pelatihan Petugas Pengolahan Wilkerstat 2026</span>
+            </div>
+            <button type="button" onclick="protectedDriveAccess('https://drive.google.com/file/d/1CmNizzB_D13lN2tjEUgMlB-IUa4K-Qd5/view?usp=drive_link')" class="text-slate-900 hover:underline font-bold text-xs flex items-center gap-1">
+                <i class="fa-solid fa-image text-orange-800"></i> Unduh Virtual Background
+            </button>
+        </div>
+    </div>
+
+    <!-- Banner Notifikasi Pembatasan Akses -->
+    <div id="accessAlert" class="bg-orange-100 text-orange-900 border-b border-orange-200 px-4 py-2 text-center text-xs sm:text-sm font-medium flex justify-center items-center gap-2">
+        <i class="fa-solid fa-lock text-orange-600 shrink-0"></i>
+        <span>Materi dibatasi khusus petugas. <u><a href="javascript:void(0)" onclick="openModal('loginModal')" class="font-bold">Masuk</a></u> atau <u><a href="javascript:void(0)" onclick="openModal('registerModal')" class="font-bold">Daftar Akun</a></u>.</span>
+    </div>
+
+    <!-- Action Bar Cepat -->
+    <div class="sticky top-[53px] z-40 bg-white border-b border-orange-200 px-4 py-2.5 shadow-sm">
+        <div class="max-w-7xl mx-auto grid grid-cols-2 gap-2.5">
+            <button type="button" onclick="protectedLinkAccess('https://daftarhadir.web.bps.go.id/#/go/BGMys')" class="bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white font-bold py-2.5 px-3 rounded-xl text-xs sm:text-sm transition flex items-center justify-center gap-2 shadow-sm">
+                <i class="fa-solid fa-clipboard-user text-sm sm:text-base"></i> Presensi Hari Ini
+            </button>
+            <a href="http://s.bps.go.id/3329_Wilkerstat2026" target="_blank" class="bg-orange-600 hover:bg-orange-700 active:bg-orange-800 text-white font-bold py-2.5 px-3 rounded-xl text-xs sm:text-sm transition flex items-center justify-center gap-2 shadow-sm">
+                <i class="fa-solid fa-video text-sm sm:text-base"></i> Gabung Zoom
+            </a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-r from-orange-600 via-amber-600 to-orange-700 text-white py-8 sm:py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto text-center">
+            <span class="bg-amber-300 text-orange-950 text-[10px] sm:text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">Portal Pembelajaran</span>
+            <h1 class="text-2xl sm:text-4xl font-extrabold mt-3 mb-3 leading-tight">
+                Pelatihan Petugas Pengolahan <br class="hidden sm:inline"/>
+                <span class="text-amber-200">Wilkerstat 2026</span>
+            </h1>
+            <p class="text-orange-100 text-xs sm:text-base mb-6 max-w-2xl mx-auto">
+                Pusat materi pembelajaran, jadwal kegiatan, presensi harian, evaluasi, dan video panduan teknis FRS MFD Online.
+            </p>
+            <div class="flex justify-center">
+                <a href="#materi" class="bg-slate-900 hover:bg-slate-950 text-white font-bold px-6 py-2.5 rounded-xl text-xs sm:text-sm shadow-md transition">
+                    Mulai Belajar <i class="fa-solid fa-arrow-down ml-1"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 space-y-12">
+
+        <!-- Section 1: Materi Pembelajaran -->
+        <section id="materi">
+            <div class="border-b border-orange-200 pb-3 mb-6">
+                <h2 class="text-xl sm:text-2xl font-bold text-slate-900">Materi & Pedoman Pembelajaran</h2>
+                <p class="text-slate-600 text-xs sm:text-sm mt-0.5">Buku pedoman dan modul bahan tayang pelatihan</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+                <!-- Buku Pedoman Utama -->
+                <div class="bg-gradient-to-br from-amber-500 to-orange-600 text-white p-5 sm:p-6 rounded-2xl shadow-md border border-amber-400 md:col-span-2 lg:col-span-3">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                        <div class="flex items-start gap-3.5">
+                            <div class="w-12 h-12 bg-white/20 backdrop-blur rounded-xl flex items-center justify-center font-bold text-xl shrink-0">
+                                <i class="fa-solid fa-book-bookmark text-amber-200"></i>
+                            </div>
+                            <div>
+                                <span class="bg-amber-200 text-slate-950 text-[10px] font-extrabold px-2 py-0.5 rounded uppercase tracking-wider">Acuan Utama</span>
+                                <h3 class="font-extrabold text-lg sm:text-xl mt-1">Buku Pedoman Pelatihan Petugas Pengolahan</h3>
+                                <p class="text-orange-100 text-xs sm:text-sm mt-1">Panduan komprehensif pedoman teknis dan tata cara pengolahan Wilkerstat 2026.</p>
+                            </div>
+                        </div>
+                        <button type="button" onclick="protectedDriveAccess('https://drive.google.com/file/d/14eShHrAI5Wb4GAeA6XAdO9rQ2YC81j3Z/view?usp=drive_link')" class="bg-slate-950 hover:bg-slate-900 active:bg-black text-white font-bold px-4 py-2.5 rounded-xl text-xs sm:text-sm transition flex items-center justify-center gap-2 shrink-0 shadow">
+                            <i class="fa-solid fa-file-pdf text-amber-400"></i> Buka Buku Pedoman <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Modul 1 sampai 6 -->
+                <div class="bg-white p-5 rounded-xl shadow-sm border border-orange-100 flex flex-col justify-between">
+                    <div>
+                        <div class="w-10 h-10 bg-orange-100 text-orange-600 rounded-lg flex items-center justify-center font-bold text-base mb-3">1</div>
+                        <h3 class="font-bold text-base mb-1.5">Pendahuluan & Organisasi</h3>
+                        <p class="text-slate-600 text-xs mb-3">Pengenalan umum, alur kerja, dan pembagian peran organisasi pengolahan.</p>
+                    </div>
+                    <button type="button" onclick="protectedDriveAccess('https://drive.google.com/file/d/11bjlre4EImpzp1blPLu8N938ieg5dSCQ/view?usp=drive_link')" class="text-orange-600 font-bold text-xs hover:underline flex items-center gap-1 pt-2">
+                        <i class="fa-solid fa-file-pdf"></i> Buka Modul <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                    </button>
+                </div>
+
+                <div class="bg-white p-5 rounded-xl shadow-sm border border-orange-100 flex flex-col justify-between">
+                    <div>
+                        <div class="w-10 h-10 bg-orange-100 text-orange-600 rounded-lg flex items-center justify-center font-bold text-base mb-3">2</div>
+                        <h3 class="font-bold text-base mb-1.5">Metodologi</h3>
+                        <p class="text-slate-600 text-xs mb-3">Konsep geospasial, standar muatan wilayah kerja, dan metodologi.</p>
+                    </div>
+                    <button type="button" onclick="protectedDriveAccess('https://drive.google.com/file/d/1lQ43lcBqM6jzqYsLLpYFWKw6Dbc7TiYT/view?usp=drive_link')" class="text-orange-600 font-bold text-xs hover:underline flex items-center gap-1 pt-2">
+                        <i class="fa-solid fa-file-pdf"></i> Buka Modul <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                    </button>
+                </div>
+
+                <div class="bg-white p-5 rounded-xl shadow-sm border border-orange-100 flex flex-col justify-between">
+                    <div>
+                        <div class="w-10 h-10 bg-orange-100 text-orange-600 rounded-lg flex items-center justify-center font-bold text-base mb-3">3</div>
+                        <h3 class="font-bold text-base mb-1.5">Persiapan Pengolahan</h3>
+                        <p class="text-slate-600 text-xs mb-3">Penyiapan sarana lunak dan pemeriksaan kelengkapan dokumen.</p>
+                    </div>
+                    <button type="button" onclick="protectedDriveAccess('https://drive.google.com/file/d/1IrI4PqwxUR61vCMh3NsmZo0R2XdqdpUL/view?usp=drive_link')" class="text-orange-600 font-bold text-xs hover:underline flex items-center gap-1 pt-2">
+                        <i class="fa-solid fa-file-pdf"></i> Buka Modul <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                    </button>
+                </div>
+
+                <div class="bg-white p-5 rounded-xl shadow-sm border border-orange-100 flex flex-col justify-between">
+                    <div>
+                        <div class="w-10 h-10 bg-orange-100 text-orange-600 rounded-lg flex items-center justify-center font-bold text-base mb-3">4</div>
+                        <h3 class="font-bold text-base mb-1.5">Master Wilkerstat & SLS</h3>
+                        <p class="text-slate-600 text-xs mb-3">Pemutakhiran Master Wilkerstat dan penanganan perubahan batas SLS.</p>
+                    </div>
+                    <button type="button" onclick="protectedDriveAccess('https://drive.google.com/file/d/1rcrXehWrOMeWIbaf7FTHpl8kTNCMWJKl/view?usp=drive_link')" class="text-orange-600 font-bold text-xs hover:underline flex items-center gap-1 pt-2">
+                        <i class="fa-solid fa-file-pdf"></i> Buka Modul <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                    </button>
+                </div>
+
+                <div class="bg-white p-5 rounded-xl shadow-sm border border-orange-100 flex flex-col justify-between">
+                    <div>
+                        <div class="w-10 h-10 bg-orange-100 text-orange-600 rounded-lg flex items-center justify-center font-bold text-base mb-3">5</div>
+                        <h3 class="font-bold text-base mb-1.5">Titik Bangunan</h3>
+                        <p class="text-slate-600 text-xs mb-3">Teknis digitasi, validasi koordinat, dan pengolahan spasial titik bangunan.</p>
+                    </div>
+                    <button type="button" onclick="protectedDriveAccess('https://drive.google.com/file/d/1K5FvwLP3djV5gTSptMDZ4GT7PuNuPPsz/view?usp=drive_link')" class="text-orange-600 font-bold text-xs hover:underline flex items-center gap-1 pt-2">
+                        <i class="fa-solid fa-file-pdf"></i> Buka Modul <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                    </button>
+                </div>
+
+                <div class="bg-white p-5 rounded-xl shadow-sm border border-orange-100 flex flex-col justify-between">
+                    <div>
+                        <div class="w-10 h-10 bg-orange-100 text-orange-600 rounded-lg flex items-center justify-center font-bold text-base mb-3">6</div>
+                        <h3 class="font-bold text-base mb-1.5">Pengolahan Peta</h3>
+                        <p class="text-slate-600 text-xs mb-3">Pembuatan, penyuntingan, dan layouting peta batas Wilkerstat digital.</p>
+                    </div>
+                    <button type="button" onclick="protectedDriveAccess('https://drive.google.com/file/d/1YtwUoVijkrx7WO6ji2fx34wvAZa2XFvB/view?usp=drive_link')" class="text-orange-600 font-bold text-xs hover:underline flex items-center gap-1 pt-2">
+                        <i class="fa-solid fa-file-pdf"></i> Buka Modul <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Jadwal Pelatihan -->
+        <section id="jadwal" class="bg-white p-5 sm:p-6 rounded-2xl shadow-sm border border-orange-100">
+            <div class="border-b border-orange-200 pb-3 mb-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+                <div>
+                    <h2 class="text-xl font-bold text-slate-900">Jadwal Pelatihan</h2>
+                    <p class="text-slate-600 text-xs">Agenda kegiatan pelatihan pengolahan (9 - 10 September 2026)</p>
+                </div>
+                <a href="https://docs.google.com/spreadsheets/d/13Yl83_bSNqqlQCf6G98f_IiVqIWCdj1y/edit?gid=685925622#gid=685925622" target="_blank" class="bg-orange-600 hover:bg-orange-700 text-white text-xs font-semibold px-3 py-1.5 rounded-lg transition flex items-center gap-1.5">
+                    <i class="fa-solid fa-file-excel"></i> Buka Google Sheets
+                </a>
+            </div>
+
+            <div class="w-full h-[380px] sm:h-[500px] rounded-xl overflow-hidden border border-orange-200 shadow-inner bg-slate-50">
+                <iframe 
+                    src="https://docs.google.com/spreadsheets/d/13Yl83_bSNqqlQCf6G98f_IiVqIWCdj1y/htmlembed?gid=685925622&widget=true&headers=false" 
+                    class="w-full h-full border-0" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </section>
+
+        <!-- Section 3: Presensi Harian -->
+        <section id="presensi" class="bg-emerald-900 text-white p-5 sm:p-8 rounded-2xl shadow-md">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                <div>
+                    <span class="bg-emerald-400 text-slate-950 text-[10px] font-extrabold px-2.5 py-0.5 rounded-full uppercase tracking-wider">Kehadiran</span>
+                    <h2 class="text-xl sm:text-2xl font-extrabold mt-1">Daftar Hadir Online</h2>
+                    <p class="text-emerald-100 text-xs sm:text-sm mt-1">Peserta wajib mengisi daftar hadir online setiap hari jadwal pelatihan.</p>
+                </div>
+                <button type="button" onclick="protectedLinkAccess('https://daftarhadir.web.bps.go.id/#/go/BGMys')" class="w-full sm:w-auto bg-amber-400 hover:bg-amber-500 text-slate-950 font-extrabold px-5 py-3 rounded-xl shadow transition text-xs sm:text-sm flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-user-check"></i> Isi Presensi Hari Ini
+                </button>
+            </div>
+        </section>
+
+        <!-- Section 4: Evaluasi Pembelajaran -->
+        <section id="evaluasi">
+            <div class="border-b border-orange-200 pb-3 mb-6">
+                <h2 class="text-xl sm:text-2xl font-bold text-slate-900">Evaluasi Pembelajaran</h2>
+                <p class="text-slate-600 text-xs sm:text-sm mt-0.5">Uji pemahaman peserta melalui Pre-Test, Asynchronous, Soal Pendalaman, dan Post-Test</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-2 text-amber-900 font-bold mb-2">
+                            <i class="fa-solid fa-clipboard-question text-lg text-amber-600"></i>
+                            <h3 class="text-sm">Pre-Test</h3>
+                        </div>
+                        <p class="text-[11px] text-amber-900 mb-1">9 Sept 2026, 08.00 WIB</p>
+                        <p class="text-[10px] text-slate-500 mb-4">Mengukur pemahaman awal peserta.</p>
+                    </div>
+                    <button type="button" onclick="startTest('Pre-Test')" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold py-2 rounded-lg text-xs shadow-sm transition">
+                        Kerjakan Pre-Test
+                    </button>
+                </div>
+
+                <div class="bg-orange-50 border border-orange-200 rounded-xl p-4 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-2 text-orange-950 font-bold mb-2">
+                            <i class="fa-solid fa-laptop-code text-lg text-orange-600"></i>
+                            <h3 class="text-sm">Asynchronous 1</h3>
+                        </div>
+                        <p class="text-[11px] text-orange-900 mb-1">9 Sept 2026, 15.15 WIB</p>
+                        <p class="text-[10px] text-slate-500 mb-4">Pendalaman mandiri hari ke-1.</p>
+                    </div>
+                    <button type="button" onclick="startTest('Asynchronous 1')" class="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-2 rounded-lg text-xs shadow-sm transition">
+                        Kerjakan Asynch 1
+                    </button>
+                </div>
+
+                <div class="bg-yellow-50 border border-yellow-200 rounded-xl p-4 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-2 text-yellow-950 font-bold mb-2">
+                            <i class="fa-solid fa-book-open-reader text-lg text-yellow-600"></i>
+                            <h3 class="text-sm">Soal Pendalaman</h3>
+                        </div>
+                        <p class="text-[11px] text-yellow-900 mb-1">10 Sept 2026, 15.15 WIB</p>
+                        <p class="text-[10px] text-slate-500 mb-4">Latihan studi kasus & pengayaan.</p>
+                    </div>
+                    <button type="button" onclick="protectedDriveAccess('https://drive.google.com/drive/folders/1qxrKKTyVGGfHC7Hjvh_kedqCzfs5oawG?usp=drive_link', 'Pendalaman')" class="w-full bg-yellow-500 hover:bg-yellow-600 text-slate-950 font-bold py-2 rounded-lg text-xs shadow-sm transition">
+                        Akses Pendalaman
+                    </button>
+                </div>
+
+                <div class="bg-stone-50 border border-stone-200 rounded-xl p-4 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-2 text-slate-900 font-bold mb-2">
+                            <i class="fa-solid fa-square-check text-lg text-emerald-600"></i>
+                            <h3 class="text-sm">Post-Test</h3>
+                        </div>
+                        <p class="text-[11px] text-slate-700 mb-1">10 Sept 2026, 16.15 WIB</p>
+                        <p class="text-[10px] text-slate-500 mb-4">Evaluasi akhir kompetensi.</p>
+                    </div>
+                    <button type="button" onclick="startTest('Post-Test')" class="w-full bg-slate-900 hover:bg-slate-950 text-white font-bold py-2 rounded-lg text-xs shadow-sm transition">
+                        Kerjakan Post-Test
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Video Pembelajaran -->
+        <section id="video">
+            <div class="border-b border-orange-200 pb-3 mb-6">
+                <h2 class="text-xl sm:text-2xl font-bold text-slate-900">Video Pembelajaran</h2>
+                <p class="text-slate-600 text-xs sm:text-sm mt-0.5">Pemutar video interaktif tata cara & teknis pengolahan Wilkerstat 2026 & FRS MFD Online</p>
+            </div>
+
+            <!-- Panduan General Wilkerstat 2026 -->
+            <div class="mb-8">
+                <h3 class="text-base font-bold text-orange-950 mb-3 flex items-center gap-2">
+                    <i class="fa-solid fa-circle-play text-orange-600"></i> Panduan General Wilkerstat 2026
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white rounded-xl shadow-sm border border-orange-100 overflow-hidden flex flex-col justify-between">
+                        <div class="bg-black aspect-video relative">
+                            <iframe src="https://drive.google.com/file/d/1MPkUtdt-BOx5QHTjghGVGDsmAjB7XScn/preview" class="w-full h-full border-0" allow="autoplay" allowfullscreen></iframe>
+                        </div>
+                        <div class="p-3.5">
+                            <h3 class="font-bold text-slate-900 text-sm mb-1">Video Pembelajaran 1</h3>
+                            <button type="button" onclick="protectedDriveAccess('https://drive.google.com/file/d/1MPkUtdt-BOx5QHTjghGVGDsmAjB7XScn/view?usp=drive_link')" class="text-orange-600 hover:underline font-bold text-xs flex items-center gap-1">
+                                <i class="fa-solid fa-up-right-from-square"></i> Buka di Tab Baru
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-sm border border-orange-100 overflow-hidden flex flex-col justify-between">
+                        <div class="bg-black aspect-video relative">
+                            <iframe src="https://drive.google.com/file/d/1H5bvwfDqdUwQA5yndgT_TogDWKlXP8mg/preview" class="w-full h-full border-0" allow="autoplay" allowfullscreen></iframe>
+                        </div>
+                        <div class="p-3.5">
+                            <h3 class="font-bold text-slate-900 text-sm mb-1">Video Pembelajaran 2</h3>
+                            <button type="button" onclick="protectedDriveAccess('https://drive.google.com/file/d/1H5bvwfDqdUwQA5yndgT_TogDWKlXP8mg/view?usp=drive_link')" class="text-orange-600 hover:underline font-bold text-xs flex items-center gap-1">
+                                <i class="fa-solid fa-up-right-from-square"></i> Buka di Tab Baru
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-sm border border-orange-100 overflow-hidden flex flex-col justify-between">
+                        <div class="bg-black aspect-video relative">
+                            <iframe src="https://drive.google.com/file/d/1EkT_b2eAv-LzbEsuH6Zo7D7OADhnEGAf/preview" class="w-full h-full border-0" allow="autoplay" allowfullscreen></iframe>
+                        </div>
+                        <div class="p-3.5">
+                            <h3 class="font-bold text-slate-900 text-sm mb-1">Video Pembelajaran 3</h3>
+                            <button type="button" onclick="protectedDriveAccess('https://drive.google.com/file/d/1EkT_b2eAv-LzbEsuH6Zo7D7OADhnEGAf/view?usp=drive_link')" class="text-orange-600 hover:underline font-bold text-xs flex items-center gap-1">
+                                <i class="fa-solid fa-up-right-from-square"></i> Buka di Tab Baru
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Panduan FRS MFD Online (7 Video) -->
+            <div>
+                <h3 class="text-base font-bold text-orange-950 mb-3 flex items-center gap-2 border-t border-orange-200 pt-5">
+                    <i class="fa-solid fa-network-wired text-orange-600"></i> Video Panduan FRS MFD Online
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    
+                    <div class="bg-white rounded-xl shadow-sm border border-orange-100 overflow-hidden flex flex-col justify-between">
+                        <div class="bg-black aspect-video relative">
+                            <iframe src="https://drive.google.com/file/d/12EZbarflk7G-zbZRQuG5ImFqmeLc5_oe/preview" class="w-full h-full border-0" allow="autoplay" allowfullscreen></iframe>
+                        </div>
+                        <div class="p-3.5">
+                            <h3 class="font-bold text-slate-900 text-sm mb-1">FRS MFD Online - Part 1</h3>
+                            <button type="button" onclick="protectedDriveAccess('https://drive.google.com/file/d/12EZbarflk7G-zbZRQuG5ImFqmeLc5_oe/view?usp=drive_link')" class="text-orange-600 hover:underline font-bold text-xs flex items-center gap-1">
+                                <i class="fa-solid fa-up-right-from-square"></i> Buka di Tab Baru
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-sm border border-orange-100 overflow-hidden flex flex-col justify-between">
+                        <div class="bg-black aspect-video relative">
+                            <iframe src="https://drive.google.com/file/d/1pqzCTcyHNy-FuCYDNHuSJsZ1k6m-yp3E/preview" class="w-full h-full border-0" allow="autoplay" allowfullscreen></iframe>
+                        </div>
+                        <div class="p-3.5">
+                            <h3 class="font-bold text-slate-900 text-sm mb-1">FRS MFD Online - Part 2</h3>
+                            <button type="button" onclick="protectedDriveAccess('https://drive.google.com/file/d/1pqzCTcyHNy-FuCYDNHuSJsZ1k6m-yp3E/view?usp=drive_link')" class="text-orange-600 hover:underline font-bold text-xs flex items-center gap-1">
+                                <i class="fa-solid fa-up-right-from-square"></i> Buka di Tab Baru
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-sm border border-orange-100 overflow-hidden flex flex-col justify-between">
+                        <div class="bg-black aspect-video relative">
+                            <iframe src="https://drive.google.com/file/d/1teU-N6JHRgsQ4lAsKgjOH7j8KdpeCbAu/preview" class="w-full h-full border-0" allow="autoplay" allowfullscreen></iframe>
+                        </div>
+                        <div class="p-3.5">
+                            <h3 class="font-bold text-slate-900 text-sm mb-1">FRS MFD Online - Part 3</h3>
+                            <button type="button" onclick="protectedDriveAccess('https://drive.google.com/file/d/1teU-N6JHRgsQ4lAsKgjOH7j8KdpeCbAu/view?usp=drive_link')" class="text-orange-600 hover:underline font-bold text-xs flex items-center gap-1">
+                                <i class="fa-solid fa-up-right-from-square"></i> Buka di Tab Baru
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-sm border border-orange-100 overflow-hidden flex flex-col justify-between">
+                        <div class="bg-black aspect-video relative">
+                            <iframe src="https://drive.google.com/file/d/1c4mJWqwzAMQ-38CmDg_nJ5GHU0L3kohP/preview" class="w-full h-full border-0" allow="autoplay" allowfullscreen></iframe>
+                        </div>
+                        <div class="p-3.5">
+                            <h3 class="font-bold text-slate-900 text-sm mb-1">FRS MFD Online - Part 4</h3>
+                            <button type="button" onclick="protectedDriveAccess('https://drive.google.com/file/d/1c4mJWqwzAMQ-38CmDg_nJ5GHU0L3kohP/view?usp=drive_link')" class="text-orange-600 hover:underline font-bold text-xs flex items-center gap-1">
+                                <i class="fa-solid fa-up-right-from-square"></i> Buka di Tab Baru
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-sm border border-orange-100 overflow-hidden flex flex-col justify-between">
+                        <div class="bg-black aspect-video relative">
+                            <iframe src="https://drive.google.com/file/d/179_almDa9zC2B4hnExpsfHSYRQZpoiob/preview" class="w-full h-full border-0" allow="autoplay" allowfullscreen></iframe>
+                        </div>
+                        <div class="p-3.5">
+                            <h3 class="font-bold text-slate-900 text-sm mb-1">FRS MFD Online - Part 5</h3>
+                            <button type="button" onclick="protectedDriveAccess('https://drive.google.com/file/d/179_almDa9zC2B4hnExpsfHSYRQZpoiob/view?usp=drive_link')" class="text-orange-600 hover:underline font-bold text-xs flex items-center gap-1">
+                                <i class="fa-solid fa-up-right-from-square"></i> Buka di Tab Baru
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-sm border border-orange-100 overflow-hidden flex flex-col justify-between">
+                        <div class="bg-black aspect-video relative">
+                            <iframe src="https://drive.google.com/file/d/1OB3L_D7u8egyZdwGFyF6Odzvz_HD7uyN/preview" class="w-full h-full border-0" allow="autoplay" allowfullscreen></iframe>
+                        </div>
+                        <div class="p-3.5">
+                            <h3 class="font-bold text-slate-900 text-sm mb-1">FRS MFD Online - Part 6</h3>
+                            <button type="button" onclick="protectedDriveAccess('https://drive.google.com/file/d/1OB3L_D7u8egyZdwGFyF6Odzvz_HD7uyN/view?usp=drive_link')" class="text-orange-600 hover:underline font-bold text-xs flex items-center gap-1">
+                                <i class="fa-solid fa-up-right-from-square"></i> Buka di Tab Baru
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-sm border border-orange-100 overflow-hidden flex flex-col justify-between">
+                        <div class="bg-black aspect-video relative">
+                            <iframe src="https://drive.google.com/file/d/1mekC_8qXvu5qAGwe0W8vAMMI-F254pcm/preview" class="w-full h-full border-0" allow="autoplay" allowfullscreen></iframe>
+                        </div>
+                        <div class="p-3.5">
+                            <h3 class="font-bold text-slate-900 text-sm mb-1">FRS MFD Online - Part 7</h3>
+                            <button type="button" onclick="protectedDriveAccess('https://drive.google.com/file/d/1mekC_8qXvu5qAGwe0W8vAMMI-F254pcm/view?usp=drive_link')" class="text-orange-600 hover:underline font-bold text-xs flex items-center gap-1">
+                                <i class="fa-solid fa-up-right-from-square"></i> Buka di Tab Baru
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-6 px-4 border-t border-slate-800 text-center text-xs">
+        <div class="max-w-7xl mx-auto space-y-1">
+            <p class="font-semibold text-slate-300">Portal Pelatihan Wilkerstat 2026 &copy; Badan Pusat Statistik</p>
+            <p>Internal Petugas Pengolahan Wilkerstat.</p>
+        </div>
+    </footer>
+
+    <!-- MODAL SECTION -->
+
+    <!-- Modal Login -->
+    <div id="loginModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-sm w-full p-5 shadow-2xl border border-orange-100 relative">
+            <button type="button" onclick="closeModal('loginModal')" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 text-lg">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="text-center mb-5">
+                <div class="w-10 h-10 bg-orange-100 text-orange-600 rounded-full flex items-center justify-center mx-auto mb-2 text-lg">
+                    <i class="fa-solid fa-user-lock"></i>
+                </div>
+                <h3 class="text-lg font-bold text-slate-900">Masuk Akun Petugas</h3>
+                <p class="text-xs text-slate-500 mt-0.5">Masukkan NIP/NIK dan kata sandi Anda</p>
+            </div>
+            <form onsubmit="handleLogin(event)" class="space-y-3.5">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">NIP / NIK Petugas</label>
+                    <input type="text" id="loginNip" required placeholder="Contoh: 3329xxxxxxxxxxxx" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-xs sm:text-sm focus:outline-none focus:border-orange-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Kata Sandi</label>
+                    <input type="password" id="loginPassword" required placeholder="••••••••" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-xs sm:text-sm focus:outline-none focus:border-orange-500">
+                </div>
+                <button type="submit" id="btnLoginSubmit" class="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-2.5 rounded-lg text-xs sm:text-sm shadow transition flex items-center justify-center gap-2">
+                    <span>Masuk Sekarang</span>
+                </button>
+            </form>
+            <div class="mt-4 text-center text-xs text-slate-500">
+                Belum punya akun? <a href="javascript:void(0)" onclick="switchModal('loginModal', 'registerModal')" class="text-orange-600 font-bold hover:underline">Daftar di sini</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Register -->
+    <div id="registerModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-sm w-full p-5 shadow-2xl border border-orange-100 relative">
+            <button type="button" onclick="closeModal('registerModal')" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 text-lg">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="text-center mb-5">
+                <div class="w-10 h-10 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center mx-auto mb-2 text-lg">
+                    <i class="fa-solid fa-user-plus"></i>
+                </div>
+                <h3 class="text-lg font-bold text-slate-900">Pendaftaran Petugas</h3>
+                <p class="text-xs text-slate-500 mt-0.5">Registrasi akun baru Petugas Pengolahan</p>
+            </div>
+            <form onsubmit="handleRegister(event)" class="space-y-3.5">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Nama Lengkap</label>
+                    <input type="text" id="regName" required placeholder="Nama sesuai SK" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-xs sm:text-sm focus:outline-none focus:border-orange-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">NIP / NIK Petugas</label>
+                    <input type="text" id="regNip" required placeholder="NIP BPS / NIK KTP" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-xs sm:text-sm focus:outline-none focus:border-orange-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Kata Sandi</label>
+                    <input type="password" id="regPassword" required placeholder="Buat kata sandi" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-xs sm:text-sm focus:outline-none focus:border-orange-500">
+                </div>
+                <button type="submit" id="btnRegSubmit" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold py-2.5 rounded-lg text-xs sm:text-sm shadow transition flex items-center justify-center gap-2">
+                    <span>Daftar Akun</span>
+                </button>
+            </form>
+            <div class="mt-4 text-center text-xs text-slate-500">
+                Sudah punya akun? <a href="javascript:void(0)" onclick="switchModal('registerModal', 'loginModal')" class="text-orange-600 font-bold hover:underline">Masuk di sini</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT INTEGRASI APPS SCRIPT -->
+    <script>
+        const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyAM6r0dKj4ymx32IF3swO08vEkM9viKoU2qpYNJuZ2BggC7VV_c46X6zRLY6FaSFs/exec";
+
+        let currentUser = JSON.parse(localStorage.getItem('wilkerstat_user')) || null;
+
+        document.addEventListener("DOMContentLoaded", () => {
+            updateUIAuthState();
         });
 
-        const result = await response.json();
-
-        if (result.status === 'success') {
-            currentUser = { name: result.name, nip: result.nip };
-            localStorage.setItem('wilkerstat_user', JSON.stringify(currentUser));
-            alert('Login Berhasil!\n\nSelamat datang kembali, ' + result.name);
-            closeModal('loginModal');
-            updateUIAuthState();
-        } else {
-            alert('Login Gagal: ' + (result.message || 'NIP/NIK atau kata sandi salah.'));
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.remove('hidden');
         }
-    } catch (err) {
-        alert('Terjadi kesalahan koneksi/server. Silakan coba beberapa saat lagi.');
-        console.error(err);
-    } finally {
-        btn.disabled = false;
-        btn.innerHTML = originalText;
-    }
-}
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.add('hidden');
+        }
+
+        function switchModal(fromModal, toModal) {
+            closeModal(fromModal);
+            openModal(toModal);
+        }
+
+        async function handleLogin(e) {
+            e.preventDefault();
+            const btn = document.getElementById('btnLoginSubmit');
+            const originalText = btn.innerHTML;
+
+            const nip = document.getElementById('loginNip').value.trim();
+            const password = document.getElementById('loginPassword').value;
+
+            try {
+                btn.disabled = true;
+                btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Verifikasi...`;
+
+                const response = await fetch(APPS_SCRIPT_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                    body: JSON.stringify({
+                        action: 'login',
+                        nip: nip,
+                        password: password
+                    })
+                });
+
+                const result = await response.json();
+
+                if (result.status === 'success') {
+                    currentUser = { name: result.name, nip: result.nip };
+                    localStorage.setItem('wilkerstat_user', JSON.stringify(currentUser));
+                    alert('Login Berhasil!\n\nSelamat datang kembali, ' + result.name);
+                    closeModal('loginModal');
+                    updateUIAuthState();
+                } else {
+                    alert('Login Gagal: ' + (result.message || 'NIP/NIK atau kata sandi tidak ditemukan.'));
+                }
+            } catch (err) {
+                alert('Terjadi kesalahan koneksi/server. Silakan coba beberapa saat lagi.');
+                console.error(err);
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = originalText;
+            }
+        }
+
+        async function handleRegister(e) {
+            e.preventDefault();
+            const btn = document.getElementById('btnRegSubmit');
+            const originalText = btn.innerHTML;
+            
+            const name = document.getElementById('regName').value.trim();
+            const nip = document.getElementById('regNip').value.trim();
+            const password = document.getElementById('regPassword').value;
+
+            try {
+                btn.disabled = true;
+                btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Memproses...`;
+
+                const response = await fetch(APPS_SCRIPT_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                    body: JSON.stringify({
+                        action: 'register',
+                        name: name,
+                        nip: nip,
+                        password: password
+                    })
+                });
+
+                const result = await response.json();
+
+                if (result.status === 'success') {
+                    currentUser = { name, nip };
+                    localStorage.setItem('wilkerstat_user', JSON.stringify(currentUser));
+                    alert('Pendaftaran Berhasil!\n\nSelamat datang, ' + name);
+                    closeModal('registerModal');
+                    updateUIAuthState();
+                } else {
+                    alert('Pendaftaran Gagal: ' + (result.message || 'Terjadi kesalahan pada server.'));
+                }
+            } catch (err) {
+                alert('Terjadi kesalahan koneksi/server. Silakan coba beberapa saat lagi.');
+                console.error(err);
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = originalText;
+            }
+        }
+
+        function logoutUser() {
+            if (confirm('Apakah Anda yakin ingin keluar dari akun?')) {
+                currentUser = null;
+                localStorage.removeItem('wilkerstat_user');
+                updateUIAuthState();
+            }
+        }
+
+        function updateUIAuthState() {
+            const guestNav = document.getElementById('guestNav');
+            const userNav = document.getElementById('userNav');
+            const accessAlert = document.getElementById('accessAlert');
+
+            if (currentUser) {
+                guestNav.classList.add('hidden');
+                userNav.classList.remove('hidden');
+                document.getElementById('navUserName').innerText = currentUser.name;
+                document.getElementById('navUserNip').innerText = 'NIP/NIK: ' + currentUser.nip;
+                if(accessAlert) accessAlert.classList.add('hidden');
+            } else {
+                guestNav.classList.remove('hidden');
+                userNav.classList.add('hidden');
+                if(accessAlert) accessAlert.classList.remove('hidden');
+            }
+        }
+
+        function protectedDriveAccess(url, type = 'materi') {
+            if (!currentUser) {
+                alert('Akses Terbatas!\n\nSilakan Masuk atau Daftar Akun Petugas terlebih dahulu.');
+                openModal('loginModal');
+            } else {
+                window.open(url, '_blank');
+            }
+        }
+
+        function protectedLinkAccess(url) {
+            if (!currentUser) {
+                alert('Akses Terbatas!\n\nSilakan Masuk atau Daftar Akun Petugas terlebih dahulu.');
+                openModal('loginModal');
+            } else {
+                window.open(url, '_blank');
+            }
+        }
+
+        function startTest(testName) {
+            if (!currentUser) {
+                alert('Akses Terbatas!\n\nSilakan Masuk terlebih dahulu untuk mengerjakan ' + testName + '.');
+                openModal('loginModal');
+            } else {
+                alert('Menghubungkan ke ' + testName + '...\nSelamat mengerjakan!');
+            }
+        }
+    </script>
+</body>
+</html>
