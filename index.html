@@ -197,7 +197,7 @@
                             <i class="fa-solid fa-clipboard-question text-2xl text-amber-600"></i>
                             <h3 class="text-lg">Pre-Test</h3>
                         </div>
-                        <p class="text-sm text-amber-900/80 mb-2">Terbuka mulai <strong>9 September 2026, Pukul 08.00 WIB</strong>.</p>
+                        <p class="text-sm text-amber-900/80 mb-2">Status: <span class="text-emerald-700 font-bold">Terbuka (Dapat dikerjakan)</span></p>
                         <p class="text-xs text-slate-500 mb-6">Mengukur pemahaman awal peserta sebelum mengikuti materi pelatihan.</p>
                     </div>
                     <button onclick="startTest('Pre-Test')" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold py-2.5 rounded-lg shadow-sm transition">
@@ -503,13 +503,12 @@
             }
         }
 
-        // Penguncian Akses Waktu Terpisah untuk Pre-Test & Post-Test
+        // Penguncian Akses Waktu: Pre-Test selalu terbuka, Post-Test masih terkunci hingga 10 Sept 16:15
         function isTestOpen(testType) {
             const now = new Date();
             
             if (testType === "Pre-Test") {
-                const preTestDate = new Date("2026-09-09T08:00:00+07:00");
-                return now >= preTestDate;
+                return true; // Pre-Test bebas dikerjakan kapan saja
             } else if (testType === "Post-Test") {
                 const postTestDate = new Date("2026-09-10T16:15:00+07:00");
                 return now >= postTestDate;
@@ -526,9 +525,7 @@
             }
 
             if (!isTestOpen(testType)) {
-                if (testType === "Pre-Test") {
-                    alert(`Soal Pre-Test belum dapat dibuka.\n\nPre-Test baru akan secara otomatis terbuka pada tanggal 9 September 2026 pukul 08:00 WIB.`);
-                } else if (testType === "Post-Test") {
+                if (testType === "Post-Test") {
                     alert(`Soal Post-Test belum dapat dibuka.\n\nPost-Test baru akan secara otomatis terbuka pada tanggal 10 September 2026 pukul 16:15 WIB.`);
                 }
                 return;
