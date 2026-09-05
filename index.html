@@ -1,36 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <title>Supabase Auth Multi-Device</title>
-  <!-- Load Supabase JS SDK -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-</head>
-<body>
-  <h2>Autentikasi Supabase</h2>
-
-  <!-- Form Login / Register -->
-  <div id="auth-container">
-    <input type="email" id="email" placeholder="Email"><br><br>
-    <input type="password" id="password" placeholder="Password"><br><br>
-    <button onclick="login()">Login</button>
-    <button onclick="register()">Daftar</button>
-  </div>
-
-  <!-- Dashboard setelah Login -->
-  <div id="dashboard" style="display: none;">
-    <h3>Selamat Datang, <span id="user-email"></span>!</h3>
-    <p>Sesi Anda tersimpan otomatis dan aktif di semua device.</p>
-    <button onclick="logout()">Logout</button>
-  </div>
-
-  <script src="app.js"></script>
-</body>
-</html>
-
-<!DOCTYPE html>
-<html lang="id">
-<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portal Pelatihan Wilkerstat 2026</title>
@@ -452,96 +422,12 @@
                     <!-- FRS Video 1 -->
                     <div class="bg-white rounded-xl shadow-sm border border-orange-100 overflow-hidden flex flex-col justify-between">
                         <div class="bg-black aspect-video relative">
-                            <iframe src="https://drive.google.com/file/d/12EZbarflk7G-zbZRQuG5ImFqmeLc5_oe/preview" class="w-full h-full border-0" allow="autoplay" allowfullscreen></iframe>
+                            <iframe src="https://drive.google.com/file/d/1T4l7Mv9q-Jm6Yg8xG8x/preview" class="w-full h-full border-0" allow="autoplay" allowfullscreen></iframe>
                         </div>
                         <div class="p-4">
-                            <h3 class="font-bold text-slate-900 text-base mb-2">FRS MFD Online - Bagian 1</h3>
-                            <p class="text-xs text-slate-500 mb-3">Panduan operasional FRS MFD Online bagian 1.</p>
-                            <button onclick="protectedDriveAccess('https://drive.google.com/file/d/12EZbarflk7G-zbZRQuG5ImFqmeLc5_oe/view?usp=drive_link')" class="text-orange-600 hover:underline font-semibold text-xs flex items-center gap-1">
-                                <i class="fa-solid fa-up-right-from-square"></i> Buka di Tab Baru
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- FRS Video 2 -->
-                    <div class="bg-white rounded-xl shadow-sm border border-orange-100 overflow-hidden flex flex-col justify-between">
-                        <div class="bg-black aspect-video relative">
-                            <iframe src="https://drive.google.com/file/d/1pqzCTcyHNy-FuCYDNHuSJsZ1k6m-yp3E/preview" class="w-full h-full border-0" allow="autoplay" allowfullscreen></iframe>
-                        </div>
-                        <div class="p-4">
-                            <h3 class="font-bold text-slate-900 text-base mb-2">FRS MFD Online - Bagian 2</h3>
-                            <p class="text-xs text-slate-500 mb-3">Panduan operasional FRS MFD Online bagian 2.</p>
-                            <button onclick="protectedDriveAccess('https://drive.google.com/file/d/1pqzCTcyHNy-FuCYDNHuSJsZ1k6m-yp3E/view?usp=drive_link')" class="text-orange-600 hover:underline font-semibold text-xs flex items-center gap-1">
-                                <i class="fa-solid fa-up-right-from-square"></i> Buka di Tab Baru
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- FRS Video 3 -->
-                    <div class="bg-white rounded-xl shadow-sm border border-orange-100 overflow-hidden flex flex-col justify-between">
-                        <div class="bg-black aspect-video relative">
-                            <iframe src="https://drive.google.com/file/d/1teU-N6JHRgsQ4lAsKgjOH7j8KdpeCbAu/preview" class="w-full h-full border-0" allow="autoplay" allowfullscreen></iframe>
-                        </div>
-                        <div class="p-4">
-                            <h3 class="font-bold text-slate-900 text-base mb-2">FRS MFD Online - Bagian 3</h3>
-                            <p class="text-xs text-slate-500 mb-3">Panduan operasional FRS MFD Online bagian 3.</p>
-                            <button onclick="protectedDriveAccess('https://drive.google.com/file/d/1teU-N6JHRgsQ4lAsKgjOH7j8KdpeCbAu/view?usp=drive_link')" class="text-orange-600 hover:underline font-semibold text-xs flex items-center gap-1">
-                                <i class="fa-solid fa-up-right-from-square"></i> Buka di Tab Baru
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- FRS Video 4 -->
-                    <div class="bg-white rounded-xl shadow-sm border border-orange-100 overflow-hidden flex flex-col justify-between">
-                        <div class="bg-black aspect-video relative">
-                            <iframe src="https://drive.google.com/file/d/1c4mJWqwzAMQ-38CmDg_nJ5GHU0L3kohP/preview" class="w-full h-full border-0" allow="autoplay" allowfullscreen></iframe>
-                        </div>
-                        <div class="p-4">
-                            <h3 class="font-bold text-slate-900 text-base mb-2">FRS MFD Online - Bagian 4</h3>
-                            <p class="text-xs text-slate-500 mb-3">Panduan operasional FRS MFD Online bagian 4.</p>
-                            <button onclick="protectedDriveAccess('https://drive.google.com/file/d/1c4mJWqwzAMQ-38CmDg_nJ5GHU0L3kohP/view?usp=drive_link')" class="text-orange-600 hover:underline font-semibold text-xs flex items-center gap-1">
-                                <i class="fa-solid fa-up-right-from-square"></i> Buka di Tab Baru
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- FRS Video 5 -->
-                    <div class="bg-white rounded-xl shadow-sm border border-orange-100 overflow-hidden flex flex-col justify-between">
-                        <div class="bg-black aspect-video relative">
-                            <iframe src="https://drive.google.com/file/d/179_almDa9zC2B4hnExpsfHSYRQZpoiob/preview" class="w-full h-full border-0" allow="autoplay" allowfullscreen></iframe>
-                        </div>
-                        <div class="p-4">
-                            <h3 class="font-bold text-slate-900 text-base mb-2">FRS MFD Online - Bagian 5</h3>
-                            <p class="text-xs text-slate-500 mb-3">Panduan operasional FRS MFD Online bagian 5.</p>
-                            <button onclick="protectedDriveAccess('https://drive.google.com/file/d/179_almDa9zC2B4hnExpsfHSYRQZpoiob/view?usp=drive_link')" class="text-orange-600 hover:underline font-semibold text-xs flex items-center gap-1">
-                                <i class="fa-solid fa-up-right-from-square"></i> Buka di Tab Baru
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- FRS Video 6 -->
-                    <div class="bg-white rounded-xl shadow-sm border border-orange-100 overflow-hidden flex flex-col justify-between">
-                        <div class="bg-black aspect-video relative">
-                            <iframe src="https://drive.google.com/file/d/1OB3L_D7u8egyZdwGFyF6Odzvz_HD7uyN/preview" class="w-full h-full border-0" allow="autoplay" allowfullscreen></iframe>
-                        </div>
-                        <div class="p-4">
-                            <h3 class="font-bold text-slate-900 text-base mb-2">FRS MFD Online - Bagian 6</h3>
-                            <p class="text-xs text-slate-500 mb-3">Panduan operasional FRS MFD Online bagian 6.</p>
-                            <button onclick="protectedDriveAccess('https://drive.google.com/file/d/1OB3L_D7u8egyZdwGFyF6Odzvz_HD7uyN/view?usp=drive_link')" class="text-orange-600 hover:underline font-semibold text-xs flex items-center gap-1">
-                                <i class="fa-solid fa-up-right-from-square"></i> Buka di Tab Baru
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- FRS Video 7 -->
-                    <div class="bg-white rounded-xl shadow-sm border border-orange-100 overflow-hidden flex flex-col justify-between">
-                        <div class="bg-black aspect-video relative">
-                            <iframe src="https://drive.google.com/file/d/1mekC_8qXvu5qAGwe0W8vAMMI-F254pcm/preview" class="w-full h-full border-0" allow="autoplay" allowfullscreen></iframe>
-                        </div>
-                        <div class="p-4">
-                            <h3 class="font-bold text-slate-900 text-base mb-2">FRS MFD Online - Bagian 7</h3>
-                            <p class="text-xs text-slate-500 mb-3">Panduan operasional FRS MFD Online bagian 7.</p>
-                            <button onclick="protectedDriveAccess('https://drive.google.com/file/d/1mekC_8qXvu5qAGwe0W8vAMMI-F254pcm/view?usp=drive_link')" class="text-orange-600 hover:underline font-semibold text-xs flex items-center gap-1">
+                            <h3 class="font-bold text-slate-900 text-base mb-2">Tutorial FRS MFD Online 1</h3>
+                            <p class="text-xs text-slate-500 mb-3">Panduan operasional dan manajemen FRS MFD Online.</p>
+                            <button onclick="protectedDriveAccess('https://drive.google.com/file/d/1T4l7Mv9q-Jm6Yg8xG8x/view?usp=drive_link')" class="text-orange-600 hover:underline font-semibold text-xs flex items-center gap-1">
                                 <i class="fa-solid fa-up-right-from-square"></i> Buka di Tab Baru
                             </button>
                         </div>
@@ -552,667 +438,201 @@
 
     </main>
 
-    <!-- MODAL QUIZ (PRE-TEST, ASYNCHRONOUS, POST-TEST) -->
-    <div id="quizModal" class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm hidden z-50 flex items-center justify-center p-4">
-        <div class="bg-white w-full max-w-2xl rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
-            <div class="bg-orange-600 text-white p-5 flex justify-between items-center">
-                <div>
-                    <h3 id="quizTitle" class="text-xl font-bold">Evaluasi Pelatihan</h3>
-                    <p id="quizSubtitle" class="text-xs text-orange-100">Jawablah pertanyaan-pertanyaan berikut dengan teliti.</p>
-                </div>
-                <button onclick="closeModal('quizModal')" class="text-white/80 hover:text-white"><i class="fa-solid fa-xmark text-2xl"></i></button>
-            </div>
-
-            <form id="quizForm" onsubmit="submitQuiz(event)" class="p-6 overflow-y-auto space-y-6 flex-1">
-                <div id="quizQuestionsContainer" class="space-y-6">
-                    <!-- Pertanyaan dirender dinamis via JS -->
-                </div>
-
-                <div class="pt-4 border-t border-slate-200 flex justify-end gap-3">
-                    <button type="button" onclick="closeModal('quizModal')" class="px-5 py-2.5 rounded-lg border border-slate-300 text-slate-700 font-semibold text-sm hover:bg-slate-50">Batal</button>
-                    <button id="btnSubmitQuiz" type="submit" class="px-6 py-2.5 rounded-lg bg-orange-600 hover:bg-orange-700 text-white font-bold text-sm transition">Kirim Jawaban</button>
-                </div>
-            </form>
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-8 px-4 border-t border-slate-800 text-center text-xs">
+        <div class="max-w-7xl mx-auto space-y-2">
+            <p class="font-semibold text-slate-300">Portal Pelatihan Wilkerstat 2026 &copy; Badan Pusat Statistik</p>
+            <p>Khusus Digunakan untuk Lingkungan Internal Petugas Pengolahan Wilkerstat.</p>
         </div>
-    </div>
+    </footer>
 
-    <!-- MODAL LOGIN -->
-    <div id="loginModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm hidden z-50 flex items-center justify-center p-4">
-        <div class="bg-white w-full max-w-md rounded-2xl shadow-xl overflow-hidden p-6 relative border-t-4 border-orange-600">
-            <button onclick="closeModal('loginModal')" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-xl"></i></button>
-            <h3 class="text-xl font-bold text-slate-900 mb-1">Masuk Petugas</h3>
-            <p class="text-xs text-slate-500 mb-6">Silakan masuk menggunakan email dan kata sandi terdaftar.</p>
+    <!-- MODAL SECTION -->
 
+    <!-- Modal Login -->
+    <div id="loginModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl border border-orange-100 relative">
+            <button onclick="closeModal('loginModal')" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 text-lg">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="text-center mb-6">
+                <div class="w-12 h-12 bg-orange-100 text-orange-600 rounded-full flex items-center justify-center mx-auto mb-3 text-xl">
+                    <i class="fa-solid fa-user-lock"></i>
+                </div>
+                <h3 class="text-xl font-bold text-slate-900">Masuk Akun Petugas</h3>
+                <p class="text-xs text-slate-500 mt-1">Masukkan NIP/NIK dan kata sandi Anda</p>
+            </div>
             <form onsubmit="handleLogin(event)" class="space-y-4">
                 <div>
-                    <label class="block text-xs font-bold text-slate-700 mb-1">Email / NIP/NIK</label>
-                    <input id="loginEmail" type="text" required placeholder="petugas@bps.go.id atau NIP/NIK" class="w-full px-3 py-2 border rounded-lg text-sm focus:ring-2 focus:ring-orange-500 outline-none">
+                    <label class="block text-xs font-bold text-slate-700 mb-1">NIP / NIK Petugas</label>
+                    <input type="text" id="loginNip" required placeholder="Contoh: 3329xxxxxxxxxxxx" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:border-orange-500">
                 </div>
                 <div>
                     <label class="block text-xs font-bold text-slate-700 mb-1">Kata Sandi</label>
-                    <input id="loginPassword" type="password" required placeholder="••••••••" class="w-full px-3 py-2 border rounded-lg text-sm focus:ring-2 focus:ring-orange-500 outline-none">
+                    <input type="password" id="loginPassword" required placeholder="••••••••" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:border-orange-500">
                 </div>
-                <button type="submit" class="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-2.5 rounded-lg text-sm transition">Masuk Akun</button>
+                <button type="submit" class="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-2.5 rounded-lg text-sm shadow transition">
+                    Masuk Sekarang
+                </button>
             </form>
-            <p class="text-xs text-center text-slate-500 mt-4">Belum punya akun? <a href="javascript:void(0)" onclick="switchModal('loginModal', 'registerModal')" class="text-orange-600 font-semibold underline">Daftar Akun Baru</a></p>
+            <div class="mt-4 text-center text-xs text-slate-500">
+                Belum punya akun? <a href="javascript:void(0)" onclick="switchModal('loginModal', 'registerModal')" class="text-orange-600 font-bold hover:underline">Daftar di sini</a>
+            </div>
         </div>
     </div>
 
-    <!-- MODAL REGISTRASI -->
-    <div id="registerModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm hidden z-50 flex items-center justify-center p-4">
-        <div class="bg-white w-full max-w-md rounded-2xl shadow-xl overflow-hidden p-6 relative border-t-4 border-amber-500">
-            <button onclick="closeModal('registerModal')" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-xl"></i></button>
-            <h3 class="text-xl font-bold text-slate-900 mb-1">Pendaftaran Petugas</h3>
-            <p class="text-xs text-slate-500 mb-6">Buat akun petugas pengolahan Wilkerstat 2026.</p>
-
-            <form onsubmit="handleRegister(event)" class="space-y-3">
+    <!-- Modal Register -->
+    <div id="registerModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl border border-orange-100 relative">
+            <button onclick="closeModal('registerModal')" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 text-lg">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="text-center mb-6">
+                <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center mx-auto mb-3 text-xl">
+                    <i class="fa-solid fa-user-plus"></i>
+                </div>
+                <h3 class="text-xl font-bold text-slate-900">Pendaftaran Petugas</h3>
+                <p class="text-xs text-slate-500 mt-1">Registrasi akun baru Petugas Pengolahan</p>
+            </div>
+            <form onsubmit="handleRegister(event)" class="space-y-4">
                 <div>
                     <label class="block text-xs font-bold text-slate-700 mb-1">Nama Lengkap</label>
-                    <input id="regName" type="text" required placeholder="Budi Santoso" class="w-full px-3 py-2 border rounded-lg text-sm focus:ring-2 focus:ring-orange-500 outline-none">
+                    <input type="text" id="regName" required placeholder="Nama sesuai SK" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:border-orange-500">
                 </div>
                 <div>
-                    <label class="block text-xs font-bold text-slate-700 mb-1">NIP / NIK</label>
-                    <input id="regNip" type="text" required placeholder="1995xxxxxx / 3329xxxxxx" class="w-full px-3 py-2 border rounded-lg text-sm focus:ring-2 focus:ring-orange-500 outline-none">
-                </div>
-                <div>
-                    <label class="block text-xs font-bold text-slate-700 mb-1">Email</label>
-                    <input id="regEmail" type="email" required placeholder="budi@bps.go.id" class="w-full px-3 py-2 border rounded-lg text-sm focus:ring-2 focus:ring-orange-500 outline-none">
+                    <label class="block text-xs font-bold text-slate-700 mb-1">NIP / NIK Petugas</label>
+                    <input type="text" id="regNip" required placeholder="NIP BPS / NIK KTP" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:border-orange-500">
                 </div>
                 <div>
                     <label class="block text-xs font-bold text-slate-700 mb-1">Kata Sandi</label>
-                    <input id="regPassword" type="password" required placeholder="••••••••" class="w-full px-3 py-2 border rounded-lg text-sm focus:ring-2 focus:ring-orange-500 outline-none">
+                    <input type="password" id="regPassword" required placeholder="Buat kata sandi" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:border-orange-500">
                 </div>
-                <button id="btnRegister" type="submit" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold py-2.5 rounded-lg text-sm transition">Daftar Sekarang</button>
+                <button type="submit" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold py-2.5 rounded-lg text-sm shadow transition">
+                    Daftar Akun
+                </button>
             </form>
-            <p class="text-xs text-center text-slate-500 mt-4">Sudah mendaftar? <a href="javascript:void(0)" onclick="switchModal('registerModal', 'loginModal')" class="text-orange-600 font-semibold underline">Masuk Akun</a></p>
+            <div class="mt-4 text-center text-xs text-slate-500">
+                Sudah punya akun? <a href="javascript:void(0)" onclick="switchModal('registerModal', 'loginModal')" class="text-orange-600 font-bold hover:underline">Masuk di sini</a>
+            </div>
         </div>
     </div>
-
-    <!-- Footer -->
-    <footer class="bg-slate-900 text-slate-400 py-8 border-t border-slate-800 text-xs sm:text-sm text-center">
-        <p>&copy; 2026 Pelatihan Petugas Pengolahan Wilkerstat. Hak Cipta Dilindungi.</p>
-    </footer>
 
     <!-- JAVASCRIPT LOGIC -->
     <script>
-        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzxi8mnh4fuTV65G__opOpCDLwvZmII55rpAbK_2SD6k0GRQRORCec57wRrVo8zj1PS/exec";
+        // System State
+        let currentUser = JSON.parse(localStorage.getItem('wilkerstat_user')) || null;
 
-        // Bank Soal Pre-Test & Post-Test
-        const standardQuizData = [
-            {
-                id: 1,
-                bab: "Pendahuluan",
-                question: "Salah satu output Kegiatan Penetapan Kerangka Geospasial dan Muatan Wilkerstat tahun 2026 ini adalah ...",
-                correct: "Master dan muatan wilkerstat 2026 Semester 1",
-                options: [
-                    "Master dan muatan wilkerstat 2026 Semester 1",
-                    "Peta Wilkerstat Blok Sensus",
-                    "Geotagging rumah",
-                    "Prelist keluarga pemilik usaha"
-                ]
-            },
-            {
-                id: 2,
-                bab: "Organisasi Pengolahan",
-                question: "Pelaksana Rekonsiliasi Batas kabupaten/kota adalah ...",
-                correct: "Tim Wilkerstat BPS Provinsi",
-                options: [
-                    "Tim Wilkerstat BPS Provinsi",
-                    "Tim Wilkerstat BPS Kabupaten/kota",
-                    "Petugas Pengawas",
-                    "Petugas Pengolah Peta"
-                ]
-            },
-            {
-                id: 3,
-                bab: "Metodologi",
-                question: "Kegiatan yang tidak dilakukan di BPS Kabupaten/Kota adalah ...",
-                correct: "rekonsiliasi batas kabupaten/kota",
-                options: [
-                    "rekonsiliasi batas kabupaten/kota",
-                    "pengolahan peta",
-                    "pengolahan master",
-                    "pengolahan geotagging"
-                ]
-            },
-            {
-                id: 4,
-                bab: "Persiapan Proses Pengolahan",
-                question: "Aplikasi atau tools yang digunakan dalam proses pengolahan titik bangunan (geotagging) SE2026 adalah ...",
-                correct: "QGIS",
-                options: [
-                    "QGIS",
-                    "FRS-MFDOnline",
-                    "FASIH",
-                    "SPSS"
-                ]
-            },
-            {
-                id: 5,
-                bab: "Pengolahan Master Wilkerstat dan Perubahan SLS",
-                question: "Tahapan umum pengolahan master wilkerstat tingkat SLS/sub-SLS meliputi kegiatan berikut, kecuali ...",
-                correct: "Penghapusan seluruh kode wilayah lama",
-                options: [
-                    "Penghapusan seluruh kode wilayah lama",
-                    "Penyiapan daftar PSLS",
-                    "Pengajuan perubahan SLS",
-                    "Approval perubahan SLS"
-                ]
-            }
-        ];
-
-        // Bank Soal Asynchronous 1 (20 Soal)
-        const async1QuizData = [
-            {
-                id: 101,
-                bab: "Asynchronous 1",
-                question: "Salah satu alasan utama dilaksanakannya kegiatan Penetapan Kerangka Geospasial dan Muatan Wilkerstat pada SE2026 adalah karena ...",
-                correct: "perubahan batas dan muatan SLS dapat terjadi dalam waktu relatif singkat sehingga perlu pemutakhiran peta dan master wilkerstat",
-                options: [
-                    "perubahan batas dan muatan SLS dapat terjadi dalam waktu relatif singkat sehingga perlu pemutakhiran peta dan master wilkerstat",
-                    "seluruh desa definitif wajib dimekarkan menjadi desa persiapan",
-                    "wilayah kerja statistik tingkat kecamatan sudah tidak digunakan lagi",
-                    "seluruh wilayah non-SLS harus dihapus dari master wilkerstat"
-                ]
-            },
-            {
-                id: 102,
-                bab: "Asynchronous 1",
-                question: "Berikut ini yang BUKAN merupakan tanggung jawab Tim Wilkerstat BPS Provinsi adalah ...",
-                correct: "membuat layout peta desa hasil pengolahan",
-                options: [
-                    "membuat layout peta desa hasil pengolahan",
-                    "melakukan monitoring dan approval pengolahan master melalui FRS-MFDOnline",
-                    "melakukan rekonsiliasi batas kabupaten/kota",
-                    "mengatur manajemen pengguna Geospatial System tingkat kabupaten/kota"
-                ]
-            },
-            {
-                id: 103,
-                bab: "Asynchronous 1",
-                question: "Dalam proses pengolahan peta wilkerstat, perubahan batas SLS yang menyebabkan perubahan muatan wilayah harus ditindaklanjuti dengan ...",
-                correct: "penghitungan kembali muatan pada batas SLS hasil perbaikan",
-                options: [
-                    "penghitungan kembali muatan pada batas SLS hasil perbaikan",
-                    "penghapusan seluruh titik geotagging lama",
-                    "pembentukan kecamatan baru",
-                    "pengubahan seluruh kode desa pada kecamatan terkait"
-                ]
-            },
-            {
-                id: 104,
-                bab: "Asynchronous 1",
-                question: "Berikut ini merupakan Material atau Tools yang digunakan dalam pengolahan Peta kecuali ...",
-                correct: "Plugin Cliper",
-                options: [
-                    "Plugin Cliper",
-                    "Template Layout WB",
-                    "Template Layout WS",
-                    "GS"
-                ]
-            },
-            {
-                id: 105,
-                bab: "Asynchronous 1",
-                question: "Ketika melakukan georeferensi secara manual, untuk memanggil peta SLS/Sub-SLS menggunakan menu ...",
-                correct: "Add Raster Layer",
-                options: [
-                    "Add Raster Layer",
-                    "Add Vector Layer",
-                    "Add Delimited Text Layer",
-                    "Add Mesh Layer"
-                ]
-            },
-            {
-                id: 106,
-                bab: "Asynchronous 1",
-                question: "Jenis-jenis perubahan berikut yang ada pada level sub-SLS, kecuali ...",
-                correct: "Pemekaran sub-SLS",
-                options: [
-                    "Pemekaran sub-SLS",
-                    "Perubahan nama/tingkatan sub-SLS",
-                    "Perubahan kode sub-SLS",
-                    "Penggabungan sub-SLS"
-                ]
-            },
-            {
-                id: 107,
-                bab: "Asynchronous 1",
-                question: "Di Desa Maju Makmur, terdapat SLS bernama Dusun Pesanggrahan yang mengalami pemekaran wilayah. SLS tersebut mekar menjadi Dusun Perjuangan dan Dusun Pamijahan. Berikut pernyataan yang benar mengenai pengolahan master wilkerstat untuk kasus tersebut, kecuali ...",
-                correct: "Salah satu kode SLS baru harus menggunakan kembali kode SLS lama yang sebelumnya sudah pernah digunakan agar nomor tetap berurutan",
-                options: [
-                    "Salah satu kode SLS baru harus menggunakan kembali kode SLS lama yang sebelumnya sudah pernah digunakan agar nomor tetap berurutan",
-                    "Kode SLS baru menggunakan kode lanjutan dari kode SLS terakhir di Desa Maju Makmur",
-                    "Pada Daftar PSLS, kode perubahan wilayah untuk SLS induk dan SLS hasil pemekaran diisikan kode 1",
-                    "Informasi perubahan SLS perlu diajukan melalui menu Pemekaran SLS pada aplikasi FRS-MFDOnline"
-                ]
-            },
-            {
-                id: 108,
-                bab: "Asynchronous 1",
-                question: "SLS Dusun Mekar Jaya memiliki 2 sub-SLS, yaitu sub-SLS 01 dan 02. Berdasarkan hasil lapangan SE2026, wilayah tersebut mengalami pemekaran menjadi tiga SLS baru: Dusun Mekar Jaya, Dusun Mekar Asri, dan Dusun Mekar Indah. Setelah dilakukan pemeriksaan peta WSS, diketahui sub-SLS 01 dominan masuk ke Dusun Mekar Jaya, sedangkan sub-SLS 02 terbagi ke dua wilayah baru lainnya. Tindakan yang paling tepat dilakukan dalam pengolahan master wilkerstat adalah ...",
-                correct: "Melakukan pemekaran sub-SLS terlebih dahulu, kemudian mengalokasikan sub-SLS hasil pemekaran ke masing-masing SLS baru dalam satu pengajuan Pemekaran SLS.",
-                options: [
-                    "Melakukan pemekaran sub-SLS terlebih dahulu, kemudian mengalokasikan sub-SLS hasil pemekaran ke masing-masing SLS baru dalam satu pengajuan Pemekaran SLS.",
-                    "Seluruh sub-SLS dipertahankan tanpa perubahan karena pemekaran hanya terjadi pada tingkat SLS.",
-                    "Membuat pengajuan terpisah antara pemekaran SLS dan pemekaran sub-SLS agar proses lebih mudah dikendalikan.",
-                    "Menghapus seluruh sub-SLS lama dan menggantinya dengan kode sub-SLS 00 pada semua SLS hasil pemekaran."
-                ]
-            },
-            {
-                id: 109,
-                bab: "Asynchronous 1",
-                question: "Suatu titik bangunan berada di luar batas SLS/SubSLS saat ini. Saat kursor diarahkan ke titik, informasi menunjukkan bahwa titik tersebut seharusnya berada pada idsubsls lain. Langkah paling tepat sebelum menggeser titik adalah ...",
-                correct: "Mengimpor Peta WS/WSS georeferensi sesuai idsubsls tujuan sebagai acuan posisi",
-                options: [
-                    "Mengimpor Peta WS/WSS georeferensi sesuai idsubsls tujuan sebagai acuan posisi",
-                    "Mengubah flag_repair menjadi 0 agar titik berubah warna",
-                    "Menghapus titik dari layer karena berada di luar batas",
-                    "Mengekspor layer menjadi GeoJSON terlebih dahulu"
-                ]
-            },
-            {
-                id: 110,
-                bab: "Asynchronous 1",
-                question: "Seorang petugas langsung menggeser titik tanpa menjalankan proses identifikasi terlebih dahulu. Risiko utama dari langkah tersebut adalah ...",
-                correct: "Petugas tidak memiliki penanda awal titik mana yang berada di luar batas dan perlu diedit",
-                options: [
-                    "Petugas tidak memiliki penanda awal titik mana yang berada di luar batas dan perlu diedit",
-                    "File project QGIS tidak dapat disimpan",
-                    "Semua atribut otomatis berubah menjadi kosong",
-                    "Peta WS/WSS tidak dapat ditampilkan di QGIS"
-                ]
-            },
-            {
-                id: 111,
-                bab: "Asynchronous 1",
-                question: "Saat melakukan editing, petugas mengubah flag_repair dari 1 menjadi 0 secara manual setelah menggeser titik, tetapi tidak menjalankan model pengecekan ulang. Mengapa langkah ini belum cukup untuk menyatakan titik valid?",
-                correct: "Karena perubahan manual atribut tidak menggantikan proses validasi spasial terhadap batas SLS/SubSLS",
-                options: [
-                    "Karena perubahan manual atribut tidak menggantikan proses validasi spasial terhadap batas SLS/SubSLS",
-                    "Karena flag_repair tidak boleh diubah dalam kondisi apa pun",
-                    "Karena titik harus selalu tetap berwarna oranye sampai akhir",
-                    "Karena model pengecekan hanya digunakan sebelum editing"
-                ]
-            },
-            {
-                id: 112,
-                bab: "Asynchronous 1",
-                question: "Tujuan identifikasi perubahan batas SLS adalah untuk ...",
-                correct: "Menentukan wilayah yang perlu dilakukan editing",
-                options: [
-                    "Menentukan wilayah yang perlu dilakukan editing",
-                    "Menghapus seluruh data lama",
-                    "Membuat layout peta otomatis",
-                    "Mengubah sistem koordinat peta"
-                ]
-            },
-            {
-                id: 113,
-                bab: "Asynchronous 1",
-                question: "Tools QGIS yang digunakan untuk memotong poligon adalah ...",
-                correct: "Split Features",
-                options: [
-                    "Split Features",
-                    "Merge Feature",
-                    "Fill Ring",
-                    "Topology Checker"
-                ]
-            },
-            {
-                id: 114,
-                bab: "Asynchronous 1",
-                question: "CRS yang digunakan saat export GeoJSON adalah ...",
-                correct: "EPSG:4326",
-                options: [
-                    "EPSG:4326",
-                    "EPSG:3857",
-                    "EPSG:32748",
-                    "EPSG:32648"
-                ]
-            },
-            {
-                id: 115,
-                bab: "Asynchronous 1",
-                question: "Koreksi topologis dilakukan untuk ...",
-                correct: "Menghilangkan gap dan overlap",
-                options: [
-                    "Menghilangkan gap dan overlap",
-                    "Menambah warna simbol",
-                    "Mengubah nama wilayah",
-                    "Mengatur layout peta"
-                ]
-            },
-            {
-                id: 116,
-                bab: "Asynchronous 1",
-                question: "Informasi perubahan SLS yang tidak bisa didapatkan dari hasil kegiatan lapangan SE2026 adalah ...",
-                correct: "Perubahan kode SLS",
-                options: [
-                    "Perubahan kode SLS",
-                    "Pemekaran SLS",
-                    "Penggabungan SLS",
-                    "Perubahan batas SLS"
-                ]
-            },
-            {
-                id: 117,
-                bab: "Asynchronous 1",
-                question: "Manakah pernyataan yang benar terkait proses georeferensi otomatis Peta WS/WSS menggunakan file .jgw?",
-                correct: "Peta JPEG akan otomatis memiliki referensi geografis jika nama file .jpg dan .jgw identik dan berada dalam folder yang sama",
-                options: [
-                    "Peta JPEG akan otomatis memiliki referensi geografis jika nama file .jpg dan .jgw identik dan berada dalam folder yang sama",
-                    "File .jgw digunakan untuk menyimpan atribut wilayah hasil digitasi",
-                    "Georeferensi otomatis hanya dapat dilakukan menggunakan plugin Freehand Raster Georeferencer",
-                    "File .jgw dibuat melalui proses scan peta hasil lapangan"
-                ]
-            },
-            {
-                id: 118,
-                bab: "Asynchronous 1",
-                question: "Informasi pada daftar PSLS yang tidak perlu diisi oleh tim wilkerstat BPS kabupaten/kota yaitu ...",
-                correct: "Kode SLS setelah perubahan",
-                options: [
-                    "Kode SLS setelah perubahan",
-                    "Jumlah BKU",
-                    "Muatan dominan",
-                    "Status perubahan wilayah SLS/sub-SLS"
-                ]
-            },
-            {
-                id: 119,
-                bab: "Asynchronous 1",
-                question: "Pada proses penggabungan SLS di FRS-MFDOnline, SLS yang menjadi hasil/tujuan gabungan (induk penggabungan) harus diisikan pada ...",
-                correct: "Baris pertama",
-                options: [
-                    "Baris pertama",
-                    "Baris terakhir",
-                    "Baris kedua",
-                    "Bebas dan tidak ditentukan"
-                ]
-            },
-            {
-                id: 120,
-                bab: "Asynchronous 1",
-                question: "Mengapa kita memilih ‘Fill Ring’ untuk memotong poligon peta pada kasus wilayah kantong (wilayah lain dalam suatu poligon), yaitu untuk memastikan ...",
-                correct: "Semua jawaban benar",
-                options: [
-                    "Semua jawaban benar",
-                    "Poligon terpotong",
-                    "Bebas dari gap",
-                    "Bebas dari overlap"
-                ]
-            }
-        ];
-
-        let activeTestType = "";
-        let currentQuestionsList = [];
-
+        // Initialize App State on Load
         document.addEventListener("DOMContentLoaded", () => {
-            checkLoginState();
+            updateUIAuthState();
         });
 
-        function checkLoginState() {
-            const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-            const guestNav = document.getElementById("guestNav");
-            const userNav = document.getElementById("userNav");
-            const accessAlert = document.getElementById("accessAlert");
-
-            if (currentUser) {
-                guestNav.classList.add("hidden");
-                userNav.classList.remove("hidden");
-                accessAlert.classList.add("hidden");
-
-                document.getElementById("navUserName").textContent = currentUser.name;
-                document.getElementById("navUserNip").textContent = "NIP/NIK: " + currentUser.nip;
-            } else {
-                guestNav.classList.remove("hidden");
-                userNav.classList.add("hidden");
-                accessAlert.classList.remove("hidden");
-            }
+        // Function Modal Handlers
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.remove('hidden');
         }
 
-        // Penguncian Akses Waktu Evaluasi
-        function isTestOpen(testType) {
-            const now = new Date();
-            if (testType === "Pre-Test") {
-                return now >= new Date("2026-09-09T08:00:00+07:00");
-            } else if (testType === "Asynchronous 1") {
-                return now >= new Date("2026-09-09T15:15:00+07:00");
-            } else if (testType === "Pendalaman") {
-                return now >= new Date("2026-09-10T15:15:00+07:00");
-            } else if (testType === "Post-Test") {
-                return now >= new Date("2026-09-10T16:15:00+07:00");
-            }
-            return true;
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.add('hidden');
         }
 
-        function protectedLinkAccess(targetUrl) {
-            const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-            if (!currentUser) {
-                alert("Akses Terbatas!\n\nAnda harus Masuk / Mendaftar Akun Petugas terlebih dahulu untuk mengisi presensi.");
-                openModal("loginModal");
-                return;
-            }
-            window.open(targetUrl, "_blank");
+        function switchModal(fromModal, toModal) {
+            closeModal(fromModal);
+            openModal(toModal);
         }
 
-        function protectedDriveAccess(targetUrl, resourceType = "Dokumen") {
-            const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-            if (!currentUser) {
-                alert("Akses Terbatas!\n\nAnda harus Masuk / Mendaftar Akun Petugas terlebih dahulu.");
-                openModal("loginModal");
-                return;
-            }
-
-            if (resourceType === "Pendalaman" && !isTestOpen("Pendalaman")) {
-                alert("Soal Pendalaman belum dapat dibuka.\n\nSoal Pendalaman baru akan terbuka secara otomatis pada tanggal 10 September 2026 pukul 15:15 WIB.");
-                return;
-            }
-
-            window.open(targetUrl, "_blank");
-        }
-
-        function startTest(testType) {
-            const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-            if (!currentUser) {
-                alert("Akses Terbatas!\n\nAnda harus Masuk / Mendaftar Akun Petugas terlebih dahulu untuk mengerjakan evaluasi.");
-                openModal("loginModal");
-                return;
-            }
-
-            if (!isTestOpen(testType)) {
-                if (testType === "Pre-Test") {
-                    alert("Soal Pre-Test belum dapat dibuka.\n\nPre-Test baru terbuka pada tanggal 9 September 2026 pukul 08:00 WIB.");
-                } else if (testType === "Asynchronous 1") {
-                    alert("Soal Asynchronous 1 belum dapat dibuka.\n\nAsynchronous 1 baru terbuka pada tanggal 9 September 2026 pukul 15:15 WIB.");
-                } else if (testType === "Post-Test") {
-                    alert("Soal Post-Test belum dapat dibuka.\n\nPost-Test baru terbuka pada tanggal 10 September 2026 pukul 16:15 WIB.");
-                }
-                return;
-            }
-
-            activeTestType = testType;
-            document.getElementById("quizTitle").textContent = `${testType} Pelatihan Wilkerstat 2026`;
-            document.getElementById("quizSubtitle").textContent = `Petugas: ${currentUser.name} (${currentUser.nip})`;
-
-            if (testType === "Asynchronous 1") {
-                currentQuestionsList = async1QuizData;
-            } else {
-                currentQuestionsList = standardQuizData;
-            }
-
-            renderQuizQuestions();
-            openModal("quizModal");
-        }
-
-        // Mengacak Array (Fisher-Yates Shuffle)
-        function shuffleArray(array) {
-            let arr = [...array];
-            for (let i = arr.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [arr[i], arr[j]] = [arr[j], arr[i]];
-            }
-            return arr;
-        }
-
-        function renderQuizQuestions() {
-            const container = document.getElementById("quizQuestionsContainer");
-            container.innerHTML = "";
-
-            currentQuestionsList.forEach((q, index) => {
-                const shuffledOptions = shuffleArray(q.options);
-
-                let optionsHtml = shuffledOptions.map((opt) => `
-                    <label class="flex items-start gap-3 p-3 rounded-lg border border-slate-200 hover:bg-orange-50/50 transition cursor-pointer">
-                        <input type="radio" name="q_${q.id}" value="${opt.replace(/"/g, '&quot;')}" required class="mt-0.5 text-orange-600 focus:ring-orange-500">
-                        <span class="text-sm text-slate-800">${opt}</span>
-                    </label>
-                `).join("");
-
-                container.innerHTML += `
-                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-3">
-                        <div class="flex items-center gap-2">
-                            <span class="bg-orange-600 text-white text-xs font-bold px-2.5 py-0.5 rounded">Soal ${index + 1}</span>
-                            <span class="text-xs font-semibold text-slate-500">(${q.bab})</span>
-                        </div>
-                        <p class="font-medium text-slate-900 text-sm sm:text-base">${q.question}</p>
-                        <div class="space-y-2 pt-1">
-                            ${optionsHtml}
-                        </div>
-                    </div>
-                `;
-            });
-        }
-
-        function submitQuiz(e) {
-            e.preventDefault();
-            const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-            if (!currentUser) return;
-
-            let score = 0;
-            const totalQuestions = currentQuestionsList.length;
-
-            currentQuestionsList.forEach(q => {
-                const selected = document.querySelector(`input[name="q_${q.id}"]:checked`);
-                if (selected && selected.value === q.correct) {
-                    score += 1;
-                }
-            });
-
-            const finalScore = Math.round((score / totalQuestions) * 100);
-
-            const btn = document.getElementById("btnSubmitQuiz");
-            btn.disabled = true;
-            btn.textContent = "Mengirim Nilai...";
-
-            const payload = {
-                action: "quiz",
-                nama: currentUser.name,
-                nip: currentUser.nip,
-                email: currentUser.email,
-                jenisTest: activeTestType,
-                nilai: finalScore,
-                waktu: new Date().toLocaleString("id-ID", { timeZone: "Asia/Jakarta" })
-            };
-
-            fetch(SCRIPT_URL, {
-                method: "POST",
-                mode: "no-cors",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(payload)
-            }).then(() => {
-                alert(`Hasil ${activeTestType} berhasil dikirim!\n\nNama: ${currentUser.name}\nNIP/NIK: ${currentUser.nip}\nNilai Akhir: ${finalScore} / 100`);
-                closeModal("quizModal");
-                btn.disabled = false;
-                btn.textContent = "Kirim Jawaban";
-            }).catch(err => {
-                console.error("Error submitting quiz score:", err);
-                alert(`Hasil ${activeTestType} telah selesai disubmit!\n\nNilai Anda: ${finalScore} / 100`);
-                closeModal("quizModal");
-                btn.disabled = false;
-                btn.textContent = "Kirim Jawaban";
-            });
-        }
-
+        // Handle User Registration
         function handleRegister(e) {
             e.preventDefault();
-            const name = document.getElementById("regName").value;
-            const nip = document.getElementById("regNip").value;
-            const email = document.getElementById("regEmail").value;
-            const password = document.getElementById("regPassword").value;
+            const name = document.getElementById('regName').value;
+            const nip = document.getElementById('regNip').value;
+            const password = document.getElementById('regPassword').value;
 
-            let users = JSON.parse(localStorage.getItem("registeredUsers")) || [];
-            if (users.find(u => u.email === email)) {
-                alert("Email sudah terdaftar. Silakan login.");
-                return;
-            }
-
-            const btn = document.getElementById("btnRegister");
-            btn.disabled = true;
-            btn.textContent = "Mendaftarkan...";
-
-            const newUser = { name, nip, email, password };
-            users.push(newUser);
-            localStorage.setItem("registeredUsers", JSON.stringify(users));
-            localStorage.setItem("currentUser", JSON.stringify(newUser));
-
-            const payload = {
-                action: "register",
-                nama: name,
-                nip: nip,
-                email: email,
-                waktu: new Date().toLocaleString("id-ID", { timeZone: "Asia/Jakarta" })
-            };
-
-            fetch(SCRIPT_URL, {
-                method: "POST",
-                mode: "no-cors",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(payload)
-            }).then(() => {
-                btn.disabled = false;
-                btn.textContent = "Daftar Sekarang";
-                closeModal("registerModal");
-                checkLoginState();
-                alert("Pendaftaran berhasil! Akun Anda telah terdaftar.");
-            }).catch(err => {
-                console.error("Error registering user:", err);
-                btn.disabled = false;
-                btn.textContent = "Daftar Sekarang";
-                closeModal("registerModal");
-                checkLoginState();
-                alert("Pendaftaran berhasil!");
-            });
+            const userData = { name, nip, password };
+            localStorage.setItem('wilkerstat_registered_user_' + nip, JSON.stringify(userData));
+            
+            // Auto login after register
+            currentUser = { name, nip };
+            localStorage.setItem('wilkerstat_user', JSON.stringify(currentUser));
+            
+            alert('Pendaftaran berhasil! Selamat datang, ' + name);
+            closeModal('registerModal');
+            updateUIAuthState();
         }
 
+        // Handle User Login
         function handleLogin(e) {
             e.preventDefault();
-            const emailOrNip = document.getElementById("loginEmail").value;
-            const password = document.getElementById("loginPassword").value;
+            const nip = document.getElementById('loginNip').value;
+            const password = document.getElementById('loginPassword').value;
 
-            let users = JSON.parse(localStorage.getItem("registeredUsers")) || [];
-            const user = users.find(u => (u.email === emailOrNip || u.nip === emailOrNip) && u.password === password);
+            const savedUser = JSON.parse(localStorage.getItem('wilkerstat_registered_user_' + nip));
 
-            if (user) {
-                localStorage.setItem("currentUser", JSON.stringify(user));
-                closeModal("loginModal");
-                checkLoginState();
+            if (savedUser && savedUser.password === password) {
+                currentUser = { name: savedUser.name, nip: savedUser.nip };
+                localStorage.setItem('wilkerstat_user', JSON.stringify(currentUser));
+                alert('Berhasil masuk! Selamat datang ' + currentUser.name);
+                closeModal('loginModal');
+                updateUIAuthState();
             } else {
-                alert("Email/NIP/NIK atau kata sandi tidak cocok!");
+                alert('NIP/NIK atau kata sandi tidak ditemukan/salah! Silakan periksa kembali atau daftar terlebih dahulu.');
             }
         }
 
+        // Handle User Logout
         function logoutUser() {
-            if (confirm("Apakah Anda yakin ingin keluar?")) {
-                localStorage.removeItem("currentUser");
-                checkLoginState();
+            if (confirm('Apakah Anda yakin ingin keluar dari akun?')) {
+                currentUser = null;
+                localStorage.removeItem('wilkerstat_user');
+                updateUIAuthState();
             }
         }
 
-        function openModal(id) { document.getElementById(id).classList.remove("hidden"); }
-        function closeModal(id) { document.getElementById(id).classList.add("hidden"); }
-        function switchModal(from, to) { closeModal(from); openModal(to); }
+        // Update UI State based on login status
+        function updateUIAuthState() {
+            const guestNav = document.getElementById('guestNav');
+            const userNav = document.getElementById('userNav');
+            const accessAlert = document.getElementById('accessAlert');
+
+            if (currentUser) {
+                guestNav.classList.add('hidden');
+                userNav.classList.remove('hidden');
+                document.getElementById('navUserName').innerText = currentUser.name;
+                document.getElementById('navUserNip').innerText = 'NIP/NIK: ' + currentUser.nip;
+                if(accessAlert) accessAlert.classList.add('hidden');
+            } else {
+                guestNav.classList.remove('hidden');
+                userNav.classList.add('hidden');
+                if(accessAlert) accessAlert.classList.remove('hidden');
+            }
+        }
+
+        // Protection Functions for Links & Files
+        function protectedDriveAccess(url, type = 'materi') {
+            if (!currentUser) {
+                alert('Akses Terbatas!\n\nSilakan Masuk atau Daftar Akun Petugas terlebih dahulu untuk mengakses ' + type + ' ini.');
+                openModal('loginModal');
+            } else {
+                window.open(url, '_blank');
+            }
+        }
+
+        function protectedLinkAccess(url) {
+            if (!currentUser) {
+                alert('Akses Terbatas!\n\nSilakan Masuk atau Daftar Akun Petugas terlebih dahulu untuk mengisi Presensi.');
+                openModal('loginModal');
+            } else {
+                window.open(url, '_blank');
+            }
+        }
+
+        function startTest(testName) {
+            if (!currentUser) {
+                alert('Akses Terbatas!\n\nSilakan Masuk atau Daftar Akun Petugas terlebih dahulu untuk mengerjakan ' + testName + '.');
+                openModal('loginModal');
+            } else {
+                alert('Menghubungkan ke ' + testName + '...\nSelamat mengerjakan!');
+            }
+        }
     </script>
 </body>
 </html>
