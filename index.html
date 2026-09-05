@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portal Pelatihan Wilkerstat 2026</title>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         html { scroll-behavior: smooth; }
@@ -12,6 +14,7 @@
 </head>
 <body class="bg-orange-50/50 text-slate-800 font-sans leading-relaxed">
 
+    <!-- Header / Navbar -->
     <header class="bg-orange-600 text-white sticky top-0 z-50 shadow-md">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
             <div class="flex items-center space-x-3">
@@ -26,6 +29,7 @@
                 <a href="#video" class="hover:text-amber-200 transition">Video</a>
             </nav>
 
+            <!-- Area User Auth State -->
             <div id="authArea" class="flex items-center gap-3">
                 <div id="guestNav" class="flex gap-2">
                     <button onclick="openModal('loginModal')" class="bg-orange-700 hover:bg-orange-800 text-white px-3.5 py-1.5 rounded-lg text-sm transition font-medium">Masuk</button>
@@ -44,6 +48,7 @@
         </div>
     </header>
 
+    <!-- Banner Pertemuan Hari Pertama Online (Zoom Meeting) -->
     <div class="bg-amber-500 text-slate-950 px-4 py-3 shadow-inner">
         <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-sm">
             <div class="flex items-center gap-3 text-center sm:text-left">
@@ -61,11 +66,13 @@
         </div>
     </div>
 
+    <!-- Banner Notifikasi Pembatasan Akses -->
     <div id="accessAlert" class="bg-orange-100 text-orange-900 border-b border-orange-200 px-4 py-2 text-center text-xs sm:text-sm font-semibold flex justify-center items-center gap-2">
         <i class="fa-solid fa-lock text-orange-600"></i>
         <span>Materi dan dokumen pelatihan dibatasi khusus untuk Petugas Pengolahan terdaftar. Silakan <u><a href="javascript:void(0)" onclick="openModal('loginModal')" class="underline">Masuk</a></u> atau <u><a href="javascript:void(0)" onclick="openModal('registerModal')" class="underline">Daftar Akun</a></u>.</span>
     </div>
 
+    <!-- Hero Section -->
     <section class="bg-gradient-to-r from-orange-600 via-amber-600 to-orange-700 text-white py-14 px-4 sm:px-6 lg:px-8">
         <div class="max-w-4xl mx-auto text-center">
             <span class="bg-amber-300 text-orange-950 text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">Portal Pembelajaran</span>
@@ -85,8 +92,10 @@
         </div>
     </section>
 
+    <!-- Main Content -->
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-16">
 
+        <!-- Section 1: Materi Pembelajaran -->
         <section id="materi">
             <div class="border-b border-orange-200 pb-4 mb-8">
                 <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">Materi Pembelajaran</h2>
@@ -162,6 +171,7 @@
             </div>
         </section>
 
+        <!-- Section 2: Jadwal Pelatihan -->
         <section id="jadwal" class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-orange-100">
             <div class="border-b border-orange-200 pb-4 mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                 <div>
@@ -184,6 +194,7 @@
             </div>
         </section>
 
+        <!-- Section 3: Soal Evaluasi Pembelajaran -->
         <section id="evaluasi">
             <div class="border-b border-orange-200 pb-4 mb-8">
                 <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">Evaluasi Pembelajaran</h2>
@@ -191,6 +202,7 @@
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Pre Test -->
                 <div class="bg-amber-50 border border-amber-200 rounded-xl p-5 flex flex-col justify-between">
                     <div>
                         <div class="flex items-center gap-2 text-amber-900 font-bold mb-3">
@@ -205,6 +217,7 @@
                     </button>
                 </div>
 
+                <!-- Asynchronous 1 -->
                 <div class="bg-orange-50 border border-orange-200 rounded-xl p-5 flex flex-col justify-between">
                     <div>
                         <div class="flex items-center gap-2 text-orange-950 font-bold mb-3">
@@ -219,6 +232,7 @@
                     </button>
                 </div>
 
+                <!-- Soal Pendalaman -->
                 <div class="bg-yellow-50 border border-yellow-200 rounded-xl p-5 flex flex-col justify-between">
                     <div>
                         <div class="flex items-center gap-2 text-yellow-950 font-bold mb-3">
@@ -233,6 +247,7 @@
                     </button>
                 </div>
 
+                <!-- Post Test -->
                 <div class="bg-stone-50 border border-stone-200 rounded-xl p-5 flex flex-col justify-between">
                     <div>
                         <div class="flex items-center gap-2 text-slate-900 font-bold mb-3">
@@ -249,88 +264,201 @@
             </div>
         </section>
 
+        <!-- Section 4: Video Pembelajaran Embedded -->
         <section id="video">
             <div class="border-b border-orange-200 pb-4 mb-8">
                 <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">Video Pembelajaran</h2>
-                <p class="text-slate-600 text-sm mt-1">Modul pemutar video interaktif tata cara dan teknis pengolahan Wilkerstat 2026</p>
+                <p class="text-slate-600 text-sm mt-1">Modul pemutar video interaktif tata cara dan teknis pengolahan Wilkerstat 2026 & FRS MFD Online</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-white rounded-xl shadow-sm border border-orange-100 overflow-hidden flex flex-col justify-between">
-                    <div class="bg-black aspect-video relative">
-                        <iframe src="https://drive.google.com/file/d/1MPkUtdt-BOx5QHTjghGVGDsmAjB7XScn/preview" class="w-full h-full border-0" allow="autoplay" allowfullscreen></iframe>
+            <!-- Subsection 1: Video Umum Pengolahan Wilkerstat -->
+            <div class="mb-10">
+                <h3 class="text-lg font-bold text-orange-950 mb-4 flex items-center gap-2">
+                    <i class="fa-solid fa-circle-play text-orange-600"></i> Panduan General Wilkerstat 2026
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-white rounded-xl shadow-sm border border-orange-100 overflow-hidden flex flex-col justify-between">
+                        <div class="bg-black aspect-video relative">
+                            <iframe src="https://drive.google.com/file/d/1MPkUtdt-BOx5QHTjghGVGDsmAjB7XScn/preview" class="w-full h-full border-0" allow="autoplay" allowfullscreen></iframe>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-slate-900 text-base mb-2">Video Pembelajaran 1</h3>
+                            <p class="text-xs text-slate-500 mb-3">Modul video panduan teknis pelatihan pengolahan Wilkerstat 2026.</p>
+                            <button onclick="protectedDriveAccess('https://drive.google.com/file/d/1MPkUtdt-BOx5QHTjghGVGDsmAjB7XScn/view?usp=drive_link')" class="text-orange-600 hover:underline font-semibold text-xs flex items-center gap-1">
+                                <i class="fa-solid fa-up-right-from-square"></i> Buka di Tab Baru
+                            </button>
+                        </div>
                     </div>
-                    <div class="p-4">
-                        <h3 class="font-bold text-slate-900 text-base mb-2">Video Pembelajaran 1</h3>
-                        <p class="text-xs text-slate-500 mb-3">Modul video panduan teknis pelatihan pengolahan Wilkerstat 2026.</p>
-                        <button onclick="protectedDriveAccess('https://drive.google.com/file/d/1MPkUtdt-BOx5QHTjghGVGDsmAjB7XScn/view?usp=drive_link')" class="text-orange-600 hover:underline font-semibold text-xs flex items-center gap-1">
-                            <i class="fa-solid fa-up-right-from-square"></i> Buka di Tab Baru
-                        </button>
+
+                    <div class="bg-white rounded-xl shadow-sm border border-orange-100 overflow-hidden flex flex-col justify-between">
+                        <div class="bg-black aspect-video relative">
+                            <iframe src="https://drive.google.com/file/d/1H5bvwfDqdUwQA5yndgT_TogDWKlXP8mg/preview" class="w-full h-full border-0" allow="autoplay" allowfullscreen></iframe>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-slate-900 text-base mb-2">Video Pembelajaran 2</h3>
+                            <p class="text-xs text-slate-500 mb-3">Modul video panduan teknis pelatihan pengolahan Wilkerstat 2026.</p>
+                            <button onclick="protectedDriveAccess('https://drive.google.com/file/d/1H5bvwfDqdUwQA5yndgT_TogDWKlXP8mg/view?usp=drive_link')" class="text-orange-600 hover:underline font-semibold text-xs flex items-center gap-1">
+                                <i class="fa-solid fa-up-right-from-square"></i> Buka di Tab Baru
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-sm border border-orange-100 overflow-hidden flex flex-col justify-between">
+                        <div class="bg-black aspect-video relative">
+                            <iframe src="https://drive.google.com/file/d/1EkT_b2eAv-LzbEsuH6Zo7D7OADhnEGAf/preview" class="w-full h-full border-0" allow="autoplay" allowfullscreen></iframe>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-slate-900 text-base mb-2">Video Pembelajaran 3</h3>
+                            <p class="text-xs text-slate-500 mb-3">Modul video panduan teknis pelatihan pengolahan Wilkerstat 2026.</p>
+                            <button onclick="protectedDriveAccess('https://drive.google.com/file/d/1EkT_b2eAv-LzbEsuH6Zo7D7OADhnEGAf/view?usp=drive_link')" class="text-orange-600 hover:underline font-semibold text-xs flex items-center gap-1">
+                                <i class="fa-solid fa-up-right-from-square"></i> Buka di Tab Baru
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-sm border border-orange-100 overflow-hidden flex flex-col justify-between">
+                        <div class="bg-black aspect-video relative">
+                            <iframe src="https://drive.google.com/file/d/1OwRegAnVnb3d4kUj4M12Y0HpXPxj76h7/preview" class="w-full h-full border-0" allow="autoplay" allowfullscreen></iframe>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-slate-900 text-base mb-2">Video Pembelajaran 4</h3>
+                            <p class="text-xs text-slate-500 mb-3">Modul video panduan teknis pelatihan pengolahan Wilkerstat 2026.</p>
+                            <button onclick="protectedDriveAccess('https://drive.google.com/file/d/1OwRegAnVnb3d4kUj4M12Y0HpXPxj76h7/view?usp=drive_link')" class="text-orange-600 hover:underline font-semibold text-xs flex items-center gap-1">
+                                <i class="fa-solid fa-up-right-from-square"></i> Buka di Tab Baru
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-sm border border-orange-100 overflow-hidden flex flex-col justify-between">
+                        <div class="bg-black aspect-video relative">
+                            <iframe src="https://drive.google.com/file/d/1e-3jZVAsRtir7r-Qya35CNBgzn8TUlQH/preview" class="w-full h-full border-0" allow="autoplay" allowfullscreen></iframe>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-slate-900 text-base mb-2">Video Pembelajaran 5</h3>
+                            <p class="text-xs text-slate-500 mb-3">Modul video panduan teknis pelatihan pengolahan Wilkerstat 2026.</p>
+                            <button onclick="protectedDriveAccess('https://drive.google.com/file/d/1e-3jZVAsRtir7r-Qya35CNBgzn8TUlQH/view?usp=drive_link')" class="text-orange-600 hover:underline font-semibold text-xs flex items-center gap-1">
+                                <i class="fa-solid fa-up-right-from-square"></i> Buka di Tab Baru
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-sm border border-orange-100 overflow-hidden flex flex-col justify-between">
+                        <div class="bg-black aspect-video relative">
+                            <iframe src="https://drive.google.com/file/d/1mEmIoZPc0MEwb-XAO_yH8hOXdQ-xLzzm/preview" class="w-full h-full border-0" allow="autoplay" allowfullscreen></iframe>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-slate-900 text-base mb-2">Video Pembelajaran 6</h3>
+                            <p class="text-xs text-slate-500 mb-3">Modul video panduan teknis pelatihan pengolahan Wilkerstat 2026.</p>
+                            <button onclick="protectedDriveAccess('https://drive.google.com/file/d/1mEmIoZPc0MEwb-XAO_yH8hOXdQ-xLzzm/view?usp=drive_link')" class="text-orange-600 hover:underline font-semibold text-xs flex items-center gap-1">
+                                <i class="fa-solid fa-up-right-from-square"></i> Buka di Tab Baru
+                            </button>
+                        </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="bg-white rounded-xl shadow-sm border border-orange-100 overflow-hidden flex flex-col justify-between">
-                    <div class="bg-black aspect-video relative">
-                        <iframe src="https://drive.google.com/file/d/1H5bvwfDqdUwQA5yndgT_TogDWKlXP8mg/preview" class="w-full h-full border-0" allow="autoplay" allowfullscreen></iframe>
+            <!-- Subsection 2: Video Pembelajaran FRS MFD Online -->
+            <div>
+                <h3 class="text-lg font-bold text-orange-950 mb-4 flex items-center gap-2 border-t border-orange-200 pt-6">
+                    <i class="fa-solid fa-network-wired text-orange-600"></i> Video Panduan FRS MFD Online
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- FRS Video 1 -->
+                    <div class="bg-white rounded-xl shadow-sm border border-orange-100 overflow-hidden flex flex-col justify-between">
+                        <div class="bg-black aspect-video relative">
+                            <iframe src="https://drive.google.com/file/d/12EZbarflk7G-zbZRQuG5ImFqmeLc5_oe/preview" class="w-full h-full border-0" allow="autoplay" allowfullscreen></iframe>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-slate-900 text-base mb-2">FRS MFD Online - Bagian 1</h3>
+                            <p class="text-xs text-slate-500 mb-3">Panduan operasional FRS MFD Online bagian 1.</p>
+                            <button onclick="protectedDriveAccess('https://drive.google.com/file/d/12EZbarflk7G-zbZRQuG5ImFqmeLc5_oe/view?usp=drive_link')" class="text-orange-600 hover:underline font-semibold text-xs flex items-center gap-1">
+                                <i class="fa-solid fa-up-right-from-square"></i> Buka di Tab Baru
+                            </button>
+                        </div>
                     </div>
-                    <div class="p-4">
-                        <h3 class="font-bold text-slate-900 text-base mb-2">Video Pembelajaran 2</h3>
-                        <p class="text-xs text-slate-500 mb-3">Modul video panduan teknis pelatihan pengolahan Wilkerstat 2026.</p>
-                        <button onclick="protectedDriveAccess('https://drive.google.com/file/d/1H5bvwfDqdUwQA5yndgT_TogDWKlXP8mg/view?usp=drive_link')" class="text-orange-600 hover:underline font-semibold text-xs flex items-center gap-1">
-                            <i class="fa-solid fa-up-right-from-square"></i> Buka di Tab Baru
-                        </button>
-                    </div>
-                </div>
 
-                <div class="bg-white rounded-xl shadow-sm border border-orange-100 overflow-hidden flex flex-col justify-between">
-                    <div class="bg-black aspect-video relative">
-                        <iframe src="https://drive.google.com/file/d/1EkT_b2eAv-LzbEsuH6Zo7D7OADhnEGAf/preview" class="w-full h-full border-0" allow="autoplay" allowfullscreen></iframe>
+                    <!-- FRS Video 2 -->
+                    <div class="bg-white rounded-xl shadow-sm border border-orange-100 overflow-hidden flex flex-col justify-between">
+                        <div class="bg-black aspect-video relative">
+                            <iframe src="https://drive.google.com/file/d/1pqzCTcyHNy-FuCYDNHuSJsZ1k6m-yp3E/preview" class="w-full h-full border-0" allow="autoplay" allowfullscreen></iframe>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-slate-900 text-base mb-2">FRS MFD Online - Bagian 2</h3>
+                            <p class="text-xs text-slate-500 mb-3">Panduan operasional FRS MFD Online bagian 2.</p>
+                            <button onclick="protectedDriveAccess('https://drive.google.com/file/d/1pqzCTcyHNy-FuCYDNHuSJsZ1k6m-yp3E/view?usp=drive_link')" class="text-orange-600 hover:underline font-semibold text-xs flex items-center gap-1">
+                                <i class="fa-solid fa-up-right-from-square"></i> Buka di Tab Baru
+                            </button>
+                        </div>
                     </div>
-                    <div class="p-4">
-                        <h3 class="font-bold text-slate-900 text-base mb-2">Video Pembelajaran 3</h3>
-                        <p class="text-xs text-slate-500 mb-3">Modul video panduan teknis pelatihan pengolahan Wilkerstat 2026.</p>
-                        <button onclick="protectedDriveAccess('https://drive.google.com/file/d/1EkT_b2eAv-LzbEsuH6Zo7D7OADhnEGAf/view?usp=drive_link')" class="text-orange-600 hover:underline font-semibold text-xs flex items-center gap-1">
-                            <i class="fa-solid fa-up-right-from-square"></i> Buka di Tab Baru
-                        </button>
-                    </div>
-                </div>
 
-                <div class="bg-white rounded-xl shadow-sm border border-orange-100 overflow-hidden flex flex-col justify-between">
-                    <div class="bg-black aspect-video relative">
-                        <iframe src="https://drive.google.com/file/d/1OwRegAnVnb3d4kUj4M12Y0HpXPxj76h7/preview" class="w-full h-full border-0" allow="autoplay" allowfullscreen></iframe>
+                    <!-- FRS Video 3 -->
+                    <div class="bg-white rounded-xl shadow-sm border border-orange-100 overflow-hidden flex flex-col justify-between">
+                        <div class="bg-black aspect-video relative">
+                            <iframe src="https://drive.google.com/file/d/1teU-N6JHRgsQ4lAsKgjOH7j8KdpeCbAu/preview" class="w-full h-full border-0" allow="autoplay" allowfullscreen></iframe>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-slate-900 text-base mb-2">FRS MFD Online - Bagian 3</h3>
+                            <p class="text-xs text-slate-500 mb-3">Panduan operasional FRS MFD Online bagian 3.</p>
+                            <button onclick="protectedDriveAccess('https://drive.google.com/file/d/1teU-N6JHRgsQ4lAsKgjOH7j8KdpeCbAu/view?usp=drive_link')" class="text-orange-600 hover:underline font-semibold text-xs flex items-center gap-1">
+                                <i class="fa-solid fa-up-right-from-square"></i> Buka di Tab Baru
+                            </button>
+                        </div>
                     </div>
-                    <div class="p-4">
-                        <h3 class="font-bold text-slate-900 text-base mb-2">Video Pembelajaran 4</h3>
-                        <p class="text-xs text-slate-500 mb-3">Modul video panduan teknis pelatihan pengolahan Wilkerstat 2026.</p>
-                        <button onclick="protectedDriveAccess('https://drive.google.com/file/d/1OwRegAnVnb3d4kUj4M12Y0HpXPxj76h7/view?usp=drive_link')" class="text-orange-600 hover:underline font-semibold text-xs flex items-center gap-1">
-                            <i class="fa-solid fa-up-right-from-square"></i> Buka di Tab Baru
-                        </button>
-                    </div>
-                </div>
 
-                <div class="bg-white rounded-xl shadow-sm border border-orange-100 overflow-hidden flex flex-col justify-between">
-                    <div class="bg-black aspect-video relative">
-                        <iframe src="https://drive.google.com/file/d/1e-3jZVAsRtir7r-Qya35CNBgzn8TUlQH/preview" class="w-full h-full border-0" allow="autoplay" allowfullscreen></iframe>
+                    <!-- FRS Video 4 -->
+                    <div class="bg-white rounded-xl shadow-sm border border-orange-100 overflow-hidden flex flex-col justify-between">
+                        <div class="bg-black aspect-video relative">
+                            <iframe src="https://drive.google.com/file/d/1c4mJWqwzAMQ-38CmDg_nJ5GHU0L3kohP/preview" class="w-full h-full border-0" allow="autoplay" allowfullscreen></iframe>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-slate-900 text-base mb-2">FRS MFD Online - Bagian 4</h3>
+                            <p class="text-xs text-slate-500 mb-3">Panduan operasional FRS MFD Online bagian 4.</p>
+                            <button onclick="protectedDriveAccess('https://drive.google.com/file/d/1c4mJWqwzAMQ-38CmDg_nJ5GHU0L3kohP/view?usp=drive_link')" class="text-orange-600 hover:underline font-semibold text-xs flex items-center gap-1">
+                                <i class="fa-solid fa-up-right-from-square"></i> Buka di Tab Baru
+                            </button>
+                        </div>
                     </div>
-                    <div class="p-4">
-                        <h3 class="font-bold text-slate-900 text-base mb-2">Video Pembelajaran 5</h3>
-                        <p class="text-xs text-slate-500 mb-3">Modul video panduan teknis pelatihan pengolahan Wilkerstat 2026.</p>
-                        <button onclick="protectedDriveAccess('https://drive.google.com/file/d/1e-3jZVAsRtir7r-Qya35CNBgzn8TUlQH/view?usp=drive_link')" class="text-orange-600 hover:underline font-semibold text-xs flex items-center gap-1">
-                            <i class="fa-solid fa-up-right-from-square"></i> Buka di Tab Baru
-                        </button>
-                    </div>
-                </div>
 
-                <div class="bg-white rounded-xl shadow-sm border border-orange-100 overflow-hidden flex flex-col justify-between">
-                    <div class="bg-black aspect-video relative">
-                        <iframe src="https://drive.google.com/file/d/1mEmIoZPc0MEwb-XAO_yH8hOXdQ-xLzzm/preview" class="w-full h-full border-0" allow="autoplay" allowfullscreen></iframe>
+                    <!-- FRS Video 5 -->
+                    <div class="bg-white rounded-xl shadow-sm border border-orange-100 overflow-hidden flex flex-col justify-between">
+                        <div class="bg-black aspect-video relative">
+                            <iframe src="https://drive.google.com/file/d/179_almDa9zC2B4hnExpsfHSYRQZpoiob/preview" class="w-full h-full border-0" allow="autoplay" allowfullscreen></iframe>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-slate-900 text-base mb-2">FRS MFD Online - Bagian 5</h3>
+                            <p class="text-xs text-slate-500 mb-3">Panduan operasional FRS MFD Online bagian 5.</p>
+                            <button onclick="protectedDriveAccess('https://drive.google.com/file/d/179_almDa9zC2B4hnExpsfHSYRQZpoiob/view?usp=drive_link')" class="text-orange-600 hover:underline font-semibold text-xs flex items-center gap-1">
+                                <i class="fa-solid fa-up-right-from-square"></i> Buka di Tab Baru
+                            </button>
+                        </div>
                     </div>
-                    <div class="p-4">
-                        <h3 class="font-bold text-slate-900 text-base mb-2">Video Pembelajaran 6</h3>
-                        <p class="text-xs text-slate-500 mb-3">Modul video panduan teknis pelatihan pengolahan Wilkerstat 2026.</p>
-                        <button onclick="protectedDriveAccess('https://drive.google.com/file/d/1mEmIoZPc0MEwb-XAO_yH8hOXdQ-xLzzm/view?usp=drive_link')" class="text-orange-600 hover:underline font-semibold text-xs flex items-center gap-1">
-                            <i class="fa-solid fa-up-right-from-square"></i> Buka di Tab Baru
-                        </button>
+
+                    <!-- FRS Video 6 -->
+                    <div class="bg-white rounded-xl shadow-sm border border-orange-100 overflow-hidden flex flex-col justify-between">
+                        <div class="bg-black aspect-video relative">
+                            <iframe src="https://drive.google.com/file/d/1OB3L_D7u8egyZdwGFyF6Odzvz_HD7uyN/preview" class="w-full h-full border-0" allow="autoplay" allowfullscreen></iframe>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-slate-900 text-base mb-2">FRS MFD Online - Bagian 6</h3>
+                            <p class="text-xs text-slate-500 mb-3">Panduan operasional FRS MFD Online bagian 6.</p>
+                            <button onclick="protectedDriveAccess('https://drive.google.com/file/d/1OB3L_D7u8egyZdwGFyF6Odzvz_HD7uyN/view?usp=drive_link')" class="text-orange-600 hover:underline font-semibold text-xs flex items-center gap-1">
+                                <i class="fa-solid fa-up-right-from-square"></i> Buka di Tab Baru
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- FRS Video 7 -->
+                    <div class="bg-white rounded-xl shadow-sm border border-orange-100 overflow-hidden flex flex-col justify-between">
+                        <div class="bg-black aspect-video relative">
+                            <iframe src="https://drive.google.com/file/d/1mekC_8qXvu5qAGwe0W8vAMMI-F254pcm/preview" class="w-full h-full border-0" allow="autoplay" allowfullscreen></iframe>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-slate-900 text-base mb-2">FRS MFD Online - Bagian 7</h3>
+                            <p class="text-xs text-slate-500 mb-3">Panduan operasional FRS MFD Online bagian 7.</p>
+                            <button onclick="protectedDriveAccess('https://drive.google.com/file/d/1mekC_8qXvu5qAGwe0W8vAMMI-F254pcm/view?usp=drive_link')" class="text-orange-600 hover:underline font-semibold text-xs flex items-center gap-1">
+                                <i class="fa-solid fa-up-right-from-square"></i> Buka di Tab Baru
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -338,6 +466,7 @@
 
     </main>
 
+    <!-- MODAL QUIZ (PRE-TEST, ASYNCHRONOUS, POST-TEST) -->
     <div id="quizModal" class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm hidden z-50 flex items-center justify-center p-4">
         <div class="bg-white w-full max-w-2xl rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
             <div class="bg-orange-600 text-white p-5 flex justify-between items-center">
@@ -350,7 +479,8 @@
 
             <form id="quizForm" onsubmit="submitQuiz(event)" class="p-6 overflow-y-auto space-y-6 flex-1">
                 <div id="quizQuestionsContainer" class="space-y-6">
-                    </div>
+                    <!-- Pertanyaan dirender dinamis via JS -->
+                </div>
 
                 <div class="pt-4 border-t border-slate-200 flex justify-end gap-3">
                     <button type="button" onclick="closeModal('quizModal')" class="px-5 py-2.5 rounded-lg border border-slate-300 text-slate-700 font-semibold text-sm hover:bg-slate-50">Batal</button>
@@ -360,6 +490,7 @@
         </div>
     </div>
 
+    <!-- MODAL LOGIN -->
     <div id="loginModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm hidden z-50 flex items-center justify-center p-4">
         <div class="bg-white w-full max-w-md rounded-2xl shadow-xl overflow-hidden p-6 relative border-t-4 border-orange-600">
             <button onclick="closeModal('loginModal')" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-xl"></i></button>
@@ -381,6 +512,7 @@
         </div>
     </div>
 
+    <!-- MODAL REGISTRASI -->
     <div id="registerModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm hidden z-50 flex items-center justify-center p-4">
         <div class="bg-white w-full max-w-md rounded-2xl shadow-xl overflow-hidden p-6 relative border-t-4 border-amber-500">
             <button onclick="closeModal('registerModal')" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-xl"></i></button>
@@ -410,10 +542,12 @@
         </div>
     </div>
 
+    <!-- Footer -->
     <footer class="bg-slate-900 text-slate-400 py-8 border-t border-slate-800 text-xs sm:text-sm text-center">
         <p>&copy; 2026 Pelatihan Petugas Pengolahan Wilkerstat. Hak Cipta Dilindungi.</p>
     </footer>
 
+    <!-- JAVASCRIPT LOGIC -->
     <script>
         const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzxi8mnh4fuTV65G__opOpCDLwvZmII55rpAbK_2SD6k0GRQRORCec57wRrVo8zj1PS/exec";
 
@@ -831,7 +965,6 @@
             container.innerHTML = "";
 
             currentQuestionsList.forEach((q, index) => {
-                // Selalu mengacak pilihan jawaban setiap soal dirender
                 const shuffledOptions = shuffleArray(q.options);
 
                 let optionsHtml = shuffledOptions.map((opt) => `
