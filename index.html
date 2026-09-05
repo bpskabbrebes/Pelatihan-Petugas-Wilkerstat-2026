@@ -48,7 +48,7 @@
         </div>
     </header>
 
-    <!-- Banner Pertemuan Hari Pertama Online (Zoom Meeting) -->
+    <!-- Banner Pertemuan Hari Pertama Online (Zoom Meeting & Virtual Background) -->
     <div class="bg-amber-500 text-slate-950 px-4 py-3 shadow-inner">
         <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-sm">
             <div class="flex items-center gap-3 text-center sm:text-left">
@@ -60,9 +60,16 @@
                     <span class="font-semibold">Pertemuan Hari Pertama Online (Pelatihan Petugas Pengolahan)</span>
                 </div>
             </div>
-            <a href="http://s.bps.go.id/3329_Wilkerstat2026" target="_blank" class="bg-orange-900 hover:bg-orange-950 text-white font-bold px-4 py-1.5 rounded-lg text-xs transition flex items-center gap-2 whitespace-nowrap shadow">
-                <i class="fa-solid fa-video"></i> Gabung Zoom Meeting <i class="fa-solid fa-arrow-right"></i>
-            </a>
+            <div class="flex flex-wrap items-center justify-center gap-2">
+                <!-- Virtual Background Link -->
+                <button onclick="protectedDriveAccess('https://drive.google.com/file/d/1CmNizzB_D13lN2tjEUgMlB-IUa4K-Qd5/view?usp=drive_link')" class="bg-amber-100 hover:bg-white text-slate-900 font-bold px-3 py-1.5 rounded-lg text-xs transition flex items-center gap-1.5 shadow-sm border border-amber-300">
+                    <i class="fa-solid fa-image text-orange-600"></i> Virtual Background
+                </button>
+                <!-- Zoom Link -->
+                <a href="http://s.bps.go.id/3329_Wilkerstat2026" target="_blank" class="bg-orange-900 hover:bg-orange-950 text-white font-bold px-4 py-1.5 rounded-lg text-xs transition flex items-center gap-2 shadow">
+                    <i class="fa-solid fa-video"></i> Gabung Zoom Meeting <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
         </div>
     </div>
 
@@ -98,11 +105,31 @@
         <!-- Section 1: Materi Pembelajaran -->
         <section id="materi">
             <div class="border-b border-orange-200 pb-4 mb-8">
-                <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">Materi Pembelajaran</h2>
-                <p class="text-slate-600 text-sm mt-1">Modul dan bahan tayang pembelajaran pelatihan Wilkerstat 2026</p>
+                <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">Materi & Pedoman Pembelajaran</h2>
+                <p class="text-slate-600 text-sm mt-1">Buku pedoman, modul, dan bahan tayang pembelajaran pelatihan Wilkerstat 2026</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Buku Pedoman Pelatihan (Utama) -->
+                <div class="bg-gradient-to-br from-amber-500 to-orange-600 text-white p-6 rounded-xl shadow-md hover:shadow-lg transition flex flex-col justify-between border border-amber-400 md:col-span-2 lg:col-span-3">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                        <div class="flex items-start gap-4">
+                            <div class="w-14 h-14 bg-white/20 backdrop-blur rounded-xl flex items-center justify-center font-bold text-2xl shrink-0">
+                                <i class="fa-solid fa-book-bookmark text-amber-200"></i>
+                            </div>
+                            <div>
+                                <span class="bg-amber-200 text-slate-950 text-[10px] font-extrabold px-2 py-0.5 rounded uppercase tracking-wider">Buku Panduan Acuan Utama</span>
+                                <h3 class="font-extrabold text-xl mt-1">Buku Pedoman Pelatihan Petugas Pengolahan</h3>
+                                <p class="text-orange-100 text-sm mt-1 max-w-3xl">Panduan komprehensif pedoman teknis dan tata cara pengolahan Penetapan Kerangka Geospasial & Muatan Wilkerstat 2026.</p>
+                            </div>
+                        </div>
+                        <button onclick="protectedDriveAccess('https://drive.google.com/file/d/14eShHrAI5Wb4GAeA6XAdO9rQ2YC81j3Z/view?usp=drive_link')" class="bg-slate-950 hover:bg-slate-900 text-white font-bold px-5 py-2.5 rounded-lg text-sm transition flex items-center justify-center gap-2 shrink-0 shadow">
+                            <i class="fa-solid fa-file-pdf text-amber-400"></i> Buka Buku Pedoman <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Modul 1 -->
                 <div class="bg-white p-6 rounded-xl shadow-sm border border-orange-100 hover:shadow-md transition flex flex-col justify-between">
                     <div>
                         <div class="w-12 h-12 bg-orange-100 text-orange-600 rounded-lg flex items-center justify-center font-bold text-xl mb-4">1</div>
@@ -114,6 +141,7 @@
                     </button>
                 </div>
 
+                <!-- Modul 2 -->
                 <div class="bg-white p-6 rounded-xl shadow-sm border border-orange-100 hover:shadow-md transition flex flex-col justify-between">
                     <div>
                         <div class="w-12 h-12 bg-orange-100 text-orange-600 rounded-lg flex items-center justify-center font-bold text-xl mb-4">2</div>
@@ -125,6 +153,7 @@
                     </button>
                 </div>
 
+                <!-- Modul 3 -->
                 <div class="bg-white p-6 rounded-xl shadow-sm border border-orange-100 hover:shadow-md transition flex flex-col justify-between">
                     <div>
                         <div class="w-12 h-12 bg-orange-100 text-orange-600 rounded-lg flex items-center justify-center font-bold text-xl mb-4">3</div>
@@ -136,6 +165,7 @@
                     </button>
                 </div>
 
+                <!-- Modul 4 -->
                 <div class="bg-white p-6 rounded-xl shadow-sm border border-orange-100 hover:shadow-md transition flex flex-col justify-between">
                     <div>
                         <div class="w-12 h-12 bg-orange-100 text-orange-600 rounded-lg flex items-center justify-center font-bold text-xl mb-4">4</div>
@@ -147,6 +177,7 @@
                     </button>
                 </div>
 
+                <!-- Modul 5 -->
                 <div class="bg-white p-6 rounded-xl shadow-sm border border-orange-100 hover:shadow-md transition flex flex-col justify-between">
                     <div>
                         <div class="w-12 h-12 bg-orange-100 text-orange-600 rounded-lg flex items-center justify-center font-bold text-xl mb-4">5</div>
@@ -158,6 +189,7 @@
                     </button>
                 </div>
 
+                <!-- Modul 6 -->
                 <div class="bg-white p-6 rounded-xl shadow-sm border border-orange-100 hover:shadow-md transition flex flex-col justify-between">
                     <div>
                         <div class="w-12 h-12 bg-orange-100 text-orange-600 rounded-lg flex items-center justify-center font-bold text-xl mb-4">6</div>
