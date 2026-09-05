@@ -389,7 +389,7 @@
                     <label class="block text-xs font-bold text-slate-700 mb-1">Kata Sandi</label>
                     <input id="regPassword" type="password" required placeholder="••••••••" class="w-full px-3 py-2 border rounded-lg text-sm focus:ring-2 focus:ring-orange-500 outline-none">
                 </div>
-                <button type="submit" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold py-2.5 rounded-lg text-sm transition">Daftar Sekarang</button>
+                <button id="btnRegister" type="submit" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold py-2.5 rounded-lg text-sm transition">Daftar Sekarang</button>
             </form>
             <p class="text-xs text-center text-slate-500 mt-4">Sudah mendaftar? <a href="javascript:void(0)" onclick="switchModal('registerModal', 'loginModal')" class="text-orange-600 font-semibold underline">Masuk Akun</a></p>
         </div>
@@ -400,10 +400,10 @@
     </footer>
 
     <script>
-        // URL Web App Google Apps Script terpasang
+        // URL Web App Google Apps Script Terbaru
         const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzxi8mnh4fuTV65G__opOpCDLwvZmII55rpAbK_2SD6k0GRQRORCec57wRrVo8zj1PS/exec";
 
-        // Bank Soal Evaluasi Sesuai Teks
+        // Bank Soal Evaluasi
         const quizData = [
             {
                 id: 1,
@@ -503,10 +503,8 @@
             }
         }
 
-        // Penguncian Akses Waktu: Pre-Test selalu terbuka, Post-Test masih terkunci hingga 10 Sept 16:15
         function isTestOpen(testType) {
             const now = new Date();
-            
             if (testType === "Pre-Test") {
                 return true; // Pre-Test bebas dikerjakan kapan saja
             } else if (testType === "Post-Test") {
@@ -590,6 +588,7 @@
             btn.textContent = "Mengirim Nilai...";
 
             const payload = {
+                action: "quiz",
                 nama: currentUser.name,
                 nip: currentUser.nip,
                 email: currentUser.email,
@@ -630,13 +629,42 @@
                 return;
             }
 
+            const btn = document.getElementById("btnRegister");
+            btn.disabled = true;
+            btn.textContent = "Mendaftarkan...";
+
             const newUser = { name, nip, email, password };
             users.push(newUser);
             localStorage.setItem("registeredUsers", JSON.stringify(users));
             localStorage.setItem("currentUser", JSON.stringify(newUser));
-            closeModal("registerModal");
-            checkLoginState();
-            alert("Pendaftaran berhasil! Anda telah masuk sebagai Petugas.");
+
+            const payload = {
+                action: "register",
+                nama: name,
+                nip: nip,
+                email: email,
+                waktu: new Date().toLocaleString("id-ID", { timeZone: "Asia/Jakarta" })
+            };
+
+            fetch(SCRIPT_URL, {
+                method: "POST",
+                mode: "no-cors",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload)
+            }).then(() => {
+                btn.disabled = false;
+                btn.textContent = "Daftar Sekarang";
+                closeModal("registerModal");
+                checkLoginState();
+                alert("Pendaftaran berhasil! Akun Anda telah terdaftar.");
+            }).catch(err => {
+                console.error("Error registering user:", err);
+                btn.disabled = false;
+                btn.textContent = "Daftar Sekarang";
+                closeModal("registerModal");
+                checkLoginState();
+                alert("Pendaftaran berhasil!");
+            });
         }
 
         function handleLogin(e) {
