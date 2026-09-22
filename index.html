@@ -10,10 +10,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         html { scroll-behavior: smooth; }
-        /* Styling khusus untuk input radio agar warna serasi */
         input[type="radio"]:checked + span {
             font-weight: 700;
-            color: #ea580c; /* text-orange-600 */
+            color: #ea580c;
         }
     </style>
 </head>
@@ -99,7 +98,7 @@
                     <span class="font-bold uppercase tracking-wider text-[10px] bg-orange-800 text-white px-2 py-0.5 rounded shrink-0">Info</span>
                     <span class="font-semibold text-slate-950 line-clamp-1">Pelatihan Petugas Pengolahan dalam rangka Penetapan Kerangka Geospasial dan Muatan Wilkerstat 2026</span>
                 </div>
-                <button type="button" onclick="protectedDriveAccess('https://drive.google.com/file/d/1CmNizzB_D13lN2tjEUgMlB-IUa4K-Qd5/view?usp=drive_link')" class="text-slate-900 hover:underline font-bold text-xs flex items-center gap-1">
+                <button type="button" onclick="window.open('https://drive.google.com/file/d/1CmNizzB_D13lN2tjEUgMlB-IUa4K-Qd5/view?usp=drive_link', '_blank')" class="text-slate-900 hover:underline font-bold text-xs flex items-center gap-1">
                     <i class="fa-solid fa-image text-orange-800"></i> Unduh Virtual Background
                 </button>
             </div>
@@ -286,7 +285,7 @@
                             <p class="text-[11px] text-amber-900 mb-1">24 Sept 2026, 08.00 WIB</p>
                             <p class="text-[10px] text-slate-500 mb-4">Mengukur pemahaman awal peserta.</p>
                         </div>
-                        <button type="button" onclick="startTest('Pre-Test', 'MASUKKAN_LINK_PRE_TEST_DISINI')" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold py-2 rounded-lg text-xs shadow-sm transition">
+                        <button type="button" onclick="loadPreTestQuiz()" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold py-2 rounded-lg text-xs shadow-sm transition">
                             Kerjakan Pre-Test
                         </button>
                     </div>
@@ -300,7 +299,6 @@
                             <p class="text-[11px] text-orange-900 mb-1">24 Sept 2026, 15.15 WIB</p>
                             <p class="text-[10px] text-slate-500 mb-4">Pendalaman mandiri hari ke-1.</p>
                         </div>
-                        <!-- Tombol ini sekarang memanggil loadAsync1Quiz() untuk membuka form HTML kuis -->
                         <button type="button" onclick="loadAsync1Quiz()" class="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-2 rounded-lg text-xs shadow-sm transition">
                             Kerjakan Asynch 1
                         </button>
@@ -329,7 +327,7 @@
                             <p class="text-[11px] text-slate-700 mb-1">25 Sept 2026, 16.15 WIB</p>
                             <p class="text-[10px] text-slate-500 mb-4">Evaluasi akhir kompetensi.</p>
                         </div>
-                        <button type="button" onclick="startTest('Post-Test', 'MASUKKAN_LINK_POST_TEST_DISINI')" class="w-full bg-slate-900 hover:bg-slate-950 text-white font-bold py-2 rounded-lg text-xs shadow-sm transition">
+                        <button type="button" onclick="loadPostTestQuiz()" class="w-full bg-slate-900 hover:bg-slate-950 text-white font-bold py-2 rounded-lg text-xs shadow-sm transition">
                             Kerjakan Post-Test
                         </button>
                     </div>
@@ -507,27 +505,28 @@
         </main>
     </div>
 
-    <!-- CONTENT TAB: KUIS ASYNCHRONOUS 1 (BARU) -->
-    <div id="async1Tab" class="main-tab-content hidden flex-grow bg-slate-100 py-8">
+    <!-- CONTENT TAB: KUIS DINAMIS (PRE-TEST, ASYNC 1, POST-TEST) -->
+    <div id="quizTab" class="main-tab-content hidden flex-grow bg-slate-100 py-8">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="bg-white rounded-2xl shadow-sm border border-orange-200 overflow-hidden">
                 <div class="bg-orange-600 text-white p-5 sm:p-6 flex justify-between items-center">
                     <div>
-                        <h2 class="text-xl sm:text-2xl font-bold">Kuis Asynchronous 1</h2>
-                        <p class="text-orange-100 text-xs sm:text-sm mt-1">Evaluasi pemahaman mandiri hari ke-1</p>
+                        <h2 id="quizTitle" class="text-xl sm:text-2xl font-bold">Judul Kuis</h2>
+                        <p id="quizSubTitle" class="text-orange-100 text-xs sm:text-sm mt-1">Evaluasi pemahaman peserta</p>
                     </div>
                     <button type="button" onclick="switchMainTab('pelatihanTab')" class="bg-orange-800 hover:bg-orange-900 text-white p-2 rounded-lg transition" title="Tutup Kuis">
                         <i class="fa-solid fa-xmark text-xl"></i>
                     </button>
                 </div>
-                <form id="quizForm" onsubmit="submitQuizAsync1(event)" class="p-5 sm:p-6 bg-white">
+                <form id="quizForm" onsubmit="submitQuiz(event)" class="p-5 sm:p-6 bg-white">
                     <div id="quizContainer" class="space-y-6">
-                        <!-- Soal akan di-generate oleh JS ke dalam area ini -->
+                        <!-- Soal di-generate di sini -->
                     </div>
                     
                     <div id="quizResult" class="hidden mt-6 p-4 rounded-xl border border-emerald-200 bg-emerald-50 text-center">
-                        <h3 class="text-lg font-bold text-emerald-900">Kuis Selesai!</h3>
+                        <h3 class="text-lg font-bold text-emerald-900">Evaluasi Selesai!</h3>
                         <p class="text-sm text-emerald-800 mt-1">Nilai Anda: <span id="scoreText" class="text-2xl font-extrabold text-emerald-600">0</span> / 100</p>
+                        <p class="text-xs text-slate-500 mt-2">Hasil Anda telah tercatat.</p>
                     </div>
 
                     <div class="mt-8 border-t border-slate-200 pt-5 flex justify-end gap-3">
@@ -706,7 +705,6 @@
                 activeBtn.classList.add('border-amber-300', 'text-amber-200', 'bg-orange-800/60');
             }
             
-            // Scroll to top saat pindah tab
             window.scrollTo(0,0);
         }
 
@@ -822,21 +820,38 @@
             }
         }
 
-        // FUNGSI UNTUK MENGAKSES LINK PRE-TEST DAN POST-TEST
-        function startTest(testName, url) {
-            alert('Menghubungkan ke ' + testName + '...\nSelamat mengerjakan!');
-            if (url && url !== '' && !url.includes('MASUKKAN_LINK')) {
-                window.open(url, '_blank');
-            } else {
-                alert('Tautan ('+testName+') belum dimasukkan. Hubungi Admin.');
-            }
-        }
-
         /* -------------------------------------------------------------------------
-           KUIS ASYNCHRONOUS 1 LOGIC
+           DATABASE DATA SOAL KUIS (PRE-TEST, ASYNC 1, POST-TEST)
         ------------------------------------------------------------------------- */
         
-        // Data Soal Async 1
+        const prePostTestData = [
+            {
+                q: "Salah satu output Kegiatan Penetapan Kerangka Geospasial dan Muatan Wilkerstat tahun 2026 ini adalah ...",
+                correct: "Master dan muatan wilkerstat 2026 Semester 1",
+                wrong: ["Peta Wilkerstat Blok Sensus", "Geotagging rumah", "Prelist keluarga pemilik usaha"]
+            },
+            {
+                q: "Pelaksana Rekonsiliasi Batas kabupaten/kota adalah ...",
+                correct: "Tim Wilkerstat BPS Provinsi",
+                wrong: ["Tim Wilkerstat BPS Kabupaten/kota", "Petugas Pengawas", "Petugas Pengolah Peta"]
+            },
+            {
+                q: "Kegiatan yang tidak dilakukan di BPS Kabupaten/Kota adalah ...",
+                correct: "rekonsiliasi batas kabupaten/kota",
+                wrong: ["pengolahan peta", "pengolahan master", "pengolahan geotagging"]
+            },
+            {
+                q: "Aplikasi atau tools yang digunakan dalam proses pengolahan titik bangunan (geotagging) SE2026 adalah ...",
+                correct: "QGIS",
+                wrong: ["FRS-MFDOnline", "FASIH", "SPSS"]
+            },
+            {
+                q: "Tahapan umum pengolahan master wilkerstat tingkat SLS/sub-SLS meliputi kegiatan berikut, kecuali ...",
+                correct: "Penghapusan seluruh kode wilayah lama",
+                wrong: ["Penyiapan daftar PSLS", "Pengajuan perubahan SLS", "Approval perubahan SLS"]
+            }
+        ];
+
         const quizDataAsync1 = [
             {
                 q: "Apa langkah pertama yang perlu dilakukan dalam pengisian Daftar PSLS ketika terdapat informasi perubahan SLS?",
@@ -890,17 +905,21 @@
             }
         ];
 
-        function loadAsync1Quiz() {
+        let activeQuizData = [];
+
+        function renderQuiz(title, subtitle, dataset) {
+            activeQuizData = dataset;
+            document.getElementById('quizTitle').innerText = title;
+            document.getElementById('quizSubTitle').innerText = subtitle;
+
             const container = document.getElementById('quizContainer');
             document.getElementById('quizForm').reset();
             document.getElementById('quizResult').classList.add('hidden');
             document.getElementById('btnSubmitQuiz').classList.remove('hidden');
             container.innerHTML = '';
             
-            // Generate Soal dan acak pilihan gandanya
-            quizDataAsync1.forEach((data, index) => {
+            activeQuizData.forEach((data, index) => {
                 let options = [data.correct, ...data.wrong];
-                // Acak urutan pilihan agar tidak selalu A
                 options.sort(() => Math.random() - 0.5);
 
                 let html = `
@@ -921,18 +940,29 @@
                 container.innerHTML += html;
             });
 
-            // Buka tab kuis
-            switchMainTab('async1Tab');
+            switchMainTab('quizTab');
         }
 
-        function submitQuizAsync1(e) {
+        function loadPreTestQuiz() {
+            renderQuiz("Evaluasi Pre-Test", "Mengukur pemahaman awal peserta", prePostTestData);
+        }
+
+        function loadAsync1Quiz() {
+            renderQuiz("Kuis Asynchronous 1", "Evaluasi pemahaman mandiri hari ke-1", quizDataAsync1);
+        }
+
+        function loadPostTestQuiz() {
+            renderQuiz("Evaluasi Post-Test", "Evaluasi akhir kompetensi peserta", prePostTestData);
+        }
+
+        function submitQuiz(e) {
             e.preventDefault();
             const form = document.getElementById('quizForm');
             const formData = new FormData(form);
             
             let score = 0;
             let answered = 0;
-            const totalQuestions = quizDataAsync1.length;
+            const totalQuestions = activeQuizData.length;
             const pointPerQuestion = 100 / totalQuestions;
 
             for (let value of formData.values()) {
@@ -947,15 +977,12 @@
                 return;
             }
 
-            // Tampilkan hasil
             document.getElementById('scoreText').innerText = Math.round(score);
             document.getElementById('quizResult').classList.remove('hidden');
             document.getElementById('btnSubmitQuiz').classList.add('hidden');
             
-            // Scroll ke atas agar hasil terlihat
             window.scrollTo({ top: document.getElementById('quizForm').offsetTop - 100, behavior: 'smooth' });
         }
-
     </script>
 </body>
 </html>
