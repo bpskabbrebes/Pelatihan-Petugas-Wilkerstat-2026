@@ -294,7 +294,7 @@
                             <p class="text-[11px] text-amber-900 mb-1">24 Sept 2026, 08.00 WIB</p>
                             <p id="pretestStatus" class="text-[10px] font-semibold text-amber-700 mb-4">Menunggu jadwal...</p>
                         </div>
-                        <button type="button" id="btnPreTest" onclick="loadPreTestQuiz()" disabled class="w-full bg-slate-300 text-slate-500 font-bold py-2 rounded-lg text-xs shadow-sm cursor-not-allowed transition">
+                        <button type="button" id="btnPreTest" onclick="loadQuiz('pretest')" disabled class="w-full bg-slate-300 text-slate-500 font-bold py-2 rounded-lg text-xs shadow-sm cursor-not-allowed transition">
                             Belum Dibuka
                         </button>
                     </div>
@@ -309,7 +309,7 @@
                             <p class="text-[11px] text-orange-900 mb-1">24 Sept 2026, 15.15 WIB</p>
                             <p id="async1Status" class="text-[10px] font-semibold text-orange-700 mb-4">Menunggu jadwal...</p>
                         </div>
-                        <button type="button" id="btnAsync1" onclick="loadAsync1Quiz()" disabled class="w-full bg-slate-300 text-slate-500 font-bold py-2 rounded-lg text-xs shadow-sm cursor-not-allowed transition">
+                        <button type="button" id="btnAsync1" onclick="loadQuiz('async1')" disabled class="w-full bg-slate-300 text-slate-500 font-bold py-2 rounded-lg text-xs shadow-sm cursor-not-allowed transition">
                             Belum Dibuka
                         </button>
                     </div>
@@ -324,7 +324,7 @@
                             <p class="text-[11px] text-yellow-900 mb-1">25 Sept 2026, 15.15 WIB</p>
                             <p id="pendalamanStatus" class="text-[10px] font-semibold text-yellow-700 mb-4">Menunggu jadwal...</p>
                         </div>
-                        <button type="button" id="btnPendalaman" onclick="loadPendalamanQuiz()" disabled class="w-full bg-slate-300 text-slate-500 font-bold py-2 rounded-lg text-xs shadow-sm cursor-not-allowed transition">
+                        <button type="button" id="btnPendalaman" onclick="loadQuiz('pendalaman')" disabled class="w-full bg-slate-300 text-slate-500 font-bold py-2 rounded-lg text-xs shadow-sm cursor-not-allowed transition">
                             Belum Dibuka
                         </button>
                     </div>
@@ -339,7 +339,7 @@
                             <p class="text-[11px] text-slate-700 mb-1">25 Sept 2026, 16.15 WIB</p>
                             <p id="posttestStatus" class="text-[10px] font-semibold text-slate-600 mb-4">Menunggu jadwal...</p>
                         </div>
-                        <button type="button" id="btnPostTest" onclick="loadPostTestQuiz()" disabled class="w-full bg-slate-300 text-slate-500 font-bold py-2 rounded-lg text-xs shadow-sm cursor-not-allowed transition">
+                        <button type="button" id="btnPostTest" onclick="loadQuiz('posttest')" disabled class="w-full bg-slate-300 text-slate-500 font-bold py-2 rounded-lg text-xs shadow-sm cursor-not-allowed transition">
                             Belum Dibuka
                         </button>
                     </div>
@@ -531,6 +531,7 @@
                     </button>
                 </div>
                 <form id="quizForm" onsubmit="submitQuiz(event)" class="p-5 sm:p-6 bg-white">
+                    <input type="hidden" id="currentQuizType" value="">
                     <div id="quizContainer" class="space-y-6">
                         <!-- Soal di-generate di sini -->
                     </div>
@@ -538,7 +539,7 @@
                     <div id="quizResult" class="hidden mt-6 p-4 rounded-xl border border-emerald-200 bg-emerald-50 text-center">
                         <h3 class="text-lg font-bold text-emerald-900">Evaluasi Selesai!</h3>
                         <p class="text-sm text-emerald-800 mt-1">Nilai Anda: <span id="scoreText" class="text-2xl font-extrabold text-emerald-600">0</span> / 100</p>
-                        <p class="text-xs text-slate-500 mt-2">Hasil Anda telah tercatat.</p>
+                        <p class="text-xs text-slate-500 mt-2" id="submitStatusText">Hasil Anda telah tercatat otomatis di Google Sheets.</p>
                     </div>
 
                     <div class="mt-8 border-t border-slate-200 pt-5 flex justify-end gap-3">
@@ -698,14 +699,9 @@
         function checkQuizSchedule() {
             const now = new Date();
 
-            // Jadwal Evaluasi:
-            // Pre-Test: 24 Sept 2026, 08.00 WIB
             const timePreTest = new Date('2026-09-24T08:00:00+07:00');
-            // Asynchronous 1: 24 Sept 2026, 15.15 WIB
             const timeAsync1 = new Date('2026-09-24T15:15:00+07:00');
-            // Soal Pendalaman: 25 Sept 2026, 15.15 WIB
             const timePendalaman = new Date('2026-09-25T15:15:00+07:00');
-            // Post-Test: 25 Sept 2026, 16.15 WIB
             const timePostTest = new Date('2026-09-25T16:15:00+07:00');
 
             updateQuizButtonState('btnPreTest', 'pretestStatus', now, timePreTest, 'Kerjakan Pre-Test', 'bg-amber-500 hover:bg-amber-600 text-slate-950');
@@ -721,18 +717,15 @@
             if (!btn || !statusEl) return;
 
             if (currentTime >= targetTime) {
-                // Waktu sudah tiba atau terlewati -> Buka tombol
                 btn.disabled = false;
                 btn.classList.remove('bg-slate-300', 'text-slate-500', 'cursor-not-allowed');
                 btn.className = btn.className.replace(/bg-\S+/g, '').replace(/text-\S+/g, '').replace(/hover:\S+/g, '');
-                // Tambahkan style aktif
                 const classList = activeClasses.split(' ');
                 classList.forEach(cls => btn.classList.add(cls));
                 btn.innerText = activeText;
                 statusEl.innerText = "Status: Dibuka / Bisa Dikerjakan";
                 statusEl.className = "text-[10px] font-semibold text-emerald-600 mb-4";
             } else {
-                // Waktu belum tiba -> Kunci tombol
                 btn.disabled = true;
                 btn.className = "w-full bg-slate-300 text-slate-500 font-bold py-2 rounded-lg text-xs shadow-sm cursor-not-allowed transition";
                 btn.innerText = "Belum Dibuka";
@@ -866,18 +859,15 @@
         function updateUIAuthState() {
             const guestNav = document.getElementById('guestNav');
             const userNav = document.getElementById('userNav');
-            const accessAlert = document.getElementById('accessAlert');
 
             if (currentUser) {
                 guestNav.classList.add('hidden');
                 userNav.classList.remove('hidden');
                 document.getElementById('navUserName').innerText = currentUser.name;
                 document.getElementById('navUserNip').innerText = 'NIP/NIK: ' + currentUser.nip;
-                if(accessAlert) accessAlert.classList.add('hidden');
             } else {
                 guestNav.classList.remove('hidden');
                 userNav.classList.add('hidden');
-                if(accessAlert) accessAlert.classList.remove('hidden');
             }
         }
 
@@ -1040,7 +1030,7 @@
             {
                 q: "Koreksi topologis dilakukan untuk",
                 correct: "Menghilangkan gap dan overlap",
-                wrong: ["Menambah warna simbol", "Mengubah nama wilayah", "Mengatur layout peta"]
+                wrong: ["Menambah warna simbol", "Mengubah nama wilayah", "Engatur layout peta"]
             },
             {
                 q: "Informasi perubahan SLS yang tidak bisa didapatkan dari hasil kegiatan lapangan SE2026 adalah ...",
@@ -1071,10 +1061,39 @@
 
         let activeQuizData = [];
 
-        function renderQuiz(title, subtitle, dataset) {
+        function loadQuiz(type) {
+            if (!currentUser) {
+                alert('Silakan Masuk (Login) terlebih dahulu sebelum mengerjakan evaluasi.');
+                openModal('loginModal');
+                return;
+            }
+
+            let title = '';
+            let subtitle = '';
+            let dataset = [];
+
+            if (type === 'pretest') {
+                title = "Evaluasi Pre-Test";
+                subtitle = "Mengukur pemahaman awal peserta";
+                dataset = prePostTestData;
+            } else if (type === 'async1') {
+                title = "Kuis Asynchronous 1";
+                subtitle = "Evaluasi pemahaman mandiri hari ke-1";
+                dataset = quizDataAsync1;
+            } else if (type === 'pendalaman') {
+                title = "Soal Pendalaman";
+                subtitle = "Latihan studi kasus & pengayaan materi wilkerstat";
+                dataset = quizDataPendalaman;
+            } else if (type === 'posttest') {
+                title = "Evaluasi Post-Test";
+                subtitle = "Evaluasi akhir kompetensi peserta";
+                dataset = prePostTestData;
+            }
+
             activeQuizData = dataset;
             document.getElementById('quizTitle').innerText = title;
             document.getElementById('quizSubTitle').innerText = subtitle;
+            document.getElementById('currentQuizType').value = type;
 
             const container = document.getElementById('quizContainer');
             document.getElementById('quizForm').reset();
@@ -1107,26 +1126,12 @@
             switchMainTab('quizTab');
         }
 
-        function loadPreTestQuiz() {
-            renderQuiz("Evaluasi Pre-Test", "Mengukur pemahaman awal peserta", prePostTestData);
-        }
-
-        function loadAsync1Quiz() {
-            renderQuiz("Kuis Asynchronous 1", "Evaluasi pemahaman mandiri hari ke-1", quizDataAsync1);
-        }
-
-        function loadPendalamanQuiz() {
-            renderQuiz("Soal Pendalaman", "Latihan studi kasus & pengayaan materi wilkerstat", quizDataPendalaman);
-        }
-
-        function loadPostTestQuiz() {
-            renderQuiz("Evaluasi Post-Test", "Evaluasi akhir kompetensi peserta", prePostTestData);
-        }
-
-        function submitQuiz(e) {
+        async function submitQuiz(e) {
             e.preventDefault();
             const form = document.getElementById('quizForm');
             const formData = new FormData(form);
+            const quizType = document.getElementById('currentQuizType').value;
+            const submitBtn = document.getElementById('btnSubmitQuiz');
             
             let score = 0;
             let answered = 0;
@@ -1145,11 +1150,46 @@
                 return;
             }
 
-            document.getElementById('scoreText').innerText = Math.round(score);
-            document.getElementById('quizResult').classList.remove('hidden');
-            document.getElementById('btnSubmitQuiz').classList.add('hidden');
-            
-            window.scrollTo({ top: document.getElementById('quizForm').offsetTop - 100, behavior: 'smooth' });
+            const finalScore = Math.round(score);
+
+            try {
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Menyimpan ke Google Sheets...`;
+
+                const response = await fetch(APPS_SCRIPT_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                    body: JSON.stringify({
+                        action: 'submitQuiz',
+                        quizType: quizType,
+                        name: currentUser.name,
+                        nip: currentUser.nip,
+                        score: finalScore
+                    })
+                });
+
+                const result = await response.json();
+
+                document.getElementById('scoreText').innerText = finalScore;
+                document.getElementById('quizResult').classList.remove('hidden');
+                submitBtn.classList.add('hidden');
+
+                if (result.status === 'success') {
+                    document.getElementById('submitStatusText').innerText = "Nilai Anda berhasil tercatat otomatis di Google Sheets.";
+                } else {
+                    document.getElementById('submitStatusText').innerText = "Kuis selesai. (Catatan: " + (result.message || 'Sinkronisasi backend') + ")";
+                }
+            } catch (err) {
+                console.error(err);
+                document.getElementById('scoreText').innerText = finalScore;
+                document.getElementById('quizResult').classList.remove('hidden');
+                submitBtn.classList.add('hidden');
+                document.getElementById('submitStatusText').innerText = "Nilai dihitung secara lokal (Gagal terhubung ke Google Apps Script).";
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = `<i class="fa-solid fa-paper-plane"></i> Kumpulkan Jawaban`;
+                window.scrollTo({ top: document.getElementById('quizForm').offsetTop - 100, behavior: 'smooth' });
+            }
         }
     </script>
 </body>
