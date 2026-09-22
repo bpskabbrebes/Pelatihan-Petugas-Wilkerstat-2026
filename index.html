@@ -106,9 +106,12 @@
 
         <!-- Action Bar Cepat -->
         <div class="sticky top-[101px] z-40 bg-white border-b border-orange-200 px-4 py-2.5 shadow-sm">
-            <div class="max-w-7xl mx-auto grid grid-cols-2 gap-2.5">
-                <button type="button" onclick="window.open('https://daftarhadir.web.bps.go.id/#/go/BGMys', '_blank')" class="bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white font-bold py-2.5 px-3 rounded-xl text-xs sm:text-sm transition flex items-center justify-center gap-2 shadow-sm">
-                    <i class="fa-solid fa-clipboard-user text-sm sm:text-base"></i> Presensi Hari Ini
+            <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                <button type="button" onclick="window.open('https://daftarhadir.web.bps.go.id/#/go/CSZRQ', '_blank')" class="bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white font-bold py-2.5 px-3 rounded-xl text-xs sm:text-sm transition flex items-center justify-center gap-2 shadow-sm">
+                    <i class="fa-solid fa-clipboard-user text-sm sm:text-base"></i> Presensi Hari 1
+                </button>
+                <button type="button" onclick="window.open('https://daftarhadir.web.bps.go.id/#/go/1t4E6', '_blank')" class="bg-teal-600 hover:bg-teal-700 active:bg-teal-800 text-white font-bold py-2.5 px-3 rounded-xl text-xs sm:text-sm transition flex items-center justify-center gap-2 shadow-sm">
+                    <i class="fa-solid fa-clipboard-user text-sm sm:text-base"></i> Presensi Hari 2
                 </button>
                 <a href="http://s.bps.go.id/3329_Wilkerstat2026" target="_blank" class="bg-orange-600 hover:bg-orange-700 active:bg-orange-800 text-white font-bold py-2.5 px-3 rounded-xl text-xs sm:text-sm transition flex items-center justify-center gap-2 shadow-sm">
                     <i class="fa-solid fa-video text-sm sm:text-base"></i> Gabung Zoom
@@ -255,15 +258,20 @@
             </section>
 
             <!-- Section 3: Presensi Harian -->
-            <section id="presensi" class="bg-emerald-900 text-white p-5 sm:p-8 rounded-2xl shadow-md">
+            <section id="presensi" class="bg-emerald-900 text-white p-5 sm:p-8 rounded-2xl shadow-md space-y-4">
                 <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                     <div>
                         <span class="bg-emerald-400 text-slate-950 text-[10px] font-extrabold px-2.5 py-0.5 rounded-full uppercase tracking-wider">Kehadiran</span>
-                        <h2 class="text-xl sm:text-2xl font-extrabold mt-1">Daftar Hadir Online</h2>
-                        <p class="text-emerald-100 text-xs sm:text-sm mt-1">Peserta wajib mengisi daftar hadir online setiap hari jadwal pelatihan.</p>
+                        <h2 class="text-xl sm:text-2xl font-extrabold mt-1">Daftar Hadir Online Pelatihan</h2>
+                        <p class="text-emerald-100 text-xs sm:text-sm mt-1">Peserta wajib mengisi daftar hadir online sesuai jadwal hari kegiatan.</p>
                     </div>
-                    <button type="button" onclick="window.open('https://daftarhadir.web.bps.go.id/#/go/BGMys', '_blank')" class="w-full sm:w-auto bg-amber-400 hover:bg-amber-500 text-slate-950 font-extrabold px-5 py-3 rounded-xl shadow transition text-xs sm:text-sm flex items-center justify-center gap-2">
-                        <i class="fa-solid fa-user-check"></i> Isi Presensi Hari Ini
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                    <button type="button" onclick="window.open('https://daftarhadir.web.bps.go.id/#/go/CSZRQ', '_blank')" class="w-full bg-amber-400 hover:bg-amber-500 text-slate-950 font-extrabold py-3 px-4 rounded-xl shadow transition text-xs sm:text-sm flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-user-check"></i> Isi Presensi Hari 1
+                    </button>
+                    <button type="button" onclick="window.open('https://daftarhadir.web.bps.go.id/#/go/1t4E6', '_blank')" class="w-full bg-teal-400 hover:bg-teal-500 text-slate-950 font-extrabold py-3 px-4 rounded-xl shadow transition text-xs sm:text-sm flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-user-check"></i> Isi Presensi Hari 2
                     </button>
                 </div>
             </section>
@@ -505,7 +513,7 @@
         </main>
     </div>
 
-    <!-- CONTENT TAB: KUIS DINAMIS (PRE-TEST, ASYNC 1, PENDALAMAN, POST-TEST) -->
+    <!-- CONTENT TAB: KUIS DINAMIS -->
     <div id="quizTab" class="main-tab-content hidden flex-grow bg-slate-100 py-8">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="bg-white rounded-2xl shadow-sm border border-orange-200 overflow-hidden">
