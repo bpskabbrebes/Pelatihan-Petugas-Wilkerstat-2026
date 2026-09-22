@@ -284,6 +284,7 @@
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <!-- Pre-Test -->
                     <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 flex flex-col justify-between">
                         <div>
                             <div class="flex items-center gap-2 text-amber-900 font-bold mb-2">
@@ -291,13 +292,14 @@
                                 <h3 class="text-sm">Pre-Test</h3>
                             </div>
                             <p class="text-[11px] text-amber-900 mb-1">24 Sept 2026, 08.00 WIB</p>
-                            <p class="text-[10px] text-slate-500 mb-4">Mengukur pemahaman awal peserta.</p>
+                            <p id="pretestStatus" class="text-[10px] font-semibold text-amber-700 mb-4">Menunggu jadwal...</p>
                         </div>
-                        <button type="button" onclick="loadPreTestQuiz()" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold py-2 rounded-lg text-xs shadow-sm transition">
-                            Kerjakan Pre-Test
+                        <button type="button" id="btnPreTest" onclick="loadPreTestQuiz()" disabled class="w-full bg-slate-300 text-slate-500 font-bold py-2 rounded-lg text-xs shadow-sm cursor-not-allowed transition">
+                            Belum Dibuka
                         </button>
                     </div>
 
+                    <!-- Asynchronous 1 -->
                     <div class="bg-orange-50 border border-orange-200 rounded-xl p-4 flex flex-col justify-between">
                         <div>
                             <div class="flex items-center gap-2 text-orange-950 font-bold mb-2">
@@ -305,13 +307,14 @@
                                 <h3 class="text-sm">Asynchronous 1</h3>
                             </div>
                             <p class="text-[11px] text-orange-900 mb-1">24 Sept 2026, 15.15 WIB</p>
-                            <p class="text-[10px] text-slate-500 mb-4">Pendalaman mandiri hari ke-1.</p>
+                            <p id="async1Status" class="text-[10px] font-semibold text-orange-700 mb-4">Menunggu jadwal...</p>
                         </div>
-                        <button type="button" onclick="loadAsync1Quiz()" class="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-2 rounded-lg text-xs shadow-sm transition">
-                            Kerjakan Asynch 1
+                        <button type="button" id="btnAsync1" onclick="loadAsync1Quiz()" disabled class="w-full bg-slate-300 text-slate-500 font-bold py-2 rounded-lg text-xs shadow-sm cursor-not-allowed transition">
+                            Belum Dibuka
                         </button>
                     </div>
 
+                    <!-- Soal Pendalaman -->
                     <div class="bg-yellow-50 border border-yellow-200 rounded-xl p-4 flex flex-col justify-between">
                         <div>
                             <div class="flex items-center gap-2 text-yellow-950 font-bold mb-2">
@@ -319,13 +322,14 @@
                                 <h3 class="text-sm">Soal Pendalaman</h3>
                             </div>
                             <p class="text-[11px] text-yellow-900 mb-1">25 Sept 2026, 15.15 WIB</p>
-                            <p class="text-[10px] text-slate-500 mb-4">Latihan studi kasus & pengayaan.</p>
+                            <p id="pendalamanStatus" class="text-[10px] font-semibold text-yellow-700 mb-4">Menunggu jadwal...</p>
                         </div>
-                        <button type="button" onclick="loadPendalamanQuiz()" class="w-full bg-yellow-500 hover:bg-yellow-600 text-slate-950 font-bold py-2 rounded-lg text-xs shadow-sm transition">
-                            Kerjakan Pendalaman
+                        <button type="button" id="btnPendalaman" onclick="loadPendalamanQuiz()" disabled class="w-full bg-slate-300 text-slate-500 font-bold py-2 rounded-lg text-xs shadow-sm cursor-not-allowed transition">
+                            Belum Dibuka
                         </button>
                     </div>
 
+                    <!-- Post-Test -->
                     <div class="bg-stone-50 border border-stone-200 rounded-xl p-4 flex flex-col justify-between">
                         <div>
                             <div class="flex items-center gap-2 text-slate-900 font-bold mb-2">
@@ -333,10 +337,10 @@
                                 <h3 class="text-sm">Post-Test</h3>
                             </div>
                             <p class="text-[11px] text-slate-700 mb-1">25 Sept 2026, 16.15 WIB</p>
-                            <p class="text-[10px] text-slate-500 mb-4">Evaluasi akhir kompetensi.</p>
+                            <p id="posttestStatus" class="text-[10px] font-semibold text-slate-600 mb-4">Menunggu jadwal...</p>
                         </div>
-                        <button type="button" onclick="loadPostTestQuiz()" class="w-full bg-slate-900 hover:bg-slate-950 text-white font-bold py-2 rounded-lg text-xs shadow-sm transition">
-                            Kerjakan Post-Test
+                        <button type="button" id="btnPostTest" onclick="loadPostTestQuiz()" disabled class="w-full bg-slate-300 text-slate-500 font-bold py-2 rounded-lg text-xs shadow-sm cursor-not-allowed transition">
+                            Belum Dibuka
                         </button>
                     </div>
                 </div>
@@ -686,7 +690,56 @@
 
         document.addEventListener("DOMContentLoaded", () => {
             updateUIAuthState();
+            checkQuizSchedule();
+            setInterval(checkQuizSchedule, 30000); // Cek perubahan waktu setiap 30 detik
         });
+
+        // Validasi Waktu Kuis Otomatis
+        function checkQuizSchedule() {
+            const now = new Date();
+
+            // Jadwal Evaluasi:
+            // Pre-Test: 24 Sept 2026, 08.00 WIB
+            const timePreTest = new Date('2026-09-24T08:00:00+07:00');
+            // Asynchronous 1: 24 Sept 2026, 15.15 WIB
+            const timeAsync1 = new Date('2026-09-24T15:15:00+07:00');
+            // Soal Pendalaman: 25 Sept 2026, 15.15 WIB
+            const timePendalaman = new Date('2026-09-25T15:15:00+07:00');
+            // Post-Test: 25 Sept 2026, 16.15 WIB
+            const timePostTest = new Date('2026-09-25T16:15:00+07:00');
+
+            updateQuizButtonState('btnPreTest', 'pretestStatus', now, timePreTest, 'Kerjakan Pre-Test', 'bg-amber-500 hover:bg-amber-600 text-slate-950');
+            updateQuizButtonState('btnAsync1', 'async1Status', now, timeAsync1, 'Kerjakan Asynch 1', 'bg-orange-600 hover:bg-orange-700 text-white');
+            updateQuizButtonState('btnPendalaman', 'pendalamanStatus', now, timePendalaman, 'Kerjakan Pendalaman', 'bg-yellow-500 hover:bg-yellow-600 text-slate-950');
+            updateQuizButtonState('btnPostTest', 'posttestStatus', now, timePostTest, 'Kerjakan Post-Test', 'bg-slate-900 hover:bg-slate-950 text-white');
+        }
+
+        function updateQuizButtonState(btnId, statusId, currentTime, targetTime, activeText, activeClasses) {
+            const btn = document.getElementById(btnId);
+            const statusEl = document.getElementById(statusId);
+
+            if (!btn || !statusEl) return;
+
+            if (currentTime >= targetTime) {
+                // Waktu sudah tiba atau terlewati -> Buka tombol
+                btn.disabled = false;
+                btn.classList.remove('bg-slate-300', 'text-slate-500', 'cursor-not-allowed');
+                btn.className = btn.className.replace(/bg-\S+/g, '').replace(/text-\S+/g, '').replace(/hover:\S+/g, '');
+                // Tambahkan style aktif
+                const classList = activeClasses.split(' ');
+                classList.forEach(cls => btn.classList.add(cls));
+                btn.innerText = activeText;
+                statusEl.innerText = "Status: Dibuka / Bisa Dikerjakan";
+                statusEl.className = "text-[10px] font-semibold text-emerald-600 mb-4";
+            } else {
+                // Waktu belum tiba -> Kunci tombol
+                btn.disabled = true;
+                btn.className = "w-full bg-slate-300 text-slate-500 font-bold py-2 rounded-lg text-xs shadow-sm cursor-not-allowed transition";
+                btn.innerText = "Belum Dibuka";
+                statusEl.innerText = "Menunggu jadwal...";
+                statusEl.className = "text-[10px] font-semibold text-slate-500 mb-4";
+            }
+        }
 
         // Tab Switching Logic
         function switchMainTab(targetTabId) {
