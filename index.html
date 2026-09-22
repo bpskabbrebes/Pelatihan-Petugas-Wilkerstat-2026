@@ -313,8 +313,8 @@
                             <p class="text-[11px] text-yellow-900 mb-1">25 Sept 2026, 15.15 WIB</p>
                             <p class="text-[10px] text-slate-500 mb-4">Latihan studi kasus & pengayaan.</p>
                         </div>
-                        <button type="button" onclick="window.open('https://drive.google.com/drive/folders/1qxrKKTyVGGfHC7Hjvh_kedqCzfs5oawG?usp=drive_link', '_blank')" class="w-full bg-yellow-500 hover:bg-yellow-600 text-slate-950 font-bold py-2 rounded-lg text-xs shadow-sm transition">
-                            Akses Pendalaman
+                        <button type="button" onclick="loadPendalamanQuiz()" class="w-full bg-yellow-500 hover:bg-yellow-600 text-slate-950 font-bold py-2 rounded-lg text-xs shadow-sm transition">
+                            Kerjakan Pendalaman
                         </button>
                     </div>
 
@@ -505,7 +505,7 @@
         </main>
     </div>
 
-    <!-- CONTENT TAB: KUIS DINAMIS (PRE-TEST, ASYNC 1, POST-TEST) -->
+    <!-- CONTENT TAB: KUIS DINAMIS (PRE-TEST, ASYNC 1, PENDALAMAN, POST-TEST) -->
     <div id="quizTab" class="main-tab-content hidden flex-grow bg-slate-100 py-8">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="bg-white rounded-2xl shadow-sm border border-orange-200 overflow-hidden">
@@ -821,7 +821,7 @@
         }
 
         /* -------------------------------------------------------------------------
-           DATABASE DATA SOAL KUIS (PRE-TEST, ASYNC 1, POST-TEST)
+           DATABASE DATA SOAL KUIS (PRE-TEST, ASYNC 1, PENDALAMAN, POST-TEST)
         ------------------------------------------------------------------------- */
         
         const prePostTestData = [
@@ -905,6 +905,109 @@
             }
         ];
 
+        const quizDataPendalaman = [
+            {
+                q: "Salah satu alasan utama dilaksanakannya kegiatan Penetapan Kerangka Geospasial dan Muatan Wilkerstat pada SE2026 adalah karena ...",
+                correct: "perubahan batas dan muatan SLS dapat terjadi dalam waktu relatif singkat sehingga perlu pemutakhiran peta dan master wilkerstat",
+                wrong: ["seluruh desa definitif wajib dimekarkan menjadi desa persiapan", "wilayah kerja statistik tingkat kecamatan sudah tidak digunakan lagi", "seluruh wilayah non-SLS harus dihapus dari master wilkerstat"]
+            },
+            {
+                q: "Berikut ini yang BUKAN merupakan tanggung jawab Tim Wilkerstat BPS Provinsi adalah ...",
+                correct: "membuat layout peta desa hasil pengolahan",
+                wrong: ["melakukan monitoring dan approval pengolahan master melalui FRS-MFDOnline", "melakukan rekonsiliasi batas kabupaten/kota", "mengatur manajemen pengguna Geospatial System tingkat kabupaten/kota"]
+            },
+            {
+                q: "Dalam proses pengolahan peta wilkerstat, perubahan batas SLS yang menyebabkan perubahan muatan wilayah harus ditindaklanjuti dengan ...",
+                correct: "penghitungan kembali muatan pada batas SLS hasil perbaikan",
+                wrong: ["penghapusan seluruh titik geotagging lama", "pembentukan kecamatan baru", "pengubahan seluruh kode desa pada kecamatan terkait"]
+            },
+            {
+                q: "Berikut ini merupakan Material atau Tools yang digunakan dalam pengolahan Peta kecuali",
+                correct: "Plugin Cliper",
+                wrong: ["Template Layout WB", "Template Layout WS", "GS"]
+            },
+            {
+                q: "Ketika melakukan georeferensi secara manual, untuk memanggil peta sls/sub-sls menggunakan menu...",
+                correct: "Add Raster Layer",
+                wrong: ["Add Vector Layer", "Add Delimited Text Layer", "Add Mesh Layer"]
+            },
+            {
+                q: "Jenis-jenis perubahan berikut yang ada pada level sub-SLS, kecuali ...",
+                correct: "Perubahan nama/tingkatan sub-SLS",
+                wrong: ["Pemekaran sub-SLS", "Perubahan kode sub-SLS", "Penggabungan sub-SLS"]
+            },
+            {
+                q: "Di Desa Maju Makmur, terdapat SLS bernama Dusun Pesanggrahan yang mengalami pemekaran wilayah. SLS tersebut mekar menjadi Dusun Perjuangan dan Dusun Pamijahan. Berikut pernyataan yang benar mengenai pengolahan master wilkerstat untuk kasus tersebut, kecuali ...",
+                correct: "Salah satu kode SLS baru harus menggunakan kembali kode SLS lama yang sebelumnya sudah pernah digunakan agar nomor tetap berurutan",
+                wrong: ["Kode SLS baru menggunakan kode lanjutan dari kode SLS terakhir di Desa Maju Makmur", "Pada Daftar PSLS, kode perubahan wilayah untuk SLS induk dan SLS hasil pemekaran diisikan kode 1", "Informasi perubahan SLS perlu diajukan melalui menu Pemekaran SLS pada aplikasi FRS-MFDOnline"]
+            },
+            {
+                q: "SLS Dusun Mekar Jaya memiliki 2 sub-SLS, yaitu sub-SLS 01 dan 02. Berdasarkan hasil lapangan SE2026, wilayah tersebut mengalami pemekaran menjadi tiga SLS baru: Dusun Mekar Jaya, Dusun Mekar Asri, dan Dusun Mekar Indah. Setelah dilakukan pemeriksaan peta WSS, diketahui sub-SLS 01 dominan masuk ke Dusun Mekar Jaya, sedangkan sub-SLS 02 terbagi ke dua wilayah baru lainnya. Tindakan yang paling tepat dilakukan dalam pengolahan master wilkerstat adalah ...",
+                correct: "Melakukan pemekaran sub-SLS terlebih dahulu, kemudian mengalokasikan sub-SLS hasil pemekaran ke masing-masing SLS baru dalam satu pengajuan Pemekaran SLS.",
+                wrong: ["Seluruh sub-SLS dipertahankan tanpa perubahan karena pemekaran hanya terjadi pada tingkat SLS.", "Membuat pengajuan terpisah antara pemekaran SLS dan pemekaran sub-SLS agar proses lebih mudah dikendalikan.", "Menghapus seluruh sub-SLS lama dan menggantinya dengan kode sub-SLS 00 pada semua SLS hasil pemekaran."]
+            },
+            {
+                q: "Suatu titik bangunan berada di luar batas SLS/SubSLS saat ini. Saat kursor diarahkan ke titik, informasi menunjukkan bahwa titik tersebut seharusnya berada pada idsubsls lain. Langkah paling tepat sebelum menggeser titik adalah ...",
+                correct: "Mengimpor Peta WS/WSS georeferensi sesuai idsubsls tujuan sebagai acuan posisi",
+                wrong: ["Mengubah flag_repair menjadi 0 agar titik berubah warna", "Menghapus titik dari layer karena berada di luar batas", "Mengekspor layer menjadi GeoJSON terlebih dahulu"]
+            },
+            {
+                q: "Seorang petugas langsung menggeser titik tanpa menjalankan proses identifikasi terlebih dahulu. Risiko utama dari langkah tersebut adalah ...",
+                correct: "Petugas tidak memiliki penanda awal titik mana yang berada di luar batas dan perlu diedit",
+                wrong: ["File project QGIS tidak dapat disimpan", "Semua atribut otomatis berubah menjadi kosong", "Peta WS/WSS tidak dapat ditampilkan di QGIS"]
+            },
+            {
+                q: "Saat melakukan editing, petugas mengubah flag_repair dari 1 menjadi 0 secara manual setelah menggeser titik, tetapi tidak menjalankan model pengecekan ulang. Mengapa langkah ini belum cukup untuk menyatakan titik valid?",
+                correct: "Karena perubahan manual atribut tidak menggantikan proses validasi spasial terhadap batas SLS/SubSLS",
+                wrong: ["Karena flag_repair tidak boleh diubah dalam kondisi apa pun", "Karena titik harus selalu tetap berwarna oranye sampai akhir", "Karena model pengecekan hanya digunakan sebelum editing"]
+            },
+            {
+                q: "Tujuan identifikasi perubahan batas SLS adalah untuk",
+                correct: "Menentukan wilayah yang perlu dilakukan editing",
+                wrong: ["Menghapus seluruh data lama", "Membuat layout peta otomatis", "Mengubah sistem koordinat peta"]
+            },
+            {
+                q: "Tools QGIS yang digunakan untuk memotong poligon adalah",
+                correct: "Split Features",
+                wrong: ["Merge Feature", "Fill Ring", "Topology Checker"]
+            },
+            {
+                q: "CRS yang digunakan saat export GeoJSON adalah",
+                correct: "EPSG:4326",
+                wrong: ["EPSG:3857", "EPSG:32748", "EPSG:32648"]
+            },
+            {
+                q: "Koreksi topologis dilakukan untuk",
+                correct: "Menghilangkan gap dan overlap",
+                wrong: ["Menambah warna simbol", "Mengubah nama wilayah", "Mengatur layout peta"]
+            },
+            {
+                q: "Informasi perubahan SLS yang tidak bisa didapatkan dari hasil kegiatan lapangan SE2026 adalah ...",
+                correct: "Perubahan kode SLS",
+                wrong: ["Pemekaran SLS", "Penggabungan SLS", "Perubahan batas SLS"]
+            },
+            {
+                q: "Manakah pernyataan yang benar terkait proses georeferensi otomatis Peta WS/WSS menggunakan file .jgw?",
+                correct: "Peta JPEG akan otomatis memiliki referensi geografis jika nama file .jpg dan .jgw identik dan berada dalam folder yang sama",
+                wrong: ["File .jgw digunakan untuk menyimpan atribut wilayah hasil digitasi", "Georeferensi otomatis hanya dapat dilakukan menggunakan plugin Freehand Raster Georeferencer", "File .jgw dibuat melalui proses scan peta hasil lapangan"]
+            },
+            {
+                q: "Informasi pada daftar PSLS yang tidak perlu diisi oleh tim wilkerstat BPS kabupaten/kota yaitu ...",
+                correct: "Kode SLS setelah perubahan",
+                wrong: ["Jumlah BKU", "Muatan dominan", "Status perubahan wilayah SLS/sub-SLS"]
+            },
+            {
+                q: "Pada proses penggabungan SLS di FRS-MFDOnline, SLS yang menjadi hasil/tujuan gabungan (induk penggabungan) harus diisikan pada …",
+                correct: "Baris pertama",
+                wrong: ["Baris terakhir", "Baris kedua", "Bebas dan tidak ditentukan"]
+            },
+            {
+                q: "Mengapa kita memilih ‘fill ring’ untuk memotong poligon peta pada kasus wilayah kantong (wilayah lain dalam suatu poligon), yaitu untuk memastikan:",
+                correct: "Semua jawaban benar",
+                wrong: ["Poligon terpotong", "Bebas dari gap", "Bebas dari overlap"]
+            }
+        ];
+
         let activeQuizData = [];
 
         function renderQuiz(title, subtitle, dataset) {
@@ -949,6 +1052,10 @@
 
         function loadAsync1Quiz() {
             renderQuiz("Kuis Asynchronous 1", "Evaluasi pemahaman mandiri hari ke-1", quizDataAsync1);
+        }
+
+        function loadPendalamanQuiz() {
+            renderQuiz("Soal Pendalaman", "Latihan studi kasus & pengayaan materi wilkerstat", quizDataPendalaman);
         }
 
         function loadPostTestQuiz() {
