@@ -287,7 +287,7 @@
                             <p class="text-[11px] text-amber-900 mb-1">24 Sept 2026, 08.00 WIB</p>
                             <p class="text-[10px] text-slate-500 mb-4">Mengukur pemahaman awal peserta.</p>
                         </div>
-                        <button type="button" onclick="protectedLinkAccess('MASUKKAN_LINK_PRE_TEST_DISINI')" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold py-2 rounded-lg text-xs shadow-sm transition">
+                        <button type="button" onclick="startTest('Pre-Test')" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold py-2 rounded-lg text-xs shadow-sm transition">
                             Kerjakan Pre-Test
                         </button>
                     </div>
@@ -301,7 +301,7 @@
                             <p class="text-[11px] text-orange-900 mb-1">24 Sept 2026, 15.15 WIB</p>
                             <p class="text-[10px] text-slate-500 mb-4">Pendalaman mandiri hari ke-1.</p>
                         </div>
-                        <button type="button" onclick="protectedLinkAccess('MASUKKAN_LINK_ASYNC_1_DISINI')" class="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-2 rounded-lg text-xs shadow-sm transition">
+                        <button type="button" onclick="startTest('Asynchronous 1')" class="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-2 rounded-lg text-xs shadow-sm transition">
                             Kerjakan Asynch 1
                         </button>
                     </div>
@@ -315,7 +315,7 @@
                             <p class="text-[11px] text-yellow-900 mb-1">25 Sept 2026, 15.15 WIB</p>
                             <p class="text-[10px] text-slate-500 mb-4">Latihan studi kasus & pengayaan.</p>
                         </div>
-                        <button type="button" onclick="protectedLinkAccess('MASUKKAN_LINK_PENDALAMAN_DISINI')" class="w-full bg-yellow-500 hover:bg-yellow-600 text-slate-950 font-bold py-2 rounded-lg text-xs shadow-sm transition">
+                        <button type="button" onclick="window.open('https://drive.google.com/drive/folders/1qxrKKTyVGGfHC7Hjvh_kedqCzfs5oawG?usp=drive_link', '_blank')" class="w-full bg-yellow-500 hover:bg-yellow-600 text-slate-950 font-bold py-2 rounded-lg text-xs shadow-sm transition">
                             Akses Pendalaman
                         </button>
                     </div>
@@ -329,7 +329,7 @@
                             <p class="text-[11px] text-slate-700 mb-1">25 Sept 2026, 16.15 WIB</p>
                             <p class="text-[10px] text-slate-500 mb-4">Evaluasi akhir kompetensi.</p>
                         </div>
-                        <button type="button" onclick="protectedLinkAccess('MASUKKAN_LINK_POST_TEST_DISINI')" class="w-full bg-slate-900 hover:bg-slate-950 text-white font-bold py-2 rounded-lg text-xs shadow-sm transition">
+                        <button type="button" onclick="startTest('Post-Test')" class="w-full bg-slate-900 hover:bg-slate-950 text-white font-bold py-2 rounded-lg text-xs shadow-sm transition">
                             Kerjakan Post-Test
                         </button>
                     </div>
@@ -750,7 +750,7 @@
             e.preventDefault();
             const btn = document.getElementById('btnRegSubmit');
             const originalText = btn.innerHTML;
-            
+
             const name = document.getElementById('regName').value.trim();
             const nip = document.getElementById('regNip').value.trim();
             const password = document.getElementById('regPassword').value;
@@ -832,6 +832,12 @@
             } else {
                 window.open(url, '_blank');
             }
+        }
+
+        function startTest(testName) {
+            // Pengecekan currentUser dihapus sehingga semua orang bisa akses
+            alert('Menghubungkan ke ' + testName + '...\nSelamat mengerjakan!');
+            // Anda bisa tambahkan window.open(...) di sini untuk membuka link soal
         }
     </script>
 </body>
