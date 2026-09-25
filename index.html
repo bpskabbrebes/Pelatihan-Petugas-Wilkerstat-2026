@@ -321,7 +321,7 @@
                                 <i class="fa-solid fa-book-open-reader text-lg text-yellow-600"></i>
                                 <h3 class="text-sm">Soal Pendalaman</h3>
                             </div>
-                            <p class="text-[11px] text-yellow-900 mb-1">25 Sept 2026, 15.15 WIB</p>
+                            <p class="text-[11px] text-yellow-900 mb-1">25 Sept 2026, 14.30 WIB</p>
                             <p id="pendalamanStatus" class="text-[10px] font-semibold text-yellow-700 mb-4">Menunggu jadwal...</p>
                         </div>
                         <button type="button" id="btnPendalaman" onclick="loadQuiz('pendalaman')" disabled class="w-full bg-slate-300 text-slate-500 font-bold py-2 rounded-lg text-xs shadow-sm cursor-not-allowed transition">
@@ -336,7 +336,7 @@
                                 <i class="fa-solid fa-square-check text-lg text-emerald-600"></i>
                                 <h3 class="text-sm">Post-Test</h3>
                             </div>
-                            <p class="text-[11px] text-slate-700 mb-1">25 Sept 2026, 16.15 WIB</p>
+                            <p class="text-[11px] text-slate-700 mb-1">25 Sept 2026, 14.30 WIB</p>
                             <p id="posttestStatus" class="text-[10px] font-semibold text-slate-600 mb-4">Menunggu jadwal...</p>
                         </div>
                         <button type="button" id="btnPostTest" onclick="loadQuiz('posttest')" disabled class="w-full bg-slate-300 text-slate-500 font-bold py-2 rounded-lg text-xs shadow-sm cursor-not-allowed transition">
@@ -701,8 +701,8 @@
 
             const timePreTest = new Date('2026-09-24T08:00:00+07:00');
             const timeAsync1 = new Date('2026-09-24T15:15:00+07:00');
-            const timePendalaman = new Date('2026-09-25T15:14:00+07:00');
-            const timePostTest = new Date('2026-09-25T16:14:00+07:00');
+            const timePendalaman = new Date('2026-09-25T14:30:00+07:00');
+            const timePostTest = new Date('2026-09-25T14:30:00+07:00');
 
             updateQuizButtonState('btnPreTest', 'pretestStatus', now, timePreTest, 'Kerjakan Pre-Test', 'bg-amber-500 hover:bg-amber-600 text-slate-950');
             updateQuizButtonState('btnAsync1', 'async1Status', now, timeAsync1, 'Kerjakan Asynch 1', 'bg-orange-600 hover:bg-orange-700 text-white');
@@ -872,7 +872,7 @@
         }
 
         /* -------------------------------------------------------------------------
-           DATABASE DATA SOAL KUIS (PRE-TEST, ASYNC 1, PENDALAMAN, POST-TEST)
+            DATABASE DATA SOAL KUIS (PRE-TEST, ASYNC 1, PENDALAMAN, POST-TEST)
         ------------------------------------------------------------------------- */
         
         const prePostTestData = [
@@ -1040,7 +1040,7 @@
             {
                 q: "Manakah pernyataan yang benar terkait proses georeferensi otomatis Peta WS/WSS menggunakan file .jgw?",
                 correct: "Peta JPEG akan otomatis memiliki referensi geografis jika nama file .jpg dan .jgw identik dan berada dalam folder yang sama",
-                wrong: ["File .jgw digunakan untuk menyimpan atribut wilayah hasil digitasi", "Georeferensi otomatis hanya dapat dilakukan menggunakan plugin Freehand Raster Georeferencer", "File .jgw dibuat melalui proses scan peta hasil lapangan"]
+                wrong: ["File .jgw digunakan untuk menyimpan atribut wilayah hasil digitasi", "Georeferensi otomatis hanya dapat dilakukan menggunakan plugin Freehand Raster Georeferencer", "File .jgw dibuat untuk menyimpan catatan scan peta lapangan"]
             },
             {
                 q: "Informasi pada daftar PSLS yang tidak perlu diisi oleh tim wilkerstat BPS kabupaten/kota yaitu ...",
